@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class PlaceholderController {
-    @GetMapping("/test")
-    public String test(){
-        return "pagetest";
+public class ReviewsController {
+    @GetMapping("/profile")
+    public String viewProfile(){
+        return "vendorProfile";
     }
 }
