@@ -60,8 +60,7 @@ public class Vendor {
     )
     private List<Review> reviews;
 
-    @OneToMany
-    @JoinColumn(name = "vendor_id")
+    @OneToMany(mappedBy = "vendor")
     private List<VendorImage> images;
 
     @OneToOne(cascade = CascadeType.ALL)

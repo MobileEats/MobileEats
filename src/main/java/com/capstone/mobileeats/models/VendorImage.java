@@ -2,6 +2,7 @@ package com.capstone.mobileeats.models;
 
 import javax.persistence.*;
 
+@Entity
 public class VendorImage {
 
     @Id
