@@ -1,3 +1,4 @@
+
 package com.capstone.mobileeats.models;
 
 
@@ -225,3 +226,4 @@ public class Vendor {
         this.menu = menu;
     }
 }
+
