@@ -1,26 +1,26 @@
 package com.capstone.mobileeats.models;
 
+import java.awt.*;
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "vendor_categories")
-public class VendorCategory {
-
+@Table(name = "menu_item_categories")
+public class ItemCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(length = 64)
+    @Column(nullable = false, length = 64)
     private String name;
 
-    public VendorCategory(){}
+    public ItemCategory(){}
 
-    public VendorCategory(String name) {
-        this.name = name;
+    public ItemCategory(ItemCategory copy){
+        id = copy.id;
+        name = copy.name;
     }
 
-    public VendorCategory(long id, String name) {
+    public ItemCategory(long id, String name) {
         this.id = id;
         this.name = name;
     }
