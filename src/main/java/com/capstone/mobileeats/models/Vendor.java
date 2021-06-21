@@ -69,6 +69,22 @@ public class Vendor {
 
     public Vendor(){}
 
+    public Vendor(Vendor copy){
+        id = copy.id;
+        description = copy.description;
+        phoneNumber = copy.phoneNumber;
+        email = copy.email;
+        password = copy.password;
+        profileImageUrl = copy.profileImageUrl;
+        location = copy.location;
+        isOpen = copy.isOpen;
+        categories = copy.categories;
+        followers = copy.followers;
+        reviews = copy.reviews;
+        images = copy.images;
+        menu = copy.menu;
+    }
+
     public Vendor(String name, String description, String phoneNumber, String email, int password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
         this.name = name;
         this.description = description;
