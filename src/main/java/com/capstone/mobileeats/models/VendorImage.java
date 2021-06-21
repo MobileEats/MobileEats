@@ -15,6 +15,19 @@ public class VendorImage {
     @Column(name = "image_url")
     private String imageUrl;
 
+    public VendorImage(){}
+
+    public VendorImage(Vendor vendor, String imageUrl) {
+        this.vendor = vendor;
+        this.imageUrl = imageUrl;
+    }
+
+    public VendorImage(long id, Vendor vendor, String imageUrl) {
+        this.id = id;
+        this.vendor = vendor;
+        this.imageUrl = imageUrl;
+    }
+
     public long getId() {
         return id;
     }

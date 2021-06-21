@@ -13,6 +13,17 @@ public class ItemType {
     @Column(length = 64)
     private String name;
 
+    public ItemType(){}
+
+    public ItemType(String name) {
+        this.name = name;
+    }
+
+    public ItemType(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }
