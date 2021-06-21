@@ -55,7 +55,7 @@ public class User {
 
 
     public User(User copy) {
-        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        id = copy.id;
         first_name = copy.first_name;
         last_name = copy.last_name;
         email = copy.email;

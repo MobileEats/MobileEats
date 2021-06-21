@@ -25,6 +25,14 @@ public class Review {
 
     public Review(){}
 
+    public Review(Review copy) {
+        id = copy.id;
+        rating = copy.rating;
+        body = copy.body;
+        owner = copy.owner;
+        vendor = copy.vendor;
+    }
+
     public Review(long id, int rating, String body, User owner, Vendor vendor) {
         this.id = id;
         this.rating = rating;
