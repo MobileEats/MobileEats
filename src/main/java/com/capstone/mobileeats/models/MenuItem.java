@@ -29,6 +29,14 @@ public class MenuItem {
     @JoinColumn (name = "type_id")
     private ItemType itemType;
 
+    @ManyToMany
+    @JoinTable(
+            name = "menu_items_categories",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "menu_item_id")
+    )
+    private List<ItemCategory> category;
+
     private MenuItem(){}
 
     public MenuItem(MenuItem copy){
