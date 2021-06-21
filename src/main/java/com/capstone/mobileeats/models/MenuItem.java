@@ -37,7 +37,7 @@ public class MenuItem {
     )
     private List<ItemCategory> category;
 
-    private MenuItem(){}
+    public MenuItem(){}
 
     public MenuItem(MenuItem copy){
         id = copy.id;
