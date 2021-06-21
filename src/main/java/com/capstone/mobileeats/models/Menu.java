@@ -17,7 +17,6 @@ public class Menu {
     private String imageUrl;
 
     @OneToOne
-    @MapsId
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
 

@@ -21,7 +21,7 @@ public class MenuItem {
     @Column(length = 250)
     private String image_url;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn (name = "menu_id")
     private Menu menu;
 
@@ -35,7 +35,7 @@ public class MenuItem {
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "menu_item_id")
     )
-    private List<ItemCategory> category;
+    private List<ItemCategory> categories;
 
     public MenuItem(){}
 
