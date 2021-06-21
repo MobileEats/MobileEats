@@ -20,8 +20,7 @@ public class Menu {
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
 
-    @OneToMany
-    @JoinColumn(name = "menu_id")
+    @OneToMany(mappedBy = "menu")
     private List<MenuItem> items;
 
     public Menu(){}

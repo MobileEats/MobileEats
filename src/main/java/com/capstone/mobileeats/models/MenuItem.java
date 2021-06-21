@@ -21,8 +21,8 @@ public class MenuItem {
     @Column(length = 250)
     private String image_url;
 
-    @OneToOne
-    @JoinColumn (name = "menu_id")
+    @ManyToOne
+    @JoinColumn(name = "menu_id", referencedColumnName = "id")
     private Menu menu;
 
     @ManyToOne

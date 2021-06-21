@@ -43,12 +43,7 @@ public class User {
         )
     private List<Vendor> following;
 
-    @ManyToMany
-        @JoinTable(
-                name = "reviews",
-                joinColumns = @JoinColumn(name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name = "vendor_id")
-        )
+    @OneToMany(mappedBy = "owner")
     private List<Review> reviews;
 
     public User() { }
