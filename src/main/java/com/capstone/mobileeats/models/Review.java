@@ -17,10 +17,12 @@ public class Review {
     @Column(length = 4096)
     private String body;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User owner;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "vendor_id", referencedColumnName = "id")
     private Vendor vendor;
 
     public Review(){}

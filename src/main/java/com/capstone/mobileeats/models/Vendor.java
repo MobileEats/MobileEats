@@ -38,11 +38,11 @@ public class Vendor {
 
     @ManyToMany
     @JoinTable(
-            name = "vendor_categories",
-            joinColumns = @JoinColumn(name = "vendor_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
+            name = "vendors_categories",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "vendor_id")
     )
-    List<VendorCategory> categories;
+    private List<VendorCategory> categories;
 
     @ManyToMany
     @JoinTable(
@@ -52,12 +52,7 @@ public class Vendor {
     )
     List<User> followers;
 
-    @ManyToMany
-    @JoinTable(
-            name = "reviews",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "review_id")
-    )
+    @OneToMany(mappedBy = "vendor")
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "vendor")
