@@ -49,6 +49,10 @@ public class MenuItem {
         this.itemType = itemType;
     }
 
+    public MenuItem() {
+
+    }
+
     public long getId() {
         return id;
     }
