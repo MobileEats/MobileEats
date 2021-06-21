@@ -25,6 +25,23 @@ public class Menu {
     @JoinColumn(name = "menu_id")
     private List<MenuItem> items;
 
+    public Menu(){}
+
+    public Menu(long id, String name, String imageUrl, Vendor vendor, List<MenuItem> items) {
+        this.id = id;
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.vendor = vendor;
+        this.items = items;
+    }
+
+    public Menu(String name, String imageUrl, Vendor vendor, List<MenuItem> items) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.vendor = vendor;
+        this.items = items;
+    }
+
     public long getId() {
         return id;
     }

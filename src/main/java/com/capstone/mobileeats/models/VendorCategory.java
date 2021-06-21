@@ -14,6 +14,17 @@ public class VendorCategory {
     @Column(length = 64)
     private String name;
 
+    public VendorCategory(){}
+
+    public VendorCategory(String name) {
+        this.name = name;
+    }
+
+    public VendorCategory(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }

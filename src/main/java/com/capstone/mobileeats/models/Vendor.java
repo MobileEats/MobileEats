@@ -68,6 +68,41 @@ public class Vendor {
     @JoinColumn(name = "menu_id", referencedColumnName = "vendor_id")
     private Menu menu;
 
+    public Vendor(){}
+
+    public Vendor(String name, String description, String phoneNumber, String email, int password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
+        this.name = name;
+        this.description = description;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.profileImageUrl = profileImageUrl;
+        this.location = location;
+        this.isOpen = isOpen;
+        this.categories = categories;
+        this.followers = followers;
+        this.reviews = reviews;
+        this.images = images;
+        this.menu = menu;
+    }
+
+    public Vendor(long id, String name, String description, String phoneNumber, String email, int password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.profileImageUrl = profileImageUrl;
+        this.location = location;
+        this.isOpen = isOpen;
+        this.categories = categories;
+        this.followers = followers;
+        this.reviews = reviews;
+        this.images = images;
+        this.menu = menu;
+    }
+
     public long getId() {
         return id;
     }
