@@ -7,45 +7,43 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div>
-  <img src="testImages/img">
-</div>
-<div>
-    <div>
-        Company Profile Picture
+<div class="d-flex flex-column">
+    <div class="d-flex justify-content-center">
+        <img src="/images/pexels4.jpeg">
     </div>
-    <div>
-        Food Truck Name
-        100 Followers
+    <div class="d-flex flex-column align-items-center">
+        <h3>Food Truck Name</h3>
+        <h5>100 Followers</h5>
         <button>Update Location</button>
-        4.5 *****
-        7 reviews
+        <h5>4.5 *****</h5>
+        <h5>7 reviews</h5>
     </div>
-
+    <div class="d-flex flex-column align-items-center">
+        My Menu
+        <button>Edit</button>
+        <!-- Slideshow container -->
+        <!--    <img src="/images/pexels1.jpeg" style="width:50%">-->
+        <!--    <img src="https://www.mcdonalds.com/is/image/content/dam/usa/nfl/assets/images/1_Pub_Desktop_McDeliveryGeneric_HomePage_1168x520.jpg" style="width:50%">-->
+    </div>
 </div>
-<div>
-    My Menu <button>Edit</button>
-    <!-- Slideshow container -->
-    <img src="../images/pexels1.jpeg" style="width:50%">
-    <img src="https://www.mcdonalds.com/is/image/content/dam/usa/nfl/assets/images/1_Pub_Desktop_McDeliveryGeneric_HomePage_1168x520.jpg" style="width:50%">
     <div class="slideshow-container">
 
         <!-- Full-width images with number and caption text -->
         <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src="https://www.mcdonalds.com/is/image/content/dam/usa/nfl/assets/images/1_Pub_Desktop_McDeliveryGeneric_HomePage_1168x520.jpg" style="width:100%">
-            <div class="text">Caption Text</div>
+            <img src="/images/pexels1.jpeg" style="width:100%">
+            <div class="text">Caption One</div>
         </div>
 
         <div class="mySlides fade">
             <div class="numbertext">2 / 3</div>
-            <img src="img/images" style="width:100%">
+            <img src="/images/pexels2.jpeg" style="width:100%">
             <div class="text">Caption Two</div>
         </div>
 
         <div class="mySlides fade">
             <div class="numbertext">3 / 3</div>
-            <img src="../img/pexels2.jpeg" style="width:100%">
+            <img src="/images/pexels3.jpeg" style="width:100%">
             <div class="text">Caption Three</div>
         </div>
 
@@ -61,7 +59,7 @@
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
     </div>
-</div>
+
 
 <footer th:replace="partials/footer :: footer"></footer>
 
