@@ -26,7 +26,7 @@ public class Vendor {
     private String email;
 
     @Column(nullable = false, length = 64)
-    private int password;
+    private String password;
 
     @Column(name = "profile_image_url", nullable = true, length = 256)
     private String profileImageUrl;
@@ -81,7 +81,7 @@ public class Vendor {
         menu = copy.menu;
     }
 
-    public Vendor(String name, String description, String phoneNumber, String email, int password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
+    public Vendor(String name, String description, String phoneNumber, String email, String password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
         this.name = name;
         this.description = description;
         this.phoneNumber = phoneNumber;
@@ -97,7 +97,7 @@ public class Vendor {
         this.menu = menu;
     }
 
-    public Vendor(long id, String name, String description, String phoneNumber, String email, int password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
+    public Vendor(long id, String name, String description, String phoneNumber, String email, String password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -154,11 +154,11 @@ public class Vendor {
         this.email = email;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

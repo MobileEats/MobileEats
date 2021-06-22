@@ -1,4 +1,4 @@
-package com.capstone.mobileeats.repositories;
+package com.capstone.mobileeats.daos;
 
 import com.capstone.mobileeats.models.VendorImage;
 import org.springframework.data.jpa.repository.JpaRepository;
