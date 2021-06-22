@@ -225,5 +225,7 @@ public class Vendor {
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
+
+    public String getUsername(){ return ""; }
 }
 
