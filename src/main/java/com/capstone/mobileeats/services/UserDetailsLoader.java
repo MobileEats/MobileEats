@@ -1,10 +1,10 @@
 package com.capstone.mobileeats.services;
 
+import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.models.User;
 import com.capstone.mobileeats.models.UserWithRoles;
 import com.capstone.mobileeats.models.Vendor;
 import com.capstone.mobileeats.models.VendorWithRoles;
-import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
