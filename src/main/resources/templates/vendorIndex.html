@@ -11,7 +11,14 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
+<h1>Index of all vendors:</h1>
 
+<th:block th:each="vendor : ${vendors}">
+    <div th:id="${vendor.id}">
+        <h3 th:text="${vendor.name}" />
+        <p th:text="${vendor.description}" />
+    </div>
+</th:block>
 
 </body>
 </html>
