@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
+
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
 
@@ -32,4 +33,12 @@ public class UserController {
         users.save(user);
         return "redirect:/login";
     }
+
+
+    @GetMapping("/user/profile")
+    public String profileView(){
+        return "profile";
+    }
+
+
 }

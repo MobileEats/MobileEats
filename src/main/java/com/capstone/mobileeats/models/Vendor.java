@@ -25,7 +25,9 @@ public class Vendor {
     @Column(nullable = true, unique = true, length = 64)
     private String email;
 
+
     @Column(nullable = true, length = 64)
+
     private String password;
 
     @Column(name = "profile_image_url", nullable = true, length = 256)
@@ -60,7 +62,7 @@ public class Vendor {
     private List<VendorImage> images;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "menu_id", referencedColumnName = "vendor_id")
+    @JoinColumn(name = "menu_id", referencedColumnName = "vendor_id", nullable = true)
     private Menu menu;
 
     public Vendor(){}
@@ -81,6 +83,7 @@ public class Vendor {
         menu = copy.menu;
     }
 
+
     public Vendor(String name, String description, String phoneNumber, String profileImageUrl, String location) {
         this.name = name;
         this.description = description;
@@ -88,6 +91,7 @@ public class Vendor {
         this.profileImageUrl = profileImageUrl;
         this.location = location;
     }
+
 
     public Vendor(String name, String description, String phoneNumber, String email, String password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
         this.name = name;
