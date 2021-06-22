@@ -13,7 +13,7 @@ public class Vendor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
 
     @Column(nullable = true, length = 4096)
@@ -22,10 +22,12 @@ public class Vendor {
     @Column(name = "phone_number", nullable = true, length = 16)
     private String phoneNumber;
 
-    @Column(nullable = false, unique = true, length = 64)
+    @Column(nullable = true, unique = true, length = 64)
     private String email;
 
-    @Column(nullable = false, length = 64)
+
+    @Column(nullable = true, length = 64)
+
     private String password;
 
     @Column(name = "profile_image_url", nullable = true, length = 256)
@@ -34,7 +36,7 @@ public class Vendor {
     @Column(nullable = true, length = 64)
     private String location;
 
-    @Column(name = "is_open", nullable = false)
+    @Column(name = "is_open", nullable = true)
     private boolean isOpen;
 
     @ManyToMany
@@ -80,6 +82,16 @@ public class Vendor {
         images = copy.images;
         menu = copy.menu;
     }
+
+
+    public Vendor(String name, String description, String phoneNumber, String profileImageUrl, String location) {
+        this.name = name;
+        this.description = description;
+        this.phoneNumber = phoneNumber;
+        this.profileImageUrl = profileImageUrl;
+        this.location = location;
+    }
+
 
     public Vendor(String name, String description, String phoneNumber, String email, String password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
         this.name = name;
