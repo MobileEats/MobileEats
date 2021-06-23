@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -43,10 +44,10 @@ public class UserController {
         return "redirect:/login";
     }
 
-
-    @GetMapping("/user/profile")
-    public String profileView(){
-        return "profile";
+    @GetMapping(path = "/user/{id}/profile")
+    public String postId(@PathVariable long id, Model model) {
+        model.addAttribute("user", users.getById(id));
+        return "user-profile-page";
     }
 
 
