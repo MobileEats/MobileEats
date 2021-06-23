@@ -32,4 +32,6 @@ public class EmailService {
             System.err.println(ex.getMessage());
         }
     }
+
+//    WILL NEED TO CREATE OTHER METHODS TO EMAIL WHEN REVIEW CREATED
 }
