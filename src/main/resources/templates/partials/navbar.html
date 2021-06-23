@@ -16,9 +16,8 @@
 <!--<nav th:fragment="bootstrap_navbar" class="navbar navbar-expand-lg navbar-light bg-light">-->
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <a href="#" class="navbar-brand"> <!--should redirect to homepage-->
-        <img src="#" alt="" width="40" height="40"> <!--website logo-->
-        MobileEats
+    <a href="/" class="navbar-brand"> <!--should redirect to homepage-->
+        <img src="/images/mobileeats_logo.png" alt="mobileeats logo"  height="60"> <!--website logo-->
     </a>
 
     <form class="form-inline">
@@ -28,12 +27,12 @@
 
 
     <div class="ml-auto w-25 p-3 d-flex justify-content-around">
-        <a href="#">Register</a>
+        <a href="/sign-up">Register</a>
 
-        <a href="#">Login</a>
-
-        <a href="#">
-            <img src="#" alt="" width="30" height="30" class="rounded-circle">
+        <a href="/sign-up">Login</a>
+<!--WILL HAVE TO CHANGE THE 1 TO THE SESSION SCOPE OF THE LOGGED IN USER-->
+        <a href="/vendors/profile/1">
+            <img src="/images/pexels4.jpeg" alt="Company Logo" width="30" height="30" class="rounded-circle">
             <!--redirects to profile, image will have default src when not logged in-->
             Profile
         </a>

@@ -10,7 +10,7 @@ public class ItemCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 64)
+    @Column(nullable = true, length = 64)
     private String name;
 
     public ItemCategory(){}
