@@ -30,11 +30,19 @@ public class VendorController {
     public String displayHome(){
         return "index";
     }
+
     @GetMapping("/vendors")
     public String vendorsIndex(Model model){
         model.addAttribute("vendors", vendorDao.findAll());
+        model.addAttribute("searchVendors", vendorDao.findById(1L));
         return "vendorIndex";
     }
+
+//    @PostMapping("/vendors")
+//    public String vendorSearch(Model model){
+//        model.addAttribute("searchVendors", vendorDao.findById(1L));
+//        return "vendorIndex";
+//    }
 
     @GetMapping("/vendors/create")
     public String vendorCreateProfile(Model model){
