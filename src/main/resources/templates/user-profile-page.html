@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head">
+    <meta charset="UTF-8">
+    <title>User's Profile</title>
+<script  src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+
+        h3 {
+            text-align: center;
+        }
+
+        .container {
+        text-align: center;
+        }
+
+
+
+        .location {
+            text-align: center;
+            width: 100vw;
+            padding: 50px;
+            margin: 20px;
+        }
+
+        .user {
+            display: flex;
+            justify-content: center;
+        }
+
+        .user-image {
+            display: inline-block;
+        }
+
+        .users-info {
+            display: inline;
+            width: 100vw;
+            padding: 50px;
+            margin: 20px 20px 20px 4em;
+        }
+
+        .following {
+            width: 100vw;
+            padding: 50px;
+            margin: 20px;
+        }
+
+        .reviews {
+            width: 100vw;
+            padding: 50px;
+            margin: 20px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<div class="location"> My Location </div>
+
+<section class="user">
+<div class="user-image">
+    <img class="img-circle profile-image" src="https://randomuser.me/api/portraits/men/12.jpg" alt="user"/>
+
+    <div class="users-info">
+        Username and number of reviews I've made
+    </div>
+</div>
+</section>
+
+<section class="following">
+<h3>Following</h3>
+<div class="container">
+        Food Truck Name <br>
+        4 ****  7 reviews <br>
+        $$ ~ (food type) <br>
+        View Menu link
+
+</div>
+</section>
+
+
+
+<section class="reviews">
+    <h3>My Reviews</h3>
+    <div class="container">
+        Food Trucks name <br>
+        Review here
+    </div>
+</section>
+
+
+</body>
+</html>
