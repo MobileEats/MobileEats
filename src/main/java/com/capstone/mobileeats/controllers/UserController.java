@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
 
-    private UserRepository users;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository users;
+    private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
     public UserController(UserRepository users, PasswordEncoder passwordEncoder, EmailService emailService) {
