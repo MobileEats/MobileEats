@@ -11,25 +11,25 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private String first_name;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private String last_name;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private String email;
 
     @Column(length = 150)
     private String image_url;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String password;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private String location;
 
     @Column
