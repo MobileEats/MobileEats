@@ -1,5 +1,6 @@
 package com.capstone.mobileeats.controllers;
 
+import com.capstone.mobileeats.models.Vendor;
 import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.models.User;
 import com.capstone.mobileeats.services.EmailService;
@@ -28,19 +29,16 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/sign-up")
+    @GetMapping("/users/create")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
-        return "login";
+        return "registerUser";
     }
 
-    @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        users.save(user);
-        emailService.newUserCreated(user, "You just created a new user", user.getUsername());
-        return "redirect:/login";
+    @PostMapping("users/create")
+    public String createVendor(@ModelAttribute User user){
+        User saveUser = users.save(user);
+        return "redirect:/users/profile/" + saveUser.getId();
     }
 
 
