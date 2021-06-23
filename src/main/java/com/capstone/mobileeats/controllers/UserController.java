@@ -23,6 +23,11 @@ public class UserController {
         this.emailService = emailService;
     }
 
+    @GetMapping("/login")
+    public String showLoginForm(){
+        return "login";
+    }
+
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());

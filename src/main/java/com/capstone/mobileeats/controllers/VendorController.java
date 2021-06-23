@@ -20,8 +20,6 @@ public class VendorController {
 
     private VendorRepository vendors;
 
-
-
     public VendorController(VendorRepository vendorDao) {
         this.vendorDao = vendorDao;
 
