@@ -58,14 +58,15 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div class="location"> My Location </div>
+<div class="location"><span th:text="${user.location}"></span></div>
 
 <section class="user">
 <div class="user-image">
-    <img class="img-circle profile-image" src="https://randomuser.me/api/portraits/men/12.jpg" alt="user"/>
+    <img class="img-circle profile-image" th:src="${user.image_url}" alt="user"/>
 
     <div class="users-info">
-        Username and number of reviews I've made
+        <span th:text="${user.username}"></span><br>
+        <span th:text="${user.getFollowing().size()} + ' trucks followed.'"></span>
     </div>
 </div>
 </section>
