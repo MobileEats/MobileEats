@@ -25,11 +25,6 @@ public class VendorController {
 
     }
 
-    @GetMapping("/")
-    public String displayHome(){
-        return "index";
-    }
-
     @GetMapping("/vendors")
     public String vendorsIndex(Model model){
         model.addAttribute("vendors", vendorDao.findAll());
