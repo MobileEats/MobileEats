@@ -62,7 +62,7 @@ public class Vendor {
     private List<VendorImage> images;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "menu_id", referencedColumnName = "vendor_id", nullable = true)
+    @JoinColumn(name = "id", referencedColumnName = "vendor_id", nullable = true)//
     private Menu menu;
 
     public Vendor(){}
