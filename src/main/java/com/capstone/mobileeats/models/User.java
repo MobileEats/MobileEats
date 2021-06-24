@@ -86,6 +86,14 @@ public class User {
         this.is_admin = is_admin;
     }
 
+    public List<Vendor> getFollowing() {
+        return following;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
     public long getId() {
         return id;
     }

@@ -20,12 +20,11 @@ public class VendorController {
 
     private VendorRepository vendors;
 
-
-
     public VendorController(VendorRepository vendorDao) {
         this.vendorDao = vendorDao;
 
     }
+
     @GetMapping("/")
     public String displayHome(){
         return "index";
