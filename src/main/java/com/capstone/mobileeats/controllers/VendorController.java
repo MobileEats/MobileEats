@@ -34,7 +34,7 @@ public class VendorController {
     @GetMapping("/vendors/create")
     public String vendorCreateProfile(Model model){
         model.addAttribute("vendor", new Vendor());
-        return "vendorInput";
+        return "registerVendor";
     }
     @PostMapping("vendors/create")
     public String createVendor(@ModelAttribute Vendor vendor){
