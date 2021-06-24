@@ -4,6 +4,7 @@ package com.capstone.mobileeats.controllers;
 import com.capstone.mobileeats.models.Vendor;
 
 import com.capstone.mobileeats.repositories.VendorRepository;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,8 +39,9 @@ public class VendorController {
     }
     @PostMapping("vendors/create")
     public String createVendor(@ModelAttribute Vendor vendor){
-//        Vendor newVendor = new Vendor(name, description,  phoneNumber,  profileImageUrl, location);
-    Vendor saveVendor = vendorDao.save(vendor);
+        String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
+        vendor.setPassword(hashed);
+        Vendor saveVendor = vendorDao.save(vendor);
         return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
