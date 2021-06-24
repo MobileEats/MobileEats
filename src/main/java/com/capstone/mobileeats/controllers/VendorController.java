@@ -60,8 +60,6 @@ public class VendorController {
         return "vendorProfile";
     }
 
-
-
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model){
         Vendor vendor = vendorDao.getById(id);
