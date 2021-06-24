@@ -27,7 +27,6 @@ public class Vendor {
 
 
     @Column(nullable = true, length = 64)
-
     private String password;
 
     @Column(name = "profile_image_url", nullable = true, length = 256)
@@ -37,7 +36,7 @@ public class Vendor {
     private String location;
 
     @Column(name = "is_open", nullable = true)
-    private boolean isOpen;
+    private boolean isOpen = false;
 
     @ManyToMany
     @JoinTable(
