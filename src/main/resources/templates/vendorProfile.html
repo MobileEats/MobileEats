@@ -13,7 +13,7 @@
         <img src="/images/pexels4.jpeg">
     </div>
     <div class="d-flex flex-column align-items-center">
-        <!--        Need to fix followers and reviews-->
+<!--                Need to fix followers and reviews-->
         <h3 th:text="${vendor.name}">Food Truck Name</h3>
         <h5 th:text="${vendor.getFollowers().size()} + Followers">100 Followers</h5>
         <h5 th:text="${vendor.location}">Current Location</h5>
@@ -28,8 +28,8 @@
         </form>
     </div>
 </div>
-<div id='map' style='width: 400px; height: 300px;'></div>
-<div class="geolocation mx-2">
+<div th:id="map"  style='width: 400px; height: 300px;'></div>
+<div class="geolocation mx-auto">
     <a id="geoLocation"><button>Update location</button></a>
 </div>
 <div class="slideshow-container">

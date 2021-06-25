@@ -63,10 +63,10 @@ public class VendorController {
         return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
-    @GetMapping("/vendors/profile")
-    public String viewProfile(){
-        return "vendorProfile";
-    }
+//    @GetMapping("/vendors/profile")
+//    public String viewProfile(){
+//        return "vendorProfile";
+//    }
 
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model){
@@ -74,6 +74,7 @@ public class VendorController {
         model.addAttribute("vendorId", id);
         model.addAttribute("vendor", vendor);
         return "vendorProfile";
+
     }
 
 }
