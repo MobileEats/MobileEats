@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head" >
 
-<!--<head th:replace="partials/navbar :: link_bootstrap">-->
+<head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>Home Page</title>
 <!--&lt;!&ndash;    <th:block th:replace="partials/navbar :: link_bootstrap" ></th:block>&ndash;&gt;-->
+
+
+
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+
+<div id='map' style='width: 400px; height: 300px;'></div>
+<div class="geolocation mx-2">
+    <a id="geoLocation2"><button>Update location</button></a>
+</div>
+<footer th:replace="partials/footer :: footer"></footer>
+
 </body>
 </html>
