@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 @Controller
@@ -34,13 +35,10 @@ public class VendorController {
 //        LIST ALL VENDORS
         model.addAttribute("vendors", vendorDao.findAll());
 
-//        SEARCH BY CATEGORY
-
-
-//        OR SEARCH BY NAME
-        String search = "Roland"; //it only runs if the r is capitalized, how do I make this not case sensitive?
+//        SEARCH VENDORS
+        String search = "roland"; //it only runs if the r is capitalized, how do I make this not case sensitive?
         String searchQuery = "%" + search + "%";
-        model.addAttribute("search", vendorDao.findByNameLike(searchQuery));
+        model.addAttribute("searches", vendorDao.searchByTitle(searchQuery));
 
         return "vendorIndex";
     }

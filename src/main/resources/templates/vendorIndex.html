@@ -20,11 +20,17 @@
         <p th:text="${vendor.description}" />
     </div>
 </th:block>
-<div>
-    <h1>This is Roland's food truck</h1>
-    <h3 th:text="${search.name}"></h3>
-    <p th:text="${search.description}"></p>
-</div>
+<th:block th:each="search : ${searches}">
+    <div th:id="${search.id}">
+        <h3 th:text="${search.name}" />
+        <p th:text="${search.description}" />
+    </div>
+</th:block>
+<!--<div>-->
+<!--    <h1>This is Roland's food truck</h1>-->
+<!--    <h3 th:text="${searchCategory.name}"></h3>-->
+<!--    <p th:text="${searchCategory.description}"></p>-->
+<!--</div>-->
 
 </body>
 </html>
