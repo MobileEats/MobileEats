@@ -13,14 +13,15 @@
 
 
 <h1>Index of all vendors:</h1>
-
 <th:block th:each="vendor : ${vendors}">
     <div th:id="${vendor.id}">
         <h3 th:text="${vendor.name}" />
         <p th:text="${vendor.description}" />
     </div>
 </th:block>
-<th:block th:each="search : ${searches}">
+
+<h1>Searched vendors:</h1>
+<th:block th:each="search : ${searchVendor}">
     <div th:id="${search.id}">
         <h3 th:text="${search.name}" />
         <p th:text="${search.description}" />
