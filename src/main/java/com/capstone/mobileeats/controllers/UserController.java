@@ -4,6 +4,7 @@ import com.capstone.mobileeats.models.Vendor;
 import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.models.User;
 import com.capstone.mobileeats.services.EmailService;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,8 @@ public class UserController {
 
     @PostMapping("users/create")
     public String createVendor(@ModelAttribute User user){
+        String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        user.setPassword(hashed);
         User saveUser = users.save(user);
         return "redirect:/users/profile/" + saveUser.getId();
     }
