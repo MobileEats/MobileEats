@@ -5,7 +5,9 @@ import com.capstone.mobileeats.models.Vendor;
 
 import com.capstone.mobileeats.models.VendorCategory;
 import com.capstone.mobileeats.repositories.VendorRepository;
+import com.capstone.mobileeats.services.EmailService;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +24,13 @@ import java.util.List;
 public class VendorController {
 
     private final VendorRepository vendorDao;
+    private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
-    private VendorRepository vendors;
-
-    public VendorController(VendorRepository vendorDao) {
+    public VendorController(VendorRepository vendorDao, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.vendorDao = vendorDao;
+        this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
 
     }
 
@@ -42,7 +46,6 @@ public class VendorController {
         String search = "Roland"; //it only runs if the r is capitalized, how do I make this not case sensitive?
         String searchQuery = "%" + search + "%";
         model.addAttribute("search", vendorDao.findByNameLike(searchQuery));
-
         return "vendorIndex";
     }
 
@@ -56,6 +59,7 @@ public class VendorController {
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
         Vendor saveVendor = vendorDao.save(vendor);
+        emailService.newVendorCreated(vendor, "New vendor account with MobileEats!", "Thank you for creating an account with MobileEats for " + vendor.getName() + ". \nThe email used for registration is: " +  vendor.getEmail() + "\nThe user name is : " + vendor.getUsername() + " \nIf you find this to be an error please contact us.");
         return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
