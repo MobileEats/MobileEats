@@ -4,6 +4,7 @@ package com.capstone.mobileeats.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Random;
 
 @Entity
 @Table(name="vendors")
