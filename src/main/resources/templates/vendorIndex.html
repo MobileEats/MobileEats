@@ -16,7 +16,7 @@
 
 <th:block th:each="vendor : ${vendors}">
     <div th:id="${vendor.id}">
-        <h3 th:text="${vendor.name}" />
+        <a th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 th:text="${vendor.name}" /></a>
         <p th:text="${vendor.description}" />
     </div>
 </th:block>
