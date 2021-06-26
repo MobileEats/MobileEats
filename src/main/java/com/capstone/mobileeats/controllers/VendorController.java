@@ -6,6 +6,7 @@ import com.capstone.mobileeats.models.Vendor;
 import com.capstone.mobileeats.models.VendorCategory;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -70,9 +71,14 @@ public class VendorController {
 
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model){
+
         Vendor vendor = vendorDao.getById(id);
+
         model.addAttribute("vendorId", id);
         model.addAttribute("vendor", vendor);
+//        model.addAttribute("location", vendor.getLocation());
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        result.addObject("location", objectMapper.writeValueAsString(location));
         return "vendorProfile";
 
     }
