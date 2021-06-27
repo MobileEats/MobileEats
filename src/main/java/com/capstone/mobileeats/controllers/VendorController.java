@@ -27,25 +27,25 @@ public class VendorController {
     }
 
     @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
-    public String vendorsIndex(@RequestParam(name = "search") String search, @RequestParam(name = "category") String category, Model model) {
+    public String vendorsIndex(@RequestParam(name = "search") String search,
+//                               @RequestParam(name = "category") String category,
+                               Model model) {
 //        LIST ALL VENDORS
         model.addAttribute("vendors", vendorDao.findAll());
-//        String search = "roland";
         String searchQuery = "%" + search + "%";
-//        model.addAttribute("searchVendor", vendorDao.findAllByCategories(searchQuery));
         model.addAttribute("searchVendor", vendorDao.searchByTitle(searchQuery));
 
-        List<Vendor> vendors = vendorDao.findAll(); //all vendors
-        List<Vendor> newVendors = new ArrayList<>();
+//        List<Vendor> vendors = vendorDao.findAll(); //all vendors
+//        List<Vendor> newVendors = new ArrayList<>();
+//
+//
+//        for(int i = 0; i < vendors.size(); i++){
+//            Vendor vendor = vendors.get(i);
+//            if(vendor.getCategories().contains(category)){
+//                newVendors.add(vendor);
+//            }
+//        }
 
-//
-        for(int i = 0; i < vendors.size(); i++){
-            Vendor vendor = vendors.get(i);
-            if(vendor.getCategories().contains(category)){
-                newVendors.add(vendor);
-            }
-        }
-//
 
         return "vendorIndex";
     }
