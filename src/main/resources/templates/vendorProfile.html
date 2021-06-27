@@ -16,20 +16,13 @@
 <!--                Need to fix followers and reviews-->
         <h3 th:utext="${vendor.name}"></h3>
         <label>Mark as Open: </label>
-<!--        <label class="switch">-->
-<!--            <input id="open" type="checkbox">-->
-<!--            <span class="slider round"></span>-->
-<!--        </label>-->
-        <form>
-            <div>
-                <input type="radio" name="fruit" value="orange" id="orange">
-                <label for="orange">orange</label>
-            </div>
-            <div id="log"></div>
-        </form>
-
+        <label class="switch">
+            <input type="checkbox" name="open" value="open" id="open">
+            <span class="slider round"></span>
+        </label>
         <h5 th:utext="${vendor.getFollowers().size()} + Followers"></h5>
         <h5 class="address" th:utext="${vendor.location}"></h5>
+        <h5 class="current"></h5>
         <h5 th:utext="${vendor.getReviews().size()}"></h5>
         <h5 th:utext="${vendor.getReviews().size()} + reviews"></h5>
 
@@ -45,9 +38,7 @@
     <div class="d-flex row mx-auto" id="map"  style='width: 400px; height: 300px;'></div>
     <div class="geolocation mx-auto row">
         <a id="locate"><button>Find Me</button></a>
-        <form action="" method="">
-            <a id="updateCurrent"><button type="submit">Post My Location</button></a>
-        </form>
+        <a id="updateCurrent"><button>Post My Location</button></a>
     </div>
 </div>
 
