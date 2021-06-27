@@ -3,7 +3,6 @@ package com.capstone.mobileeats.controllers;
 
 import com.capstone.mobileeats.models.Vendor;
 
-import com.capstone.mobileeats.models.VendorCategory;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,19 +10,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
 @Controller
 public class VendorController {
 
     private final VendorRepository vendorDao;
+//    private final CategoryRepository categoryDao;
 
-    private VendorRepository vendors;
-
-    public VendorController(VendorRepository vendorDao) {
+    public VendorController(VendorRepository vendorDao /*, CategoryRepository categoryDao*/) {
         this.vendorDao = vendorDao;
 
+//        this.categoryDao = categoryDao;
     }
 
     @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
@@ -32,20 +30,10 @@ public class VendorController {
                                Model model) {
 //        LIST ALL VENDORS
         model.addAttribute("vendors", vendorDao.findAll());
+
+//        SEARCH VENDORS
         String searchQuery = "%" + search + "%";
-        model.addAttribute("searchVendor", vendorDao.searchByTitle(searchQuery));
-
-//        List<Vendor> vendors = vendorDao.findAll(); //all vendors
-//        List<Vendor> newVendors = new ArrayList<>();
-//
-//
-//        for(int i = 0; i < vendors.size(); i++){
-//            Vendor vendor = vendors.get(i);
-//            if(vendor.getCategories().contains(category)){
-//                newVendors.add(vendor);
-//            }
-//        }
-
+        model.addAttribute("searchVendor", vendorDao.searchByTitle(searchQuery)); //searches through title, description, and category
 
         return "vendorIndex";
     }
