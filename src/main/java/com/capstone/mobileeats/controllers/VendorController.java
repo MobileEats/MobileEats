@@ -5,15 +5,11 @@ import com.capstone.mobileeats.models.Vendor;
 
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
@@ -56,7 +52,6 @@ public class VendorController {
     }
 
     @PostMapping("vendors/create")
-
     public String createVendor(@ModelAttribute Vendor vendor){
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
@@ -78,6 +73,19 @@ public class VendorController {
 //        result.addObject("location", objectMapper.writeValueAsString(location));
         return "vendorProfile";
 
+    }
+
+    //UPDATE
+    @GetMapping("/vendors/{id}/edit")
+    public String updatePostForm(@PathVariable long id, Model model) {
+        model.addAttribute("post", vendorDao.getById(id));
+        return "profile-edit-page";
+    }
+
+    @PostMapping("/vendors/{id}/edit")
+    public String updatePostSubmit(@ModelAttribute Vendor vendor) {
+        vendorDao.save(vendor);
+        return "redirect:/profile";
     }
 
 }

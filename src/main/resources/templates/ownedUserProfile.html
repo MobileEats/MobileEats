@@ -66,6 +66,7 @@
             <span th:text="${user.username}"></span><br>
             <span th:text="${user.getFollowing().size()} + ' trucks followed.'"></span>
         </div>
+        <a th:href="'/users/' + ${user.id} + '/edit'">Edit Profile</a>
     </div>
 </section>
 

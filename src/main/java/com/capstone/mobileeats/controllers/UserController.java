@@ -5,7 +5,6 @@ import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.models.User;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
-import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -94,8 +93,20 @@ public class UserController {
     @GetMapping(path = "/user/{id}/profile")
     public String postId(@PathVariable long id, Model model) {
         model.addAttribute("user", users.getById(id));
-        return "user-profile-page";
+        return "userProfile";
     }
 
+    //UPDATE
+    @GetMapping("/users/{id}/edit")
+    public String updatePostForm(@PathVariable long id, Model model) {
+        model.addAttribute("post", users.getById(id));
+        return "profile-edit-page";
+    }
+
+    @PostMapping("/users/{id}/edit")
+    public String updatePostSubmit(@ModelAttribute User user) {
+        users.save(user);
+        return "redirect:/profile";
+    }
 
 }
