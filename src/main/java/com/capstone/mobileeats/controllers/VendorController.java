@@ -5,15 +5,11 @@ import com.capstone.mobileeats.models.Vendor;
 
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
@@ -81,7 +77,7 @@ public class VendorController {
 //        model.addAttribute("location", vendor.getLocation());
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        result.addObject("location", objectMapper.writeValueAsString(location));
-        return "vendorProfile";
+        return "ownedVendorProfile";
 
     }
 
