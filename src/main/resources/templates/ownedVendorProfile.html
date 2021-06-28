@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Vendor Profile</title>
 
 </head>
 <body>
@@ -12,6 +12,7 @@
     <div class="d-flex justify-content-center">
         <img src="/images/pexels4.jpeg">
     </div>
+    <a th:href="'/users/' + ${vendor.id} + '/edit'">Edit Profile</a>
     <div class="d-flex flex-column align-items-center">
 <!--                Need to fix followers and reviews-->
         <h3 th:utext="${vendor.name}"></h3>

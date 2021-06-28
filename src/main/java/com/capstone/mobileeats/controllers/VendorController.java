@@ -52,7 +52,6 @@ public class VendorController {
     }
 
     @PostMapping("vendors/create")
-
     public String createVendor(@ModelAttribute Vendor vendor){
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
@@ -72,8 +71,21 @@ public class VendorController {
 //        model.addAttribute("location", vendor.getLocation());
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        result.addObject("location", objectMapper.writeValueAsString(location));
-        return "ownedVendorProfile";
+        return "vendorProfile";
 
+    }
+
+    //UPDATE
+    @GetMapping("/vendors/{id}/edit")
+    public String updatePostForm(@PathVariable long id, Model model) {
+        model.addAttribute("post", vendorDao.getById(id));
+        return "profile-edit-page";
+    }
+
+    @PostMapping("/vendors/{id}/edit")
+    public String updatePostSubmit(@ModelAttribute Vendor vendor) {
+        vendorDao.save(vendor);
+        return "redirect:/profile";
     }
 
 }

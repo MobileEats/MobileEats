@@ -2,9 +2,14 @@
 package com.capstone.mobileeats.models;
 
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 @Entity
 @Table(name="vendors")
@@ -47,19 +52,22 @@ public class Vendor {
     )
     private List<VendorCategory> categories;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany
     @JoinTable(
             name = "followers",
             joinColumns = @JoinColumn(name = "vendor_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    List<User> followers;
+    private List<User> followers = new ArrayList<>();
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "vendor")
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "vendor")
-    private List<VendorImage> images;
+    private List<VendorImage> images = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "vendor_id", nullable = true)//
