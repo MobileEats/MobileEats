@@ -1,10 +1,14 @@
 package com.capstone.mobileeats.controllers;
 
 
+import com.capstone.mobileeats.models.User;
 import com.capstone.mobileeats.models.Vendor;
 
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -28,6 +32,21 @@ public class VendorController {
 
 //        this.categoryDao = categoryDao;
     }
+
+    @GetMapping("/vendor/edit/{id}")
+    public String showVendorEditForm(@PathVariable long id, Model model){
+        Vendor currentVendor = vendorDao.getById(id);
+        model.addAttribute("vendor", vendorDao.getById(currentVendor.getId()));
+        return "vendor-profile-edit-page";
+    }
+
+    @PostMapping("/vendor/edit/{id}")
+    public String editVendorProfile(@ModelAttribute Vendor vendor){
+        Vendor saveVendor = vendorDao.save(vendor);
+        return "redirect:/vendors/profile/" + saveVendor.getId();
+    }
+
+
     @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
     public String vendorsIndex( Model model) {
         //        LIST ALL VENDORS
