@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head" >
 
-<!--<head th:replace="partials/navbar :: link_bootstrap">-->
+    <!--<head th:replace="partials/navbar :: link_bootstrap">-->
     <meta charset="UTF-8">
     <title>Discover Vendors</title>
-<!--&lt;!&ndash;    <th:block th:replace="partials/navbar :: link_bootstrap" ></th:block>&ndash;&gt;-->
+    <!--&lt;!&ndash;    <th:block th:replace="partials/navbar :: link_bootstrap" ></th:block>&ndash;&gt;-->
 
 </head>
 <body>
@@ -16,22 +16,12 @@
     <div th:id="${vendor.id}">
 
         <a th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 th:text="${vendor.name}" /></a>
-        <p th:text="${vendor.description}" />
         <th:block th:each=" categories : ${vendor.categories}">
             <p th:text="${categories.name}"></p>
         </th:block>
-       
+        <p th:text="${vendor.description}" />
     </div>
 </th:block>
-
-<h1>Searched vendors:</h1>
-<th:block th:each="search : ${searchVendor}">
-    <div th:id="${search.id}">
-        <h3 th:text="${search.name}" />
-        <p th:text="${search.description}" />
-    </div>
-</th:block>
-
 
 </body>
 </html>
