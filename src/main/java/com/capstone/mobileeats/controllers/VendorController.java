@@ -38,14 +38,6 @@ public class VendorController {
     public String vendorsIndex(Model model){
 //        LIST ALL VENDORS
         model.addAttribute("vendors", vendorDao.findAll());
-
-//        SEARCH BY CATEGORY
-
-
-//        OR SEARCH BY NAME
-        String search = "Roland"; //it only runs if the r is capitalized, how do I make this not case sensitive?
-        String searchQuery = "%" + search + "%";
-        model.addAttribute("search", vendorDao.findByNameLike(searchQuery));
         return "vendorIndex";
     }
 

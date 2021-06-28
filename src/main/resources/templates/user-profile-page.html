@@ -3,7 +3,7 @@
 <head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>User's Profile</title>
-<!--<script  src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
+    <!--<script  src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
     <style>
 
         h3 {
@@ -11,9 +11,8 @@
         }
 
         .container {
-        text-align: center;
+            text-align: center;
         }
-
 
 
         .location {
@@ -52,7 +51,6 @@
         }
 
 
-
     </style>
 </head>
 <body>
@@ -61,31 +59,42 @@
 <div class="location"><span th:text="${user.location}"></span></div>
 
 <section class="user">
-<div class="user-image">
-    <img class="img-circle profile-image" th:src="${user.image_url}" alt="user"/>
+    <div class="user-image">
+        <img class="img-circle profile-image" th:src="${user.image_url}" alt="user"/>
 
-    <div class="users-info">
-        <span th:text="${user.username}"></span><br>
-        <span th:text="${user.getFollowing().size()} + ' trucks followed.'"></span>
+        <div class="users-info">
+            <span th:text="${user.username}"></span><br>
+            <span th:text="${user.getFollowing().size()} + ' trucks followed.'"></span>
+        </div>
     </div>
-</div>
 </section>
 
 <section class="following">
-<h3>Following</h3>
-<div class="container">
+    <h3>Following</h3>
+    <th:block th:each="vendor : ${user.following}">
+        <div th:id="${vendor.id}">
+            <h3 th:text="${vendor.name}"/>
+            <p th:text="${vendor.description}"/>
+        </div>
+    </th:block>
+    <div class="container">
         Food Truck Name <br>
-        4 ****  7 reviews <br>
+        4 **** 7 reviews <br>
         $$ ~ (food type) <br>
         View Menu link
 
-</div>
+    </div>
 </section>
-
 
 
 <section class="reviews">
     <h3>My Reviews</h3>
+    <th:block th:each="review : ${user.reviews}">
+        <div th:id="${review.id}">
+            <h3 th:text="${review.rating}"/>
+            <p th:text="${review.body}"/>
+        </div>
+    </th:block>
     <div class="container">
         Food Trucks name <br>
         Review here
