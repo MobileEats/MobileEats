@@ -286,4 +286,16 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
+/*** REGISTER PAGES ***/
+
+.register-header{
+    margin-bottom: 1.5em;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.choose-file{
+    margin-bottom: 5px;
+}
+
 /**** EDIT PROFILE PAGE ****/

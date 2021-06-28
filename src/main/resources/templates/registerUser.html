@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--<head th:replace="partials/head :: head" >-->
 <head th:replace="partials/head :: head" >
     <meta charset="UTF-8">
@@ -7,6 +7,8 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+<div class="form form-register">
+    <div class="register-header">Register as a User</div>
         <form th:action="@{/users/create}" th:method="post" th:object="${user}">
             <div class="form-group">
                 <label for="username">Username</label>
@@ -38,5 +40,8 @@
             </div>
             <button class="btn btn-light" type="submit">Register</button>
         </form>
+
+</div>
+
 </body>
 </html>
