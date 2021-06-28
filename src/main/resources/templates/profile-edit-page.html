@@ -7,23 +7,44 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="css/custom.css"/>
-</head>
-<body id="edit">
+    <link rel="stylesheet" href="src/main/resources/static/css/custom.css"/>
 
-<h1>Edit Profile</h1>
+
+    <style>
+
+      .edit-profile-header {
+          top: 10%;
+      }
+
+        #profile-edit {
+            background-color: #4CAF50;
+            position: fixed;
+            top: 15%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -100px;
+        }
+
+    </style>
+</head>
+<body id="profile-edit">
+
+<h1 class="edit-profile-header">Edit Profile</h1>
+<br><br>
 
 <div class="edit-container">
     <input type="text" placeholder="username"/>
-    <br>
+    <br><br>
     <input type="text" placeholder="email"/>
-    <br>
+    <br><br>
     <input type="password" placeholder=" new password"/>
-    <br>
+    <br><br>
     <input type="password" placeholder="re-enter password">
-    <br>
+    <br><br>
     <input type="checkbox" checked/> User
     <input type="checkbox" checked/> Vendor
+    <br><br>
+    <input type="submit" value="Submit Changes">
 </div>
 
 </body>
