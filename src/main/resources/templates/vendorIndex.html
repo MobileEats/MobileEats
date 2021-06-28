@@ -11,20 +11,27 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-
 <h1>Index of all vendors:</h1>
-
 <th:block th:each="vendor : ${vendors}">
     <div th:id="${vendor.id}">
+
         <a th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 th:text="${vendor.name}" /></a>
         <p th:text="${vendor.description}" />
+        <th:block th:each=" categories : ${vendor.categories}">
+            <p th:text="${categories.name}"></p>
+        </th:block>
+       
     </div>
 </th:block>
-<!--<div>-->
-<!--    <h1>This is Roland's food truck</h1>-->
-<!--    <h3 th:text="${search.name}"></h3>-->
-<!--    <p th:text="${search.description}"></p>-->
-<!--</div>-->
+
+<h1>Searched vendors:</h1>
+<th:block th:each="search : ${searchVendor}">
+    <div th:id="${search.id}">
+        <h3 th:text="${search.name}" />
+        <p th:text="${search.description}" />
+    </div>
+</th:block>
+
 
 </body>
 </html>

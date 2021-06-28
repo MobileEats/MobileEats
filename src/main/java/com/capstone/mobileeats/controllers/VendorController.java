@@ -3,7 +3,6 @@ package com.capstone.mobileeats.controllers;
 
 import com.capstone.mobileeats.models.Vendor;
 
-import com.capstone.mobileeats.models.VendorCategory;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,11 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,29 +20,43 @@ import java.util.List;
 public class VendorController {
 
     private final VendorRepository vendorDao;
+
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
     public VendorController(VendorRepository vendorDao, PasswordEncoder passwordEncoder, EmailService emailService) {
+
         this.vendorDao = vendorDao;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
 
+//        this.categoryDao = categoryDao;
     }
 
     @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
-    public String vendorsIndex(Model model){
+    public String vendorsIndex(@RequestParam(name = "search") String search,
+//                               @RequestParam(name = "category") String category,
+                               Model model) {
 //        LIST ALL VENDORS
         model.addAttribute("vendors", vendorDao.findAll());
+
+
+//        SEARCH VENDORS
+        String searchQuery = "%" + search + "%";
+        model.addAttribute("searchVendor", vendorDao.searchByTitle(searchQuery)); //searches through title, description, and category
+
+
         return "vendorIndex";
     }
 
     @GetMapping("/vendors/create")
-    public String vendorCreateProfile(Model model){
+    public String vendorCreateProfile(Model model) {
         model.addAttribute("vendor", new Vendor());
         return "registerVendor";
     }
+
     @PostMapping("vendors/create")
+
     public String createVendor(@ModelAttribute Vendor vendor){
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
@@ -63,6 +72,7 @@ public class VendorController {
 
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model){
+
 
         Vendor vendor = vendorDao.getById(id);
 
