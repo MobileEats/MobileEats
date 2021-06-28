@@ -67,6 +67,8 @@ $(document).ready(function () {
 $('#updateCurrent').click(function(){
     var coord = marker.getLngLat();
     reverseGeocode({lat: coord.lat, lng: coord.lng}, mapboxToken).then(function(results) {
-        $('.current').html(results.features[0].place_name);
+        $('.address').html(results.features[0].place_name);
+
+
     });
 });
