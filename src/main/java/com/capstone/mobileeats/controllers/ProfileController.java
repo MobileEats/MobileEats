@@ -25,7 +25,7 @@ public class ProfileController {
     }
 
     @GetMapping("/profile")
-    public String userOrVendor(long id, Model model){
+    public String userOrVendor(Model model){
         try{
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             return "redirect:/user/" + user.getId() + "/profile";

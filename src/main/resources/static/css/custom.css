@@ -196,6 +196,107 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.register{
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.register:hover{
+    background: #43A047;
+    text-decoration: none;
+}
+a .register{
+    color: #f2f2f2;
+    text-decoration: none;
+    font-weight: bold;
+    width: 100%;
+}
+.vendor{
+    margin-top: 1em;
+}
+
+/* Landing Page */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+/**** SLIDER  CSS *****/
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/*** REGISTER PAGES ***/
+
+.register-header{
+    margin-bottom: 1.5em;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.choose-file{
+    margin-bottom: 5px;
+}
 
 
-/**** EDIT PROFILE PAGE ****/
+

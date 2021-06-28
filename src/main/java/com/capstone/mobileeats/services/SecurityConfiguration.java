@@ -26,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .userDetailsService(usersLoader) // How to find users by their username
+            .userDetailsService(usersLoader) // How to find members by their email
             .passwordEncoder(passwordEncoder()) // How to encode and verify passwords
         ;
     }
@@ -53,10 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .authorizeRequests()
                 //TODO: UPDATE THESE AS WE ADD NEW PAGES
-                .antMatchers(
-                    "/UPDATE THIS",
-                    "/UPDATE THIS"
-                )
+                .antMatchers("/profile")
                 .authenticated()
         ;
     }

@@ -1,21 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--<head th:replace="partials/head :: head" >-->
-<head>
+<head th:replace="partials/head :: head" >
     <meta charset="UTF-8">
     <title>Register User</title>
-    <!-- NEEDED TO RUN MODAL -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!--    <link rel="stylesheet" href="css/login-page.css">-->
-    <link rel="stylesheet" href="css/custom.css">
-
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div class="login-page">
-    <div class="form">
+<div class="form form-register">
+    <div class="register-header">Register as a User</div>
         <form th:action="@{/users/create}" th:method="post" th:object="${user}">
             <div class="form-group">
                 <label for="username">Username</label>
@@ -45,18 +38,10 @@
                 <label for="location">Location</label>
                 <input th:field="*{location}" type="text" class="form-control" id="location" placeholder="San Antonio, Texas">
             </div>
-            <button type="submit">Register</button>
+            <button class="btn btn-light" type="submit">Register</button>
         </form>
-    </div>
-</div>
-<!--<footer th:replace="partials/footer :: footer"></footer>-->
-<script src="/js/login-form.js"></script>
-<!--<script>-->
-<!--    $('.message a').click(function(){-->
-<!--        $('form').animate({height: "toggle", opacity: "toggle"}, "slow");-->
-<!--    });-->
 
-<!--</script>-->
+</div>
 
 </body>
 </html>
