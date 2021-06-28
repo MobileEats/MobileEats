@@ -224,8 +224,6 @@ a .register{
     margin-top: 1em;
 }
 
-/* Landing Page */
-
 .switch {
     position: relative;
     display: inline-block;
@@ -298,5 +296,6 @@ input:checked + .slider:before {
     margin-bottom: 5px;
 }
 
+/*** EDIT PROFILE PAGE ***/
 
 
