@@ -32,19 +32,19 @@ public class VendorController {
 
 //        this.categoryDao = categoryDao;
     }
-
     @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
-    public String vendorsIndex(@RequestParam(name = "search") String search,
-//                               @RequestParam(name = "category") String category,
-                               Model model) {
-//        LIST ALL VENDORS
+    public String vendorsIndex( Model model) {
+        //        LIST ALL VENDORS
         model.addAttribute("vendors", vendorDao.findAll());
 
+        return "vendorIndex";
+    }
 
+    @GetMapping("/vendor") //tried creating separate post mapping for the search queries but returns whitelabel error
+    public String vendorsIndex(@RequestParam(name = "search") String search, Model model) {
 //        SEARCH VENDORS
         String searchQuery = "%" + search + "%";
-        model.addAttribute("searchVendor", vendorDao.searchByTitle(searchQuery)); //searches through title, description, and category
-
+        model.addAttribute("vendors", vendorDao.searchByTitle(searchQuery)); //searches through title, description, and category
 
         return "vendorIndex";
     }
@@ -65,11 +65,6 @@ public class VendorController {
         return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
-//    @GetMapping("/vendors/profile")
-//    public String viewProfile(){
-//        return "vendorProfile";
-//    }
-
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model){
 
@@ -86,4 +81,3 @@ public class VendorController {
     }
 
 }
-
