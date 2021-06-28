@@ -1,12 +1,10 @@
 package com.capstone.mobileeats.models;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name = "vendor_categories")
-public class VendorCategory {
+@Table(name = "menu_items_types")
+public class ItemType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,13 +13,13 @@ public class VendorCategory {
     @Column(length = 64)
     private String name;
 
-    public VendorCategory(){}
+    public ItemType(){}
 
-    public VendorCategory(String name) {
+    public ItemType(String name) {
         this.name = name;
     }
 
-    public VendorCategory(long id, String name) {
+    public ItemType(long id, String name) {
         this.id = id;
         this.name = name;
     }

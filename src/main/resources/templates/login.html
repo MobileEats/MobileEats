@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="partials/head :: head" >-->
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+<!-- NEEDED TO RUN MODAL -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--    <link rel="stylesheet" href="css/login-page.css">-->
+    <link rel="stylesheet" href="css/custom.css">
+
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<div class="login-page">
+    <div class="form">
+        <form class="animated" th:action="@{/login}" method="post">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" />
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" />
+            <button type="submit">Log In</button>
+            <p class="message"><strong>Forgot password?</strong></p>
+            <p class="message"><a href="/resetPassword">Reset account password</a></p>
+            <p class="message"><strong>Not registered?</strong></p>
+            <p class="message"><a href="/users/create">Register as a user</a></p>
+            <p class="message"><a href="/vendors/create">Register as a vendor</a></p>
+        </form>
+    </div>
+</div>
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
+<script src="/js/login-form.js"></script>
+<!--<script>-->
+<!--    $('.message a').click(function(){-->
+<!--        $('form').animate({height: "toggle", opacity: "toggle"}, "slow");-->
+<!--    });-->
+
+<!--</script>-->
+
+</body>
+</html>

@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/navbar :: link_bootstrap">
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Home Page</title>-->
-<!--&lt;!&ndash;    <th:block th:replace="partials/navbar :: link_bootstrap" ></th:block>&ndash;&gt;-->
+<head th:replace="partials/head :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
 </head>
 <body>
+<<<<<<< HEAD
 <nav th:replace="partials/navbar :: bootstrap_navbar"></nav>
 
 <div th:each="vendor : ${vendors}">
 <!--    <h3 th:text="${vendors.}"></h3>-->
 <!--    <p th:text="${ad.description}"></p>-->
 </div>
+=======
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+
+<footer th:replace="partials/footer :: footer"></footer>
+
+
+>>>>>>> 805c8494e85b236270142cb7234cf1f08d065b2f
 </body>
 </html>

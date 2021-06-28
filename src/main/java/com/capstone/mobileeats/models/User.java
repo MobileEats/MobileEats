@@ -11,6 +11,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+<<<<<<< HEAD
     @Column(nullable = false, length = 100)
     private String first_name;
 
@@ -18,11 +19,21 @@ public class User {
     private String last_name;
 
     @Column(nullable = false, length = 100)
+=======
+    @Column(nullable = true, length = 100)
+    private String first_name;
+
+    @Column(nullable = true, length = 100)
+    private String last_name;
+
+    @Column(nullable = true, length = 100)
+>>>>>>> 805c8494e85b236270142cb7234cf1f08d065b2f
     private String email;
 
     @Column(length = 150)
     private String image_url;
 
+<<<<<<< HEAD
     @Column(nullable = false, length = 100)
     private String username;
 
@@ -30,6 +41,15 @@ public class User {
     private String password;
 
     @Column(nullable = false, length = 100)
+=======
+    @Column(nullable = true, length = 100)
+    private String username;
+
+    @Column(nullable = true)
+    private String password;
+
+    @Column(nullable = true, length = 100)
+>>>>>>> 805c8494e85b236270142cb7234cf1f08d065b2f
     private String location;
 
     @Column
@@ -43,6 +63,7 @@ public class User {
         )
     private List<Vendor> following;
 
+<<<<<<< HEAD
 //    @ManyToMany
 //        @JoinTable(
 //                name = "reviews",
@@ -50,12 +71,20 @@ public class User {
 //                inverseJoinColumns = @JoinColumn(name = "vendor_id")
 //        )
 //    private List<Review> reviews;
+=======
+    @OneToMany(mappedBy = "owner")
+    private List<Review> reviews;
+>>>>>>> 805c8494e85b236270142cb7234cf1f08d065b2f
 
     public User() { }
 
 
     public User(User copy) {
+<<<<<<< HEAD
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+=======
+        id = copy.id;
+>>>>>>> 805c8494e85b236270142cb7234cf1f08d065b2f
         first_name = copy.first_name;
         last_name = copy.last_name;
         email = copy.email;
@@ -91,6 +120,17 @@ public class User {
         this.is_admin = is_admin;
     }
 
+<<<<<<< HEAD
+=======
+    public List<Vendor> getFollowing() {
+        return following;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+>>>>>>> 805c8494e85b236270142cb7234cf1f08d065b2f
     public long getId() {
         return id;
     }
@@ -163,4 +203,8 @@ public class User {
         this.is_admin = is_admin;
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 805c8494e85b236270142cb7234cf1f08d065b2f
 

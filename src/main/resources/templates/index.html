@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Mobile Eats</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/landing-page.css">
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<div class="main">
+    <div class="banner">
+        <div class="bg-img"><img class="banner-img" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_560,q_60,w_960/v1/clients/neworleans/NOTMC_28861_e94124b6-3073-4613-8a3c-612b4aada5e6.jpg" alt=""></div>
+        <div class="bg-text">
+            <h1>Welcome to MobileEats!</h1>
+        </div>
+    </div>
+
+</div>
+<div class="btn-container">
+    <a class="redirect-link" href="/register">
+        <div class="landing-icon register">Sign-up</div>
+    </a>
+    <a class="redirect-link" href="/vendors">
+        <div class="landing-icon view">Continue as Guest</div>
+    </a>
+    <a class="redirect-link" href="/login">
+        <div class="landing-icon login">Login</div>
+    </a>
+
+</div>
+<footer th:replace="partials/footer :: footer"></footer>
+
+</body>
+</html>
