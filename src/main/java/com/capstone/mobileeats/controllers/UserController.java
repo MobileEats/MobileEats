@@ -6,6 +6,8 @@ import com.capstone.mobileeats.models.User;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -114,13 +116,16 @@ public class UserController {
     //UPDATE
     @GetMapping("/users/{id}/edit")
     public String updatePostForm(@PathVariable long id, Model model) {
-        model.addAttribute("post", users.getById(id));
-        return "profile-edit-page";
+        model.addAttribute("user", users.getById(id));
+        return "user-profile-edit-page";
     }
 
     @PostMapping("/users/{id}/edit")
     public String updatePostSubmit(@ModelAttribute User user) {
         users.save(user);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials());
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
         return "redirect:/profile";
     }
 
