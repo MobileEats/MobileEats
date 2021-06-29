@@ -1,6 +1,7 @@
 package com.capstone.mobileeats.controllers;
 
 
+import com.capstone.mobileeats.models.PostTo;
 import com.capstone.mobileeats.models.Vendor;
 
 import com.capstone.mobileeats.repositories.VendorRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +85,14 @@ public class VendorController {
 //        result.addObject("location", objectMapper.writeValueAsString(location));
         return "vendorProfile";
 
+    }
+    @PostMapping(value = "/vendors/profile/{id}")
+    public @ResponseBody String sendPost(@RequestBody PostTo postTo, @PathVariable Long id) {
+        Vendor vendor = vendorDao.getById(id);
+        vendor.setLocation(postTo.getLocation());
+        vendor.setOpen(postTo.getOpen());
+        vendorDao.save(vendor);
+        return "redirect:/vendors/profile/" + id;
     }
 
 }

@@ -68,7 +68,6 @@ $('#updateCurrent').click(function(){
     var coord = marker.getLngLat();
     reverseGeocode({lat: coord.lat, lng: coord.lng}, mapboxToken).then(function(results) {
         $('.address').html(results.features[0].place_name);
-
-
+        openLocation();//calls function on vendors-profile.js and post to vendor controller
     });
 });

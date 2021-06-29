@@ -1,22 +1,51 @@
 $( "#open" ).on( "click", function() {
+   openLocation();
+
+});
+
+
+
+function openLocation(){
+    let id = $('.vendorId').val();
+    let location = $('.address').html();
+    console.log(location);
+    let urlTest = "/vendors/profile/" + id;
     if( $( "input:checked" ).val() == "open"){
-        console.log("We are open")
+        let data = {
+            "open":true,
+            "location": location
+        }
         $.ajax({
             type: 'POST',
-            url: '/vendors/profile/{id}',
-            data: {
-                open: 1
+            url: urlTest,///this url cannot have a concat
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            dataType: "json",
+            success: function(results) {
+                console.log(results);
             },
-            success: function(text) {
-                $(document.body).text('Response: ' + text);
-            },
-            error: function (jqXHR) {
-                $(document.body).text('Error: ' + jqXHR.status);
-            }
+            // error: function (jqXHR) {
+            //     $(document.body).text('Error: ' + jqXHR.status);
+            // }
         });
     }
     else{
-        console.log("Sorry we are closed")
+        let data = {
+            "open":false,
+            "location": location
+        }
+        $.ajax({
+            type: 'POST',
+            url: urlTest,///this url cannot have a concat
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            dataType: "json",
+            success: function(results) {
+                console.log(results);
+            },
+            // error: function (jqXHR) {
+            //     $(document.body).text('Error: ' + jqXHR.status);
+            // }
+        });
     }
-
-});
+}

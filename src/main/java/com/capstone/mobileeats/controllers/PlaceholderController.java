@@ -17,7 +17,7 @@ public class PlaceholderController {
 //    }
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     @ResponseBody
-    public String sendPostMessage(@RequestParam("message") String message) {
+    public String sendPostMessage(@RequestParam("open") String message) {
         return message;
     }
 }

@@ -16,7 +16,19 @@
 <script>
 
     $(document).ready(function() {
-
+        $.ajax({
+            type: 'POST',
+            url: '/test',
+            data: {
+                message: 'hello'
+            },
+            success: function(text) {
+                $(document.body).text('Response: ' + text);
+            },
+            error: function (jqXHR) {
+                $(document.body).text('Error: ' + jqXHR.status);
+            }
+        });
     });
 
 </script>

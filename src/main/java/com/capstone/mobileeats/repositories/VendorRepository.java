@@ -11,6 +11,7 @@ import java.util.List;
 public interface VendorRepository extends JpaRepository<Vendor, Long> {
     Vendor findByEmail(String email);
 
+
             //SEARCH BY TITLE
     @Query("FROM Vendor WHERE name LIKE %:search% " +
             //SEARCH BY DESCRIPTION
@@ -19,4 +20,5 @@ public interface VendorRepository extends JpaRepository<Vendor, Long> {
             " OR id = ANY (SELECT id FROM VendorCategory WHERE name LIKE %:search%)" +
             "")
     List<Vendor> searchByTitle(@Param("search") String search);
+
 }
