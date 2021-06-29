@@ -76,7 +76,7 @@
     <span class="dot" onclick="currentSlide(3)"></span>
 </div>
 <div sec:authorize="isAuthenticated()">
-    <a th:href="'/users/' + ${vendor.id} + '/edit'">Edit Profile</a>
+    <a th:href="'/vendors/' + ${vendor.id} + '/edit'">Edit Profile</a>
 </div>
 
 <footer th:replace="partials/footer :: footer"></footer>
