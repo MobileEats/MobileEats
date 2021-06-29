@@ -24,11 +24,11 @@ public class ProfileController {
         try{
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", user);
-            return "ownedUserProfile";
+            return "userProfile";
         }catch(ClassCastException e){
             Vendor vendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("vendor", vendor);
-            return "ownedVendorProfile";
+            return "vendorProfile";
         }
     }
 
