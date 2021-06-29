@@ -11,6 +11,7 @@ import com.capstone.mobileeats.models.Vendor;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -113,13 +114,15 @@ public class VendorController {
     //UPDATE
     @GetMapping("/vendors/{id}/edit")
     public String updatePostForm(@PathVariable long id, Model model) {
-        model.addAttribute("post", vendorDao.getById(id));
-        return "profile-edit-page";
+        model.addAttribute("vendor", vendorDao.getById(id));
+        return "vendor-profile-edit-page";
     }
 
     @PostMapping("/vendors/{id}/edit")
     public String updatePostSubmit(@ModelAttribute Vendor vendor) {
         vendorDao.save(vendor);
+        Authentication newAuth = SecurityContextHolder.getContext().getAuthentication();
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
         return "redirect:/profile";
     }
 
