@@ -360,3 +360,7 @@ a .vendor-name:active{
     width: 100%;
     min-height: 60vh;
 }
+
+.animate__animated {
+    animation-duration: 3s;
+}

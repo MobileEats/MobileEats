@@ -10,11 +10,13 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!--    <link rel="stylesheet" href="css/login-page.css">-->
     <link rel="stylesheet" href="css/custom.css">
+<!-- LINK FOR THE ANIMATIONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div class="login-page">
+<div class="login-page animate__animated animate__fadeInDownBig animate__slower">
     <div class="form">
         <form class="animated" th:action="@{/login}" method="post">
             <label for="email">Email</label>
