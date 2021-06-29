@@ -63,7 +63,6 @@ public class VendorController {
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model){
 
-
         Vendor vendor = vendorDao.getById(id);
 
         model.addAttribute("vendorId", id);
@@ -71,8 +70,8 @@ public class VendorController {
 //        model.addAttribute("location", vendor.getLocation());
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        result.addObject("location", objectMapper.writeValueAsString(location));
-        return "vendorProfile";
 
+        return "vendorProfile";
     }
 
     //UPDATE
