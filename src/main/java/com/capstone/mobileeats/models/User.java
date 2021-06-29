@@ -1,6 +1,7 @@
 package com.capstone.mobileeats.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -41,7 +42,7 @@ public class User {
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "vendor_id")
         )
-    private List<Vendor> following;
+    private List<Vendor> following = new ArrayList<>();
 
     @OneToMany(mappedBy = "owner")
     private List<Review> reviews;

@@ -56,8 +56,7 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div class="location"><span th:text="${user.location}"></span></div>
-
+<!--<div class="location"><span th:text="${user.location}"></span></div>-->
 
 <section class="user">
     <div class="user-image">
@@ -67,7 +66,6 @@
             <span th:text="${user.username}"></span><br>
             <span th:text="${user.getFollowing().size()} + ' trucks followed.'"></span>
         </div>
-        <a th:href="'/users/' + ${user.id} + '/edit'">Edit Profile</a>
     </div>
 </section>
 
@@ -105,7 +103,5 @@
 
 <footer th:replace="partials/footer :: footer"></footer>
 
-
-</script>
 </body>
 </html>

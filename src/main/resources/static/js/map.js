@@ -12,6 +12,7 @@
     var map = new mapboxgl.Map(mapOptions);
     var marker = new mapboxgl.Marker({color: "red", draggable: true})
 
+
 //*********** FIND LAT LONG FROM ADDRESS SAVED ON DATABASE **************
 $(document).ready(function () {
         geocode($('.address').html(), mapboxToken).then(function (results) {
