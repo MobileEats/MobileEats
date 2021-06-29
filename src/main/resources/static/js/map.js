@@ -15,6 +15,33 @@
 
 //*********** FIND LAT LONG FROM ADDRESS SAVED ON DATABASE **************
 $(document).ready(function () {
+    var pathname = window.location.pathname; // Returns path only (/path/example.html)
+    if(pathname == "/vendors"){
+                var options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+
+            function success(pos) {
+                var crd = pos.coords;
+                var coord = [crd.latitude,crd.longitude];
+                map = new mapboxgl.Map(mapOptions);
+                var lngLat = [coord[1], coord[0]];
+                map.flyTo({center: lngLat, zoom: 10, duration: 5000})
+                marker = new mapboxgl.Marker({color: "blue", draggable: true})
+                    .setLngLat(lngLat)
+                    .addTo(map);
+                marker.on('dragend', onDragEnd);
+
+            }
+            function error(err) {
+                console.warn(`ERROR(${err.code}): ${err.message}`);
+            }
+            navigator.geolocation.getCurrentPosition(success, error, options);
+
+    }
+    else {
         geocode($('.address').html(), mapboxToken).then(function (results) {
             mapOptions.center = results;
             marker.remove();
@@ -24,6 +51,7 @@ $(document).ready(function () {
                 .addTo(map);
             marker.on('dragend', onDragEnd);
         });
+    }
     });
 
 
