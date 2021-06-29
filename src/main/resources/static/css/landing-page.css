@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+.animate-element {
+    animation-delay: 2s;
+    animation-duration: 45s;
+    animation-iteration-count: infinite;
+}
+
 .bg-img {
     filter: blur(8px);
     -webkit-filter: blur(8px);
@@ -37,6 +43,7 @@
     justify-content: space-evenly;
     position: relative;
     z-index: 1;
+    animation-delay: 4s;
 }
 .landing-icon{
     width: 7em;
