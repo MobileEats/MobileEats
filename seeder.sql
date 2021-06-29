@@ -1,6 +1,6 @@
 USE mobile_eats_db;
 
-# TRUNCATE megit nu_items_categories;
+# TRUNCATE menu_items_categories;
 INSERT INTO menu_item_categories(name)
 VALUES ('hamburgers'),
        ('tacos');

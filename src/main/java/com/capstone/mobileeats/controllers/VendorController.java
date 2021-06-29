@@ -1,15 +1,27 @@
 package com.capstone.mobileeats.controllers;
 
 
+
+import com.capstone.mobileeats.models.PostTo;
+
+import com.capstone.mobileeats.models.User;
+
 import com.capstone.mobileeats.models.Vendor;
 
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -28,6 +40,21 @@ public class VendorController {
 
 //        this.categoryDao = categoryDao;
     }
+
+    @GetMapping("/vendor/edit/{id}")
+    public String showVendorEditForm(@PathVariable long id, Model model){
+        Vendor currentVendor = vendorDao.getById(id);
+        model.addAttribute("vendor", vendorDao.getById(currentVendor.getId()));
+        return "vendor-profile-edit-page";
+    }
+
+    @PostMapping("/vendor/edit/{id}")
+    public String editVendorProfile(@ModelAttribute Vendor vendor){
+        Vendor saveVendor = vendorDao.save(vendor);
+        return "redirect:/vendors/profile/" + saveVendor.getId();
+    }
+
+
     @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
     public String vendorsIndex( Model model) {
         //        LIST ALL VENDORS
@@ -72,6 +99,14 @@ public class VendorController {
 //        result.addObject("location", objectMapper.writeValueAsString(location));
 
         return "vendorProfile";
+    }
+    @PostMapping(value = "/vendors/profile/{id}")
+    public @ResponseBody String sendPost(@RequestBody PostTo postTo, @PathVariable Long id) {
+        Vendor vendor = vendorDao.getById(id);
+        vendor.setLocation(postTo.getLocation());
+        vendor.setOpen(postTo.getOpen());
+        vendorDao.save(vendor);
+        return "redirect:/vendors/profile/" + id;
     }
 
     //UPDATE

@@ -15,6 +15,7 @@
     <div class="d-flex flex-column align-items-center">
         <!--                Need to fix followers and reviews-->
         <h3 th:utext="${vendor.name}"></h3>
+        <input class="vendorId" hidden th:value="${vendor.id}">
         <label>Mark as Open: </label>
         <label class="switch">
             <input type="checkbox" name="open" value="open" id="open">
