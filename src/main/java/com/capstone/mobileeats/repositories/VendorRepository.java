@@ -20,4 +20,5 @@ public interface VendorRepository extends JpaRepository<Vendor, Long> {
             " OR id = ANY (SELECT id FROM VendorCategory WHERE name LIKE %:search%)" +
             "")
     List<Vendor> searchByTitle(@Param("search") String search);
+
 }
