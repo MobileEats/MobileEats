@@ -43,7 +43,6 @@
     justify-content: space-evenly;
     position: relative;
     z-index: 1;
-    animation-delay: 4s;
 }
 .landing-icon{
     width: 7em;
