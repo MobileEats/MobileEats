@@ -105,7 +105,7 @@ public class UserController {
         return "redirect:/users/profile/" + saveUser.getId();
     }
 
-    @GetMapping(path = "/user/{id}/profile")
+    @GetMapping(path = "/user/profile/{id}")
     public String postId(@PathVariable long id, Model model) {
         model.addAttribute("user", users.getById(id));
         return "userProfile";
