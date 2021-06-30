@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Vendor Profile</title>
 
 </head>
 <body>
@@ -13,33 +14,32 @@
         <img src="/images/pexels4.jpeg">
     </div>
     <div class="d-flex flex-column align-items-center">
-<!--                Need to fix followers and reviews-->
+        <!--                Need to fix followers and reviews-->
         <h3 th:utext="${vendor.name}"></h3>
+        <input class="vendorId" hidden th:value="${vendor.id}">
         <label>Mark as Open: </label>
         <label class="switch">
             <input type="checkbox" name="open" value="open" id="open">
             <span class="slider round"></span>
         </label>
-        <h5 th:utext="${vendor.getFollowers().size()} + Followers"></h5>
+
+        <!--        <form action="" method="post">-->
+        <button type="submit" th:vendor="${vendor.name}" id="follow">+ Follow</button>
+        <!--        </form>-->
+
+        <h5 th:utext="${vendor.getFollowers().size()} + ' ' + Followers"></h5>
         <h5 class="address" th:utext="${vendor.location}"></h5>
         <h5 class="current"></h5>
         <h5 th:utext="${vendor.getReviews().size()}"></h5>
-        <h5 th:utext="${vendor.getReviews().size()} + reviews"></h5>
+        <h5 th:utext="${vendor.getReviews().size()} + ' ' + reviews"></h5>
 
     </div>
     <div class="d-flex flex-column align-items-center mb-3">
         My Menu
-        <form action="" method="POST">
-            <button id="edit-vendor">Edit</button>
-        </form>
     </div>
 </div>
 <div class="d-flex flex-column justify-content-center">
-    <div class="d-flex row mx-auto" id="map"  style='width: 400px; height: 300px;'></div>
-    <div class="geolocation mx-auto row">
-        <a id="locate"><button>Find Me</button></a>
-        <a id="updateCurrent"><button>Post My Location</button></a>
-    </div>
+    <div class="d-flex row mx-auto" id="map" style='width: 400px; height: 300px;'></div>
 </div>
 
 <div class="slideshow-container">
@@ -75,9 +75,26 @@
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
 </div>
-
+<div sec:authorize="isAuthenticated()">
+    <a th:href="'/vendors/' + ${vendor.id} + '/edit'">Edit Profile</a>
+</div>
 
 <footer th:replace="partials/footer :: footer"></footer>
 
 </body>
+
+<!--ADDING FOLLOW BUTTON FUNCTIONALITY-->
+<script>
+    $("#follow").click(function () {
+        if ($("#follow").html() === "+ Follow") {
+            $("#follow").html("&#10003; Following")
+            // $("#follow").attr("following", true)
+        } else {
+            if (confirm("Unfollow " + $("#follow").attr("vendor") + "?")) {
+                $("#follow").html("+ Follow");
+                // $("#follow").attr("following", false)
+            }
+        }
+    })
+</script>
 </html>

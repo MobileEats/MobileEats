@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>User's Profile</title>
@@ -56,7 +57,7 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div class="location"><span th:text="${user.location}"></span></div>
+<!--<div class="location"><span th:text="${user.location}"></span></div>-->
 
 <section class="user">
     <div class="user-image">
@@ -100,7 +101,9 @@
         Review here
     </div>
 </section>
-
+<div sec:authorize="isAuthenticated()">
+    <a th:href="'/users/' + ${user.id} + '/edit'">Edit Profile</a>
+</div>
 <footer th:replace="partials/footer :: footer"></footer>
 
 </body>

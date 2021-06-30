@@ -224,8 +224,6 @@ a .register{
     margin-top: 1em;
 }
 
-/* Landing Page */
-
 .switch {
     position: relative;
     display: inline-block;
@@ -298,5 +296,82 @@ input:checked + .slider:before {
     margin-bottom: 5px;
 }
 
+/*** VENDORS INDEX ***/
 
+.cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 95%;
+    margin: 0 auto 100px auto;
+    padding: 45px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
 
+.vendor-card{
+    background-color: #f2f2f2;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    width: 95%;
+    margin-bottom: 1em;
+}
+
+.vendor-name{
+    margin-top: 1em;
+    font-size: larger;
+    font-weight: bold;
+}
+
+a .vendor-name{
+    color: #76b852;
+}
+
+a .vendor-name:active{
+    transition: all 15ms ease-in-out;
+    transform: translateY(3px);
+}
+
+.vendor-name:hover{
+    color: #8DC26F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.vendor-header{
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.vendor-property{
+    margin-left: 1em;
+}
+
+.label {
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+#map{
+    width: 100%;
+    min-height: 60vh;
+}
+
+#popupImg {
+    width: 80px;
+}
+.marker {
+    background-image: url('https://cdn.iconscout.com/icon/premium/png-512-thumb/nearby-restaurant-1627227-1379436.png');
+    /*background-image: url('truck-solid.svg');*/
+    /*background-image: url('../images/truck-solid.svg');*/
+
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    /*border-radius: 50%;*/
+    cursor: pointer;
+}
