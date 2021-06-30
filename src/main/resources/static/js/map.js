@@ -12,6 +12,10 @@
     var map = new mapboxgl.Map(mapOptions);
     var marker = new mapboxgl.Marker({color: "red", draggable: true})
 
+    map.on('load', event => {
+        console.log(event);
+        map.resize()
+    })
 
 //*********** FIND LAT LONG FROM ADDRESS SAVED ON DATABASE **************
 $(document).ready(function () {
@@ -34,6 +38,26 @@ $(document).ready(function () {
                     .addTo(map);
                 marker.on('dragend', onDragEnd);
 
+                // Display all vendors.
+                //**************  PLOTS INDIVIDUAL POINTS ON MAP ***************************
+                $(".vendor-location").each(function(index, val){
+                    let vendor = {
+                        address: $(val).html(),
+                        img: "<img id='popupImg'src='https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80'><h6>If you love beef this is the place for you!</h6>"
+                    }
+                   console.log($(val).html());//outputs each individual address
+                    geocode($(val).html(), mapboxToken).then(function (results) {
+                        let el = document.createElement('div');
+                        el.className = 'marker';
+                        marker = new mapboxgl.Marker(el)
+                            .setLngLat(results)
+                            .addTo(map);
+                        let PopUp = new mapboxgl.Popup()
+                            .setHTML(vendor.img + vendor.address);
+                            marker.setPopup(PopUp);
+
+                    });
+                });
             }
             function error(err) {
                 console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -52,6 +76,8 @@ $(document).ready(function () {
             marker.on('dragend', onDragEnd);
         });
     }
+
+
     });
 
 
@@ -99,4 +125,6 @@ $('#updateCurrent').click(function(){
         $('.address').html(results.features[0].place_name);
         openLocation();//calls function on vendors-profile.js and post to vendor controller
     });
+
+
 });

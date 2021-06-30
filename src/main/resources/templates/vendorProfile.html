@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>Vendor Profile</title>
@@ -77,6 +78,11 @@
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
 </div>
+
+<div sec:authorize="isAuthenticated()">
+    <a th:href="'/vendors/' + ${vendor.id} + '/edit'">Edit Profile</a>
+</div>
+
 
 <footer th:replace="partials/footer :: footer"></footer>
 
