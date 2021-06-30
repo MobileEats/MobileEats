@@ -1,21 +1,23 @@
-$( "#open" ).on( "click", function() {
-   openLocation();
+$("#open").on("click", function () {
+    openLocation();
 
 });
 
 
-
 function openLocation(){
     let id = $('.vendorId').html();
+
     let location = $('.address').html();
     console.log(id);
     console.log(location);
+
     let urlTest = "/profile";
     if( $( "input:checked" ).val() == "open"){
         let data = {
             "open":true,
             "location": location,
             "id": id
+
         }
         $.ajax({
             type: 'POST',
@@ -23,19 +25,19 @@ function openLocation(){
             data: JSON.stringify(data),
             contentType: "application/json",
             dataType: "json",
-            success: function(results) {
+            success: function (results) {
                 console.log(results);
             },
             // error: function (jqXHR) {
             //     $(document.body).text('Error: ' + jqXHR.status);
             // }
         });
-    }
-    else{
+    } else {
         let data = {
             "open":false,
             "location": location,
             "id": id
+
         }
         $.ajax({
             type: 'POST',
@@ -43,7 +45,7 @@ function openLocation(){
             data: JSON.stringify(data),
             contentType: "application/json",
             dataType: "json",
-            success: function(results) {
+            success: function (results) {
                 console.log(results);
             },
             // error: function (jqXHR) {
@@ -52,3 +54,29 @@ function openLocation(){
         });
     }
 }
+
+<!--ADDING FOLLOW BUTTON FUNCTIONALITY-->
+// function followButton() {
+//     if ($("#follow").html() === "+ Follow") {
+//         $("#follow").html("&#10003; Following")
+//     } else {
+//         if (confirm("Unfollow " + $("#follow").attr("vendor") + "?")) {
+//             $("#follow").html("+ Follow");
+//         }
+//     }
+// }
+
+// function followButton() {
+    if ($("#follow").attr("value") === "true") {
+        $("#follow").html("&#10003; Following")
+    } else {
+        if ($("#follow").attr("value") === "false") {
+            $("#follow").html("+ Follow");
+        }
+    }
+// }
+
+// $("#follow").on("click", function () {
+//     followButton();
+// });
+
