@@ -23,9 +23,12 @@
             <span class="slider round"></span>
         </label>
 
-        <!--        <form action="" method="post">-->
-        <button type="submit" th:vendor="${vendor.name}" id="follow">+ Follow</button>
-        <!--        </form>-->
+
+<!--if user is following, button value = "Following", otherwise button value = "+ Follow"-->
+        <form th:action="${'/vendors/profile/'+ vendor.id + '/follow'}" th:method="POST">
+            <button type="submit" th:vendor="${vendor.name}" id="follow"  name="follow" th:value="${following}">+ Follow
+            </button>
+        </form>
 
         <h5 th:utext="${vendor.getFollowers().size()} + ' ' + Followers"></h5>
         <label class="vendorId" hidden th:utext="${vendor.id}"></label>
@@ -83,26 +86,13 @@
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
 </div>
+
 <div sec:authorize="isAuthenticated()">
     <a th:href="'/vendors/' + ${vendor.id} + '/edit'">Edit Profile</a>
 </div>
 
+
 <footer th:replace="partials/footer :: footer"></footer>
 
 </body>
-
-<!--ADDING FOLLOW BUTTON FUNCTIONALITY-->
-<script>
-    $("#follow").click(function () {
-        if ($("#follow").html() === "+ Follow") {
-            $("#follow").html("&#10003; Following")
-            // $("#follow").attr("following", true)
-        } else {
-            if (confirm("Unfollow " + $("#follow").attr("vendor") + "?")) {
-                $("#follow").html("+ Follow");
-                // $("#follow").attr("following", false)
-            }
-        }
-    })
-</script>
 </html>
