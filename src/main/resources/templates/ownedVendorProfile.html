@@ -22,6 +22,7 @@
             <span class="slider round"></span>
         </label>
         <h5 th:utext="${vendor.getFollowers().size()} + Followers"></h5>
+        <label class="vendorId" hidden th:utext="${vendor.id}"></label>
         <h5 class="address" th:utext="${vendor.location}"></h5>
         <h5 class="current"></h5>
         <h5 th:utext="${vendor.getReviews().size()}"></h5>
