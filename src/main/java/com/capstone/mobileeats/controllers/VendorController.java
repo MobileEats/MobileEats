@@ -94,6 +94,10 @@ public class VendorController {
     public String show(@PathVariable long id, Model model) {
 
         Vendor vendor = vendorDao.getById(id);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("vendorId", id);
+        model.addAttribute("vendor", vendor);
+        model.addAttribute("user", currentUser);
 
         User test = userDao.getById(1L);
 
@@ -104,9 +108,6 @@ public class VendorController {
             String follow = "+ Follow";
             model.addAttribute("following", follow);
         }
-
-        model.addAttribute("vendorId", id);
-        model.addAttribute("vendor", vendor);
 //        model.addAttribute("location", vendor.getLocation());
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        result.addObject("location", objectMapper.writeValueAsString(location));
