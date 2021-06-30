@@ -54,29 +54,3 @@ function openLocation(){
         });
     }
 }
-
-<!--ADDING FOLLOW BUTTON FUNCTIONALITY-->
-// function followButton() {
-//     if ($("#follow").html() === "+ Follow") {
-//         $("#follow").html("&#10003; Following")
-//     } else {
-//         if (confirm("Unfollow " + $("#follow").attr("vendor") + "?")) {
-//             $("#follow").html("+ Follow");
-//         }
-//     }
-// }
-
-// function followButton() {
-    if ($("#follow").attr("value") === "true") {
-        $("#follow").html("&#10003; Following")
-    } else {
-        if ($("#follow").attr("value") === "false") {
-            $("#follow").html("+ Follow");
-        }
-    }
-// }
-
-// $("#follow").on("click", function () {
-//     followButton();
-// });
-
