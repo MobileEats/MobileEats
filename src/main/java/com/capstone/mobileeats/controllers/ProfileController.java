@@ -40,7 +40,7 @@ public class ProfileController {
         updateVendor.setLocation(postTo.getLocation());
         updateVendor.setOpen(postTo.getOpen());
         vendors.save(updateVendor);
-        return "ownedVendorProfile";
+        return "vendorProfile";
     }
 
 

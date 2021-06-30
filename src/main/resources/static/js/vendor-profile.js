@@ -6,7 +6,7 @@ $( "#open" ).on( "click", function() {
 
 
 function openLocation(){
-    let id = $('.vendorId').html();
+    let id = $('.vendorId').val();
     let location = $('.address').html();
     console.log(id);
     console.log(location);
@@ -15,7 +15,7 @@ function openLocation(){
         let data = {
             "open":true,
             "location": location,
-            "id": id
+            "id": 1
         }
         $.ajax({
             type: 'POST',
@@ -35,7 +35,7 @@ function openLocation(){
         let data = {
             "open":false,
             "location": location,
-            "id": id
+            "id": 1
         }
         $.ajax({
             type: 'POST',

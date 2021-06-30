@@ -67,21 +67,21 @@ public class VendorController {
         return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
-    @GetMapping("/vendors/profile/{id}")
-    public String show(@PathVariable long id, Model model){
-        Vendor vendor = vendorDao.getById(id);
-        model.addAttribute("vendorId", id);
-        model.addAttribute("vendor", vendor);
-        return "vendorProfile";
-    }
-    @PostMapping(value = "/vendors/profile/{id}")
-    public @ResponseBody String sendPost(@RequestBody PostTo postTo, @PathVariable Long id) {
-        Vendor vendor = vendorDao.getById(id);
-        vendor.setLocation(postTo.getLocation());
-        vendor.setOpen(postTo.getOpen());
-        vendorDao.save(vendor);
-        return "redirect:/vendors/profile/" + id;
-    }
+//    @GetMapping("/vendors/profile/{id}")
+//    public String show(@PathVariable long id, Model model){
+//        Vendor vendor = vendorDao.getById(id);
+//        model.addAttribute("vendorId", id);
+//        model.addAttribute("vendor", vendor);
+//        return "vendorProfile";
+//    }
+//    @PostMapping(value = "/vendors/profile/{id}")
+//    public @ResponseBody String sendPost(@RequestBody PostTo postTo, @PathVariable Long id) {
+//        Vendor vendor = vendorDao.getById(id);
+//        vendor.setLocation(postTo.getLocation());
+//        vendor.setOpen(postTo.getOpen());
+//        vendorDao.save(vendor);
+//        return "redirect:/vendors/profile/" + id;
+//    }
 
     //UPDATE
     @GetMapping("/vendors/{id}/edit")
