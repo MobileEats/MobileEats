@@ -27,7 +27,7 @@ function openLocation(){
             dataType: "json",
             success: function (results) {
                 console.log(results);
-            },
+            }
             // error: function (jqXHR) {
             //     $(document.body).text('Error: ' + jqXHR.status);
             // }
@@ -47,36 +47,10 @@ function openLocation(){
             dataType: "json",
             success: function (results) {
                 console.log(results);
-            },
+            }
             // error: function (jqXHR) {
             //     $(document.body).text('Error: ' + jqXHR.status);
             // }
         });
     }
 }
-
-<!--ADDING FOLLOW BUTTON FUNCTIONALITY-->
-// function followButton() {
-//     if ($("#follow").html() === "+ Follow") {
-//         $("#follow").html("&#10003; Following")
-//     } else {
-//         if (confirm("Unfollow " + $("#follow").attr("vendor") + "?")) {
-//             $("#follow").html("+ Follow");
-//         }
-//     }
-// }
-
-// function followButton() {
-    if ($("#follow").attr("value") === "true") {
-        $("#follow").html("&#10003; Following")
-    } else {
-        if ($("#follow").attr("value") === "false") {
-            $("#follow").html("+ Follow");
-        }
-    }
-// }
-
-// $("#follow").on("click", function () {
-//     followButton();
-// });
-

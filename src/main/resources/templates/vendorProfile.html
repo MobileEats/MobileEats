@@ -26,7 +26,7 @@
 
 <!--if user is following, button value = "Following", otherwise button value = "+ Follow"-->
         <form th:action="${'/vendors/profile/'+ vendor.id + '/follow'}" th:method="POST">
-            <button type="submit" th:vendor="${vendor.name}" id="follow"  name="follow" th:value="${following}">+ Follow
+            <button type="submit" th:vendor="${vendor.name}" id="follow-button"  name="follow"  th:text="${following}">
             </button>
         </form>
 
