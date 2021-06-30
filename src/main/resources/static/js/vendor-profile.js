@@ -6,14 +6,16 @@ $( "#open" ).on( "click", function() {
 
 
 function openLocation(){
-    let id = $('.vendorId').val();
+    let id = $('.vendorId').html();
     let location = $('.address').html();
+    console.log(id);
     console.log(location);
-    let urlTest = "/vendors/profile/" + id;
+    let urlTest = "/profile";
     if( $( "input:checked" ).val() == "open"){
         let data = {
             "open":true,
-            "location": location
+            "location": location,
+            "id": id
         }
         $.ajax({
             type: 'POST',
@@ -32,7 +34,8 @@ function openLocation(){
     else{
         let data = {
             "open":false,
-            "location": location
+            "location": location,
+            "id": id
         }
         $.ajax({
             type: 'POST',

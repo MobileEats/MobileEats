@@ -1,5 +1,6 @@
 package com.capstone.mobileeats.controllers;
 
+import com.capstone.mobileeats.models.PostTo;
 import com.capstone.mobileeats.models.Vendor;
 import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.models.User;
@@ -7,12 +8,13 @@ import com.capstone.mobileeats.repositories.VendorRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ProfileController {
     private UserRepository users;
-    private VendorRepository vendors;
+    private VendorRepository vendors;//same as vendorsdao
+
 
     public ProfileController(UserRepository users, VendorRepository vendors){
         this.users = users;
@@ -31,5 +33,15 @@ public class ProfileController {
             return "vendorProfile";
         }
     }
+    @PostMapping(value = "/profile")
+    public @ResponseBody
+    String sendPost(@RequestBody PostTo postTo) {
+        Vendor updateVendor = vendors.getById(postTo.getId());
+        updateVendor.setLocation(postTo.getLocation());
+        updateVendor.setOpen(postTo.getOpen());
+        vendors.save(updateVendor);
+        return "ownedVendorProfile";
+    }
+
 
 }
