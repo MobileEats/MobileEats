@@ -47,7 +47,6 @@ public class VendorController {
     public String vendorsIndex( Model model) {
         //        LIST ALL VENDORS
         model.addAttribute("vendors", vendorDao.findAll());
-
         return "vendorIndex";
     }
 
@@ -72,7 +71,8 @@ public class VendorController {
         vendor.setPassword(hashed);
         Vendor saveVendor = vendorDao.save(vendor);
         emailService.newVendorCreated(vendor, "New vendor account with MobileEats!", "Thank you for creating an account with MobileEats for " + vendor.getName() + ". \nThe email used for registration is: " +  vendor.getEmail() + "\nThe user name is : " + vendor.getUsername() + " \nIf you find this to be an error please contact us.");
-        return "redirect:/vendors/profile/" + saveVendor.getId();
+        return "redirect:/profile";
+//        return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
 
@@ -99,38 +99,38 @@ public class VendorController {
     }
 
 
-    @PostMapping("/vendors/profile/{id}/follow")
-    public String follow(@PathVariable Long id, Model model){
-        Vendor vendor = vendorDao.getById(id);
-
-        User test = userDao.getById(1L);
-
-        if(vendor.getFollowers().contains(test)){
-//            vendor.getFollowers().remove(test);
-            model.addAttribute("following", "true");
-        } else {
-//            vendor.getFollowers().add(test);
-            model.addAttribute("following", "false");
-        }
-
-        vendorDao.save(vendor);
-
-        return "redirect:/vendors/profile/" + id;
-    }
+//    @PostMapping("/vendors/profile/{id}/follow")
+//    public String follow(@PathVariable Long id, Model model){
+////        Vendor vendor = vendorDao.getById(id);
+//
+////        User test = userDao.getById(1L);
+//
+////        if(vendor.getFollowers().contains(test)){
+////            vendor.getFollowers().remove(test);
+//            model.addAttribute("following", "true");
+//        } else {
+////            vendor.getFollowers().add(test);
+//            model.addAttribute("following", "false");
+//        }
+//
+//        vendorDao.save(vendor);
+//
+//        return "redirect:/vendors/profile/" + id;
+//    }
 
     //UPDATE
-    @GetMapping("/vendors/{id}/edit")
-    public String updatePostForm(@PathVariable long id, Model model) {
-        model.addAttribute("vendor", vendorDao.getById(id));
-        return "editVendorProfilePage";
-    }
-
-    @PostMapping("/vendors/{id}/edit")
-    public String updatePostSubmit(@ModelAttribute Vendor vendor) {
-        vendorDao.save(vendor);
-        Authentication newAuth = SecurityContextHolder.getContext().getAuthentication();
-        SecurityContextHolder.getContext().setAuthentication(newAuth);
-        return "redirect:/profile";
-    }
+//    @GetMapping("/vendors/{id}/edit")
+//    public String updatePostForm(@PathVariable long id, Model model) {
+//        model.addAttribute("vendor", vendorDao.getById(id));
+//        return "editVendorProfilePage";
+//    }
+//
+//    @PostMapping("/vendors/{id}/edit")
+//    public String updatePostSubmit(@ModelAttribute Vendor vendor) {
+//        vendorDao.save(vendor);
+//        Authentication newAuth = SecurityContextHolder.getContext().getAuthentication();
+//        SecurityContextHolder.getContext().setAuthentication(newAuth);
+//        return "redirect:/profile";
+//    }
 
 }

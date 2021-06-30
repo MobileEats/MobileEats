@@ -27,7 +27,7 @@ function openLocation(){
             dataType: "json",
             success: function (results) {
                 console.log(results);
-            },
+            }
             // error: function (jqXHR) {
             //     $(document.body).text('Error: ' + jqXHR.status);
             // }
@@ -47,7 +47,7 @@ function openLocation(){
             dataType: "json",
             success: function (results) {
                 console.log(results);
-            },
+            }
             // error: function (jqXHR) {
             //     $(document.body).text('Error: ' + jqXHR.status);
             // }
