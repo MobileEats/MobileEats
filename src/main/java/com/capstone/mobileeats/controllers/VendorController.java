@@ -4,6 +4,7 @@ package com.capstone.mobileeats.controllers;
 
 import com.capstone.mobileeats.models.PostTo;
 
+import com.capstone.mobileeats.models.User;
 import com.capstone.mobileeats.models.Vendor;
 
 import com.capstone.mobileeats.repositories.UserRepository;
@@ -79,8 +80,10 @@ public class VendorController {
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model){
         Vendor vendor = vendorDao.getById(id);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("vendorId", id);
         model.addAttribute("vendor", vendor);
+        model.addAttribute("user", currentUser);
         return "vendorProfile";
     }
     @PostMapping(value = "/vendors/profile/{id}")
