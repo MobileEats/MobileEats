@@ -10,7 +10,8 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div id='map' class="mt-5 mb-5 container" style='width: 400px; height: 300px;'></div>
+<div id='map' class="mt-5 mb-5 cards"></div>
+
 <div class="cards">
     <h1 class="vendor-header">Vendors</h1>
     <div class="vendor-card" th:each="vendor : ${vendors}">
@@ -23,7 +24,7 @@
                 <p class="vendor-property category" th:text="${categories.name}"></p>
             </th:block>
             <div class="label">Location: </div>
-            <p class="vendor-property" th:text="${vendor.location}" />
+            <p class="vendor-property vendor-location" th:text="${vendor.location}" />
         </div>
     </div>
 </div>

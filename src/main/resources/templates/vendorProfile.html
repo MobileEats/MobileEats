@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>Vendor Profile</title>
@@ -30,6 +31,7 @@
         </form>
 
         <h5 th:utext="${vendor.getFollowers().size()} + ' ' + Followers"></h5>
+        <label class="vendorId" hidden th:utext="${vendor.id}"></label>
         <h5 class="address" th:utext="${vendor.location}"></h5>
         <h5 class="current"></h5>
         <h5 th:utext="${vendor.getReviews().size()}"></h5>
@@ -41,7 +43,14 @@
     </div>
 </div>
 <div class="d-flex flex-column justify-content-center">
-    <div class="d-flex row mx-auto" id="map" style='width: 400px; height: 300px;'></div>
+    <div class="d-flex row mx-auto" id="map"  style='width: 400px; height: 300px;'></div>
+    <div class="geolocation mx-auto row">
+        <div sec:authorize="isAuthenticated()">
+            <a id="locate"><button>Find Me</button></a>
+            <a id="updateCurrent"><button>Post My Location</button></a>
+        </div>
+    </div>
+
 </div>
 
 <div class="slideshow-container">
@@ -77,6 +86,11 @@
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
 </div>
+
+<div sec:authorize="isAuthenticated()">
+    <a th:href="'/vendors/' + ${vendor.id} + '/edit'">Edit Profile</a>
+</div>
+
 
 <footer th:replace="partials/footer :: footer"></footer>
 

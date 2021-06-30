@@ -4,18 +4,22 @@ package com.capstone.mobileeats.controllers;
 import com.capstone.mobileeats.models.PostTo;
 
 import com.capstone.mobileeats.models.User;
-
 import com.capstone.mobileeats.models.Vendor;
 
 import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.lang.model.element.Element;
 import javax.script.SimpleScriptContext;
@@ -52,12 +56,10 @@ public class VendorController {
         return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
-
     @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
     public String vendorsIndex(Model model) {
         //        LIST ALL VENDORS
         model.addAttribute("vendors", vendorDao.findAll());
-
         return "vendorIndex";
     }
 
@@ -81,9 +83,12 @@ public class VendorController {
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
         Vendor saveVendor = vendorDao.save(vendor);
+
         emailService.newVendorCreated(vendor, "New vendor account with MobileEats!", "Thank you for creating an account with MobileEats for " + vendor.getName() + ". \nThe email used for registration is: " + vendor.getEmail() + "\nThe user name is : " + vendor.getUsername() + " \nIf you find this to be an error please contact us.");
-        return "redirect:/vendors/profile/" + saveVendor.getId();
+        return "redirect:/profile";
+//        return "redirect:/vendors/profile/" + saveVendor.getId();
     }
+
 
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model) {
@@ -105,8 +110,6 @@ public class VendorController {
 //        model.addAttribute("location", vendor.getLocation());
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        result.addObject("location", objectMapper.writeValueAsString(location));
-
-
         return "vendorProfile";
     }
 
@@ -122,7 +125,7 @@ public class VendorController {
     }
 
     @PostMapping("/vendors/profile/{id}/follow")
-    public String follow(@PathVariable Long id, Model follow) {
+    public String follow(@PathVariable Long id) {
         Vendor vendor = vendorDao.getById(id);
 
         User test = userDao.getById(1L);
@@ -137,18 +140,4 @@ public class VendorController {
 
         return "redirect:/vendors/profile/" + id;
     }
-
-    //UPDATE
-    @GetMapping("/vendors/{id}/edit")
-    public String updatePostForm(@PathVariable long id, Model model) {
-        model.addAttribute("post", vendorDao.getById(id));
-        return "profile-edit-page";
-    }
-
-    @PostMapping("/vendors/{id}/edit")
-    public String updatePostSubmit(@ModelAttribute Vendor vendor) {
-        vendorDao.save(vendor);
-        return "redirect:/profile";
-    }
-
 }

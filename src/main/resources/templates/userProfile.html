@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>User's Profile</title>
@@ -25,10 +26,6 @@
         .user {
             display: flex;
             justify-content: center;
-        }
-
-        .user-image {
-            display: inline-block;
         }
 
         .users-info {
@@ -59,48 +56,50 @@
 <!--<div class="location"><span th:text="${user.location}"></span></div>-->
 
 <section class="user">
-    <div class="user-image">
-        <img class="img-circle profile-image" th:src="${user.image_url}" alt="user"/>
+    <div class="d-flex align-items-center justify-content-center">
+        <img class="rounded-circle profile-image m-3" height="200px" width="200px" th:src="${user.image_url}" alt="user"/>
 
-        <div class="users-info">
-            <span th:text="${user.username}"></span><br>
-            <span th:text="${user.getFollowing().size()} + ' trucks followed.'"></span>
+        <div class="d-flex flex-column ml-1">
+            <h4 th:text="${user.username}"></h4><br>
+            <h4 th:text="${user.first_name} + ' ' + ${user.last_name}"></h4>
         </div>
     </div>
 </section>
 
-<section class="following">
-    <h3>Following</h3>
-    <th:block th:each="vendor : ${user.following}">
+<div class="cards">
+    <h1 class="vendor-header">Following</h1>
+    <div class="vendor-card" th:each="vendor : ${user.following}">
         <div th:id="${vendor.id}">
-            <h3 th:text="${vendor.name}"/>
-            <p th:text="${vendor.description}"/>
+
+            <a class="vendor-name" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 class="vendor-property vendor-name" th:text="${vendor.name}" /></a>
+            <hr>
+            <div class="label">Category: </div>
+            <th:block th:each=" categories : ${vendor.categories}">
+                <p class="vendor-property category" th:text="${categories.name}"></p>
+            </th:block>
+            <div class="label">Location: </div>
+            <p class="vendor-property vendor-location" th:text="${vendor.location}" />
         </div>
-    </th:block>
-    <div class="container">
-        Food Truck Name <br>
-        4 **** 7 reviews <br>
-        $$ ~ (food type) <br>
-        View Menu link
-
     </div>
-</section>
+</div>
 
 
-<section class="reviews">
-    <h3>My Reviews</h3>
-    <th:block th:each="review : ${user.reviews}">
-        <div th:id="${review.id}">
-            <h3 th:text="${review.rating}"/>
-            <p th:text="${review.body}"/>
-        </div>
-    </th:block>
-    <div class="container">
-        Food Trucks name <br>
-        Review here
-    </div>
-</section>
-
+<!--<section class="reviews">-->
+<!--    <h3>My Reviews</h3>-->
+<!--    <th:block th:each="review : ${user.reviews}">-->
+<!--        <div th:id="${review.id}">-->
+<!--            <h3 th:text="${review.rating}"/>-->
+<!--            <p th:text="${review.body}"/>-->
+<!--        </div>-->
+<!--    </th:block>-->
+<!--    <div class="container">-->
+<!--        Food Trucks name <br>-->
+<!--        Review here-->
+<!--    </div>-->
+<!--</section>-->
+<div sec:authorize="isAuthenticated()">
+    <a th:href="'/users/' + ${user.id} + '/edit'">Edit Profile</a>
+</div>
 <footer th:replace="partials/footer :: footer"></footer>
 
 </body>

@@ -1,159 +1,9 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="partials/head::head">
     <title>Reviews</title>
-
-    <!----- Links -------------->
+    <link rel="stylesheet" type="text/css" href="../static/css/review-page.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <!---- Styling ------------->
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        html,body {
-            display: grid;
-            height: 100%;
-            place-items: center;
-            text-align: center;
-            background: #4CAF50;
-        }
-        .container {
-            width: 400px;
-            background: #111;
-            padding: 20px 30px;
-            border: 1px solid #444;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-        }
-        .container .post {
-            display: none;
-        }
-        .container .text {
-            font-size: 25px;
-            color: #666;
-            font-weight: 500;
-        }
-        .container .edit {
-            position: absolute;
-            right: 10px;
-            top: 5px;
-            font-size: 16px;
-            color: #666;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        .container .edit:hover {
-            text-decoration: underline;
-        }
-
-        .container .star-widget input {
-            display: none;
-        }
-        .star-widget {
-            display: flex;
-            justify-content: space-between;
-        }
-        .star-widget label {
-            font-size: 40px;
-            color: white;
-            padding: 10px;
-            float: right;
-            transition: all 0.2s ease;
-        }
-        input:not(:checked) ~ label:hover,
-        input:not(:checked) ~ label:hover ~ label {
-            color: #4CAF50;
-        }
-        input:checked ~ label {
-            color: #4CAF50;
-        }
-        input#rate-5:checked ~ label {
-            color: #4CAF50;
-            text-shadow: 0 0 20px white;
-        }
-        #rate-1:checked ~ form header:before{
-            content: "Unpleasing!";
-        }
-        #rate-2:checked ~ form header:before{
-            content: "Not the greatest";
-        }
-        #rate-3:checked ~ form header:before{
-            content: "So-So";
-        }
-        #rate-4:checked ~ form header:before{
-            content: " Good but not great";
-        }
-        #rate-5:checked ~ form header:before{
-            content: "AMAZING!!";
-        }
-        /*.container form{*/
-        /*    display: none;*/
-        /*}*/
-        input:checked ~ form{
-            display: block;
-        }
-        form header{
-            width: 100%;
-            font-size: 25px;
-            color: #fe7;
-            font-weight: 500;
-            margin: 5px 0 20px 0;
-            text-align: center;
-            transition: all 0.2s ease;
-        }
-        /*form .textarea{*/
-        /*    height: 100px;*/
-        /*    width: 100%;*/
-        /*}*/
-        form .textarea textarea{
-            height: 100%;
-            width: 100%;
-            outline: none;
-            color: #eee;
-            border: 1px solid #333;
-            background: #222;
-            padding: 10px;
-            font-size: 17px;
-            resize: none;
-        }
-        .textarea textarea:focus{
-            border-color: #444;
-        }
-        form .btn{
-            height: 45px;
-            width: 100%;
-            margin: 15px 0;
-        }
-        form .btn button{
-            height: 100%;
-            width: 100%;
-            border: 1px solid #444;
-            outline: none;
-            /*background: #222;*/
-            color: #999;
-            font-size: 17px;
-            font-weight: 500;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        form .btn button:hover{
-            background: #1b1b1b;
-        }
-
-    </style>
-
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -185,7 +35,7 @@
             <div class="textarea">
                 <br><br>
                     <textarea cols="45" placeholder="Food Truck Name"></textarea>
-                    <textarea cols="45" rows="7" placeholder="Describe your experience.."></textarea>
+                    <textarea cols="45" rows="7" placeholder="How'd we do?"></textarea>
             </div>
             <div class="btn">
                 <button type="submit">Post</button>
@@ -194,30 +44,7 @@
     </div>
 
 
-<!----- JAVASCRIPT -------->
-<script>
-    const btn = document.querySelector("button");
-    const post = document.querySelector(".post");
-    const widget = document.querySelector(".star-widget");
-    const editButton = document.querySelector(".edit");
-    const textarea = document.querySelector(".textarea");
-    const h1 = document.querySelector("h1");
-
-    btn.onclick = ()=> {
-        widget.style.display = "none";
-        post.style.display = "block";
-        textarea.style.display = "none";
-        h1.style.display = "none";
-
-        editButton.onclick = ()=> {
-            widget.style.display = "block";
-            post.style.display = "none";
-        }
-        return false;
-    }
-
-
-
-</script>
+<!----- JAVASCRIPT LINK -------->
+<script src="../static/js/reviews-page.js"></script>
 </body>
 </html>
