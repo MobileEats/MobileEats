@@ -75,6 +75,7 @@ public class VendorController {
         return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
+
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model){
         Vendor vendor = vendorDao.getById(id);
@@ -96,6 +97,7 @@ public class VendorController {
         vendorDao.save(vendor);
         return "redirect:/vendors/profile/" + id;
     }
+
 
     @PostMapping("/vendors/profile/{id}/follow")
     public String follow(@PathVariable Long id, Model model){
