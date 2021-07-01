@@ -1,10 +1,7 @@
 package com.capstone.mobileeats.controllers;
 
 
-import com.capstone.mobileeats.models.PostTo;
-
-import com.capstone.mobileeats.models.User;
-import com.capstone.mobileeats.models.Vendor;
+import com.capstone.mobileeats.models.*;
 
 import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
@@ -18,6 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+
+
+import javax.lang.model.element.Element;
+import javax.script.SimpleScriptContext;
+import javax.swing.text.Document;
+import java.util.ArrayList;
+
 
 
 @Controller
@@ -76,6 +81,7 @@ public class VendorController {
     public String createVendor(@ModelAttribute Vendor vendor) {
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
+        vendor.setMenu(new Menu("Menu", "", vendor, new ArrayList<MenuItem>()));
         Vendor saveVendor = vendorDao.save(vendor);
 
         emailService.newVendorCreated(vendor, "New vendor account with MobileEats!", "Thank you for creating an account with MobileEats for " + vendor.getName() + ". \nThe email used for registration is: " + vendor.getEmail() + "\nThe user name is : " + vendor.getUsername() + " \nIf you find this to be an error please contact us.");

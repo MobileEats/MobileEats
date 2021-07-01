@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head" >
+
+    <!--<head th:replace="partials/navbar :: link_bootstrap">-->
+    <meta charset="UTF-8">
+    <title>Discover Vendors</title>
+    <!--&lt;!&ndash;    <th:block th:replace="partials/navbar :: link_bootstrap" ></th:block>&ndash;&gt;-->
+
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<a href="'vendors/' + ${vendor.id} + '/menu/create"><button type="button" class="btn btn-success"></button></a>
+
+<div class="cards">
+    <h1 class="vendor-header" th:text="${vendor.name} + '\'s Menu'"></h1>
+    <div class="vendor-card" th:each="item : ${items}">
+        <div th:id="${item.id}">
+
+            <h3 class="vendor-property vendor-name" th:text="${item.name}" />
+            <hr>
+            <div class="label">Type: </div>
+                <p class="vendor-property category" th:text="${item.itemType.name}"></p>
+            <div class="label">Categories: </div>
+            <th:block th:each=" category : ${item.categories}">
+                <p class="vendor-property category" th:text="${category.name}"></p>
+            </th:block>
+            <div class="d-flex">
+                <a href="'vendors/profile/' + ${vendor.id} + '/menu/' + ${item.id} + '/delete'"><button type="button" class="btn btn-danger">Delete</button></a>
+                <a href="'vendors/profile/' + ${vendor.id} + '/menu/' + ${item.id} + '/edit'"><button type="button" class="btn btn-danger">Edit</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="partials/footer :: footer"></footer>
+</body>
+</html>
