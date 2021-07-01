@@ -10,34 +10,35 @@
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="d-flex flex-column">
-    <div class="d-flex justify-content-center">
-        <img src="/images/pexels4.jpeg">
+    <div class="banner-img">
+        <img class="banner-img" src="/images/pexels4.jpeg" alt="vendor banner img">
     </div>
-    <div class="d-flex flex-column align-items-center">
+    <h1 class="vendor-profile-name" th:utext="${vendor.name}"></h1>
+    <div class="d-flex flex-column align-items-center vendor-body">
         <!--                Need to fix followers and reviews-->
-        <h3 th:utext="${vendor.name}"></h3>
         <input class="vendorId" hidden th:value="${vendor.id}">
+
+        <div class="follow-btn" th:switch="${user}">
+            <!--            if user is not logged in, button takes you to the login page-->
+            <button th:case="null" type="submit" name="register" onclick="document.location.href='/login'">+ Follow</button>
+
+            <!--            otherwise, it redirects to a method in VendorController to update the followers table in our sql database-->
+            <form th:case="*" th:action="${'/vendors/profile/'+ vendor.id + '/follow'}" th:method="POST">
+                <button type="submit" name="follow" th:text="${following}">
+                </button>
+            </form>
+        </div>
         <label>Mark as Open: </label>
         <label class="switch">
             <input type="checkbox" name="open" value="open" id="open">
             <span class="slider round"></span>
         </label>
-
-
-<!--if user is following, button value = "Following", otherwise button value = "+ Follow"-->
-        <form th:action="${'/vendors/profile/'+ vendor.id + '/follow'}" th:method="POST">
-            <button type="submit" th:vendor="${vendor.name}" id="follow-button"  name="follow"  th:text="${following}">
-            </button>
-        </form>
-
         <h5 th:utext="${vendor.getFollowers().size()} + ' ' + Followers"></h5>
         <label class="vendorId" hidden th:utext="${vendor.id}"></label>
-        <h5 class="address" th:utext="${vendor.location}"></h5>
-        <h5 class="current"></h5>
-        <h5 th:utext="${vendor.getReviews().size()}"></h5>
-        <h5 th:utext="${vendor.getReviews().size()} + ' ' + reviews"></h5>
+        <div class="location">Location: <h5 class="address" th:utext="${vendor.location}"></h5></div>
+        <h5 th:utext="${vendor.reviews.size()} + ' ' + reviews"></h5>
 
-        <a class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>
+        <a th:href="'/vendors/' + ${vendor.id} + '/edit'">Edit Profile</a>
     </div>
     <div class="d-flex flex-column align-items-center mb-3">
         My Menu
@@ -88,10 +89,12 @@
     <span class="dot" onclick="currentSlide(3)"></span>
 </div>
 
-    <a th:href="'/vendors/' + ${vendor.id} + '/edit'">Edit Profile</a>
 
 
 <footer th:replace="partials/footer :: footer"></footer>
 
 </body>
 </html>
+
+
+

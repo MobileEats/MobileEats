@@ -40,12 +40,22 @@ $(document).ready(function () {
 
                 // Display all vendors.
                 //**************  PLOTS INDIVIDUAL POINTS ON MAP ***************************
+                let nameArray = [];
+                let imgArray = [];
+                $(".truck-name").each(function (index, val){
+                    nameArray[index] = $(val).html();
+                });
+                console.log(nameArray);
+                $(".vendorImg").each(function (index, val){
+                    imgArray[index] = $(val).html();
+                });
                 $(".vendor-location").each(function(index, val){
+                    let image = "<img id='popupImg'src='https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80'><h6>If you love beef this is the place for you!</h6>"
                     let vendor = {
                         address: $(val).html(),
-                        img: "<img id='popupImg'src='https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80'><h6>If you love beef this is the place for you!</h6>"
+                        img: "<img id='popupImg'src='" + imgArray[index] + "'><h6>" + nameArray[index] + "</h6>"
                     }
-                   console.log($(val).html());//outputs each individual address
+
                     geocode($(val).html(), mapboxToken).then(function (results) {
                         let el = document.createElement('div');
                         el.className = 'marker';
