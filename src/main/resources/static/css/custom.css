@@ -367,7 +367,7 @@ a .vendor-name:active{
 .marker {
     /*background-image: url('https://cdn.iconscout.com/icon/premium/png-512-thumb/nearby-restaurant-1627227-1379436.png');*/
     /*background-image: url('truck-solid.svg');*/
-    background-image: url('../images/truck-solid.svg');
+    background-image: url('../images/restaurant.png');
 
     background-size: cover;
     width: 40px;
