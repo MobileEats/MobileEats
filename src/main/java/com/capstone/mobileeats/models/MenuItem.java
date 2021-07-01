@@ -104,4 +104,6 @@ public class MenuItem {
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
     }
+
+    public List<ItemCategory> getCategories(){ return categories; }
 }
