@@ -23,12 +23,16 @@
             <span class="slider round"></span>
         </label>
 
+        <div th:switch="${user}">
+<!--            if user is not logged in, button takes you to the login page-->
+            <button th:case="null" type="submit" name="register" onclick="document.location.href='/login'">+ Follow</button>
 
-        <!--if user is following, button value = "Following", otherwise button value = "+ Follow"-->
-        <form th:action="${'/vendors/profile/'+ vendor.id + '/follow'}" th:method="POST">
-            <button type="submit" th:vendor="${vendor.name}" id="follow-button"  name="follow"  th:text="${following}">
-            </button>
-        </form>
+<!--            otherwise, it redirects to a method in VendorController to update the followers table in our sql database-->
+            <form th:case="*" th:action="${'/vendors/profile/'+ vendor.id + '/follow'}" th:method="POST">
+                <button type="submit" name="follow" th:text="${following}">
+                </button>
+            </form>
+        </div>
 
         <h5 th:utext="${vendor.getFollowers().size()} + ' ' + Followers"></h5>
         <label class="vendorId" hidden th:utext="${vendor.id}"></label>
