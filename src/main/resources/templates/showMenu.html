@@ -11,7 +11,7 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<a href="'vendors/' + ${vendor.id} + '/menu/create"><button type="button" class="btn btn-success"></button></a>
+<a th:href="'/vendors/' + ${vendor.id} + '/menu/create'"><button type="button" class="btn btn-success">Add Menu Item</button></a>
 
 <div class="cards">
     <h1 class="vendor-header" th:text="${vendor.name} + '\'s Menu'"></h1>

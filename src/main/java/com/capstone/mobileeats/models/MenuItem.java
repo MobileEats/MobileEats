@@ -106,4 +106,6 @@ public class MenuItem {
     }
 
     public List<ItemCategory> getCategories(){ return categories; }
+
+    public void setCategories(List<ItemCategory> categories){ this.categories = categories; }
 }
