@@ -24,7 +24,7 @@
         </label>
 
         <div th:switch="${user}">
-<!--            if user is not logged in, button takes you to the register page-->
+<!--            if user is not logged in, button takes you to the login page-->
             <button th:case="null" type="submit" name="register" onclick="document.location.href='/login'">+ Follow</button>
 
 <!--            otherwise, it redirects to a method in VendorController to update the followers table in our sql database-->
