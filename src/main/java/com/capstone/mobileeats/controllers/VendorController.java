@@ -10,7 +10,6 @@ import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 
@@ -19,11 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
-import javax.lang.model.element.Element;
-import javax.script.SimpleScriptContext;
-import javax.swing.text.Document;
 
 
 @Controller
@@ -47,7 +41,7 @@ public class VendorController {
     public String showVendorEditForm(@PathVariable long id, Model model) {
         Vendor currentVendor = vendorDao.getById(id);
         model.addAttribute("vendor", vendorDao.getById(currentVendor.getId()));
-        return "vendor-profile-edit-page";
+        return "editVendorProfilePage";
     }
 
     @PostMapping("/vendor/edit/{id}")
