@@ -62,6 +62,7 @@
         <div class="d-flex flex-column user-cont ml-1">
             <h4 class="user-txt" th:text="${user.username}"></h4><br>
             <h4 class="user-txt" th:text="${user.first_name} + ' ' + ${user.last_name}"></h4>
+            <a class="edit-profile btn" th:href="'/users/' + ${user.id} + '/edit'">Edit Profile</a>
         </div>
     </div>
 </section>

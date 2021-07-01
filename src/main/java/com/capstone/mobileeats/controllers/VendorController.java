@@ -7,7 +7,6 @@ import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 
@@ -18,10 +17,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+
 import javax.lang.model.element.Element;
 import javax.script.SimpleScriptContext;
 import javax.swing.text.Document;
 import java.util.ArrayList;
+
 
 
 @Controller
@@ -45,7 +46,7 @@ public class VendorController {
     public String showVendorEditForm(@PathVariable long id, Model model) {
         Vendor currentVendor = vendorDao.getById(id);
         model.addAttribute("vendor", vendorDao.getById(currentVendor.getId()));
-        return "vendor-profile-edit-page";
+        return "editVendorProfilePage";
     }
 
     @PostMapping("/vendor/edit/{id}")
@@ -94,13 +95,13 @@ public class VendorController {
 
         Vendor vendor = vendorDao.getById(id);
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getById(currentUser.getId());
+
+        model.addAttribute("user", user);
         model.addAttribute("vendorId", id);
         model.addAttribute("vendor", vendor);
-        model.addAttribute("user", currentUser);
 
-        User test = userDao.getById(1L);
-
-        if (vendor.getFollowers().contains(test)) {
+        if (vendor.getFollowers().contains(user)) {
             String following = "Following";
             model.addAttribute("following", following);
         } else {
@@ -124,20 +125,41 @@ public class VendorController {
         return "redirect:/vendors/profile/" + id;
     }
 
+
+
+    //UPDATE
+    @GetMapping("/vendors/{id}/edit")
+    public String updatePostForm(@PathVariable long id, Model model) {
+        model.addAttribute("vendor", vendorDao.getById(id));
+        return "editVendorProfilePage";
+    }
+
+    @PostMapping("/vendors/{id}/edit")
+    public String updatePostSubmit(@ModelAttribute Vendor vendor) {
+        vendorDao.save(vendor);
+        Authentication newAuth = SecurityContextHolder.getContext().getAuthentication();
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
+        return "redirect:/profile";
+    }
+
+
     @PostMapping("/vendors/profile/{id}/follow")
     public String follow(@PathVariable Long id) {
         Vendor vendor = vendorDao.getById(id);
 
-        User test = userDao.getById(1L);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (vendor.getFollowers().contains(test)) {
-            vendor.getFollowers().remove(test);
+        User user = userDao.getById(currentUser.getId());
+
+        if (vendor.getFollowers().contains(user)) {
+            vendor.getFollowers().remove(user);
         } else {
-            vendor.getFollowers().add(test);
+            vendor.getFollowers().add(user);
         }
 
         vendorDao.save(vendor);
 
         return "redirect:/vendors/profile/" + id;
     }
+
 }

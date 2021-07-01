@@ -89,9 +89,11 @@ public class UserController {
         String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashed);
         User saveUser = users.save(user);
+
         emailService.newUserCreated(user, "New user account with MobileEats!", "Thank you for creating a user account with MobileEats. \nThe email used for registration is: " +  user.getEmail() + "\nThe user name is : " + user.getUsername() + " \nIf you find this to be an error please contact us.");
         return "redirect:/profile";
 //        return "redirect:/users/profile/" + saveUser.getId();
+
     }
 
     @GetMapping(path = "/user/profile/{id}")
