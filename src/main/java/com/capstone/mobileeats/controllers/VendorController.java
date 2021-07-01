@@ -95,13 +95,13 @@ public class VendorController {
 
         Vendor vendor = vendorDao.getById(id);
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getById(currentUser.getId());
+
+        model.addAttribute("user", user);
         model.addAttribute("vendorId", id);
         model.addAttribute("vendor", vendor);
-        model.addAttribute("user", currentUser);
 
-        User test = userDao.getById(1L);
-
-        if (vendor.getFollowers().contains(test)) {
+        if (vendor.getFollowers().contains(user)) {
             String following = "Following";
             model.addAttribute("following", following);
         } else {
@@ -129,12 +129,14 @@ public class VendorController {
     public String follow(@PathVariable Long id) {
         Vendor vendor = vendorDao.getById(id);
 
-        User test = userDao.getById(1L);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (vendor.getFollowers().contains(test)) {
-            vendor.getFollowers().remove(test);
+        User user = userDao.getById(currentUser.getId());
+
+        if (vendor.getFollowers().contains(user)) {
+            vendor.getFollowers().remove(user);
         } else {
-            vendor.getFollowers().add(test);
+            vendor.getFollowers().add(user);
         }
 
         vendorDao.save(vendor);
