@@ -119,6 +119,24 @@ public class VendorController {
         return "redirect:/vendors/profile/" + id;
     }
 
+
+
+    //UPDATE
+    @GetMapping("/vendors/{id}/edit")
+    public String updatePostForm(@PathVariable long id, Model model) {
+        model.addAttribute("vendor", vendorDao.getById(id));
+        return "editVendorProfilePage";
+    }
+
+    @PostMapping("/vendors/{id}/edit")
+    public String updatePostSubmit(@ModelAttribute Vendor vendor) {
+        vendorDao.save(vendor);
+        Authentication newAuth = SecurityContextHolder.getContext().getAuthentication();
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
+        return "redirect:/profile";
+    }
+
+
     @PostMapping("/vendors/profile/{id}/follow")
     public String follow(@PathVariable Long id) {
         Vendor vendor = vendorDao.getById(id);
@@ -137,4 +155,5 @@ public class VendorController {
 
         return "redirect:/vendors/profile/" + id;
     }
+
 }

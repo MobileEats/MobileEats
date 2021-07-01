@@ -376,6 +376,7 @@ a .vendor-name:active{
     cursor: pointer;
 }
 
+
 /* REVIEW PAGE */
 
 .rating-form{
@@ -524,3 +525,4 @@ a .vendor-name:active{
 .follow-btn{
     transform: translate(0px, -300px);
 }
+
