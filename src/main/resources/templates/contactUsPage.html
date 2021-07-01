@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+</head>
+<body>
+<!-- FORM-BODY-DIV -->
+<div class="contact-form-body">
+
+    <div id="contact-form">
+        <h2 class="contact-form-h2">Contact Us</h2>
+        <!-- FORM FOR THE CONTACT PAGE -->
+        <form id="form-id" method="POST">
+
+            <!-- NAME-DIV -->
+            <div class="form-group">
+                <label for="name" class="cf-label">Your Name</label>
+                <div class="input-group">
+                    <input type="text" id="name" name="name" required />
+                </div>
+            </div>
+            <br>
+
+            <!-- EMAIL-DIV -->
+            <div class="form-group">
+                <label for="email" class="cf-label">Your Email</label>
+                <div class="input-group">
+                    <input type="email" id="email" name="email" required />
+                </div>
+            </div>
+            <br>
+
+            <!-- SUBJECT-DIV -->
+            <div class="form-group">
+                <label for="subject" class="cf-label">Subject</label>
+                <div class="input-group">
+                    <input type="text" id="subject" name="subject" required/>
+                </div>
+            </div>
+            <br>
+
+            <!-- MESSAGE-DIV -->
+            <div class="form-group">
+                <label for="message" class="cf-label">Message</label>
+                <div class="input-group">
+                    <textarea id="message" name="message" rows="6" maxlength="3000" required ></textarea>
+                </div>
+            </div>
+
+
+            <!-- SUBMIT BUTTON -->
+            <div class="form-group">
+                <button type="submit" id="button" class="btn btn-primary btn-lg btn-block">Send Message</button>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>

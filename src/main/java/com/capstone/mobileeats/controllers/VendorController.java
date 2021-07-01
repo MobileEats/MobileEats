@@ -99,24 +99,24 @@ public class VendorController {
     }
 
 
-    @PostMapping("/vendors/profile/{id}/follow")
-    public String follow(@PathVariable Long id, Model model){
-        Vendor vendor = vendorDao.getById(id);
-
-        User test = userDao.getById(1L);
-
-        if(vendor.getFollowers().contains(test)){
-//            vendor.getFollowers().remove(test);
-            model.addAttribute("following", "true");
-        } else {
-//            vendor.getFollowers().add(test);
-            model.addAttribute("following", "false");
-        }
-
-        vendorDao.save(vendor);
-
-        return "redirect:/vendors/profile/" + id;
-    }
+//    @PostMapping("/vendors/profile/{id}/follow")
+//    public String follow(@PathVariable Long id, Model model){
+//        Vendor vendor = vendorDao.getById(id);
+//
+//        User test = userDao.getById(1L);
+//
+//        if(vendor.getFollowers().contains(test)){
+////            vendor.getFollowers().remove(test);
+//            model.addAttribute("following", "true");
+//        } else {
+////            vendor.getFollowers().add(test);
+//            model.addAttribute("following", "false");
+//        }
+//
+//        vendorDao.save(vendor);
+//
+//        return "redirect:/vendors/profile/" + id;
+//    }
 
     //UPDATE
     @GetMapping("/vendors/{id}/edit")
