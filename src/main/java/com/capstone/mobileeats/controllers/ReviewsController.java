@@ -6,6 +6,7 @@ import com.capstone.mobileeats.repositories.ReviewRepository;
 import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,16 +31,20 @@ public class ReviewsController {
         this.reviews = reviews1;
     }
 
-    @GetMapping("/review/create/{id}")
-    public String showReviewForm(@PathVariable long id, Model model){
-        model.addAttribute("review", new Review());
+    @GetMapping("/{userId}/reviews/{vendorId}")
+    public String showReviewForm(@PathVariable long userId, @PathVariable long vendorId, Model reviewModel, Model vendorModel, Model userModel){
+        userModel.addAttribute("user", users.getById(userId));
+        reviewModel.addAttribute("review", new Review());
+        vendorModel.addAttribute("vendor", vendors.getById(vendorId));
         return "reviews-page";
     }
 
-    @PostMapping("/review/create/{id}")
-    public String leaveReview(@ModelAttribute Review review){
-        Review saveReview = reviews.save(review);
-        return "redirect:/vendors/profile/" + review.getVendor().getId();
+    @PostMapping("/{userId}/reviews/{vendorId}")
+    public String leaveReview(@PathVariable long userId, @PathVariable long vendorId, @ModelAttribute Review review){
+        review.setVendor(vendors.getById(vendorId));
+        review.setOwner(users.getById(userId));
+        reviews.save(review);
+        return "index";
     }
 
 }

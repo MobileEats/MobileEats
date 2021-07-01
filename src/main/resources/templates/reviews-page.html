@@ -1,50 +1,33 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head::head">
     <title>Reviews</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/review-page.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
-
-<h1>Leave a Review Here!</h1>
-
-<div class="container">
-    <div class="post">
-        <div class="text">Thanks for your rating!</div>
-    </div>
-    <div class="star-widget">
-        <input type="radio" name="rate" id="rate-5"/>
-        <label for="rate-5" class="fas fa-star" ></label>
-
-        <input type="radio" name="rate" id="rate-4"/>
-        <label for="rate-4" class="fas fa-star"></label>
-
-        <input type="radio" name="rate" id="rate-3"/>
-        <label for="rate-3" class="fas fa-star"></label>
-
-        <input type="radio" name="rate" id="rate-2"/>
-        <label for="rate-2" class="fas fa-star"></label>
-
-        <input type="radio" name="rate" id="rate-1"/>
-        <label for="rate-1" class="fas fa-star"></label>
-    </div>
-        <form action="#" >
-            <header></header>
-            <div class="textarea">
-                <br><br>
-                    <textarea cols="45" placeholder="Food Truck Name"></textarea>
-                    <textarea cols="45" rows="7" placeholder="How'd we do?"></textarea>
+<nav th:replace="partials/navbar::navbar"></nav>
+<div class="form">
+    <form class="rating-form" th:action="@{'/' + ${user.id} + '/reviews/' + ${vendor.id}}" th:object="${review}" method="post">
+            <div class="rate">
+                <input type="radio" th:field="*{rating}" id="star5" name="rate" value="5" />
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" th:field="*{rating}" id="star4" name="rate" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" th:field="*{rating}" id="star3" name="rate" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" th:field="*{rating}" id="star2" name="rate" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" th:field="*{rating}" id="star1" name="rate" value="1" />
+                <label for="star1" title="text">1 star</label>
             </div>
-            <div class="btn">
-                <button type="submit">Post</button>
+            <div class="rev-box form-group shadow-textarea">
+                <label class="review" for="review">Brief Review</label>
+                <textarea id="review" th:field="*{body}" class="review form-control z-depth-1" cols="30" name="review"></textarea>
             </div>
+            <button class="btn" type="submit">Post</button>
         </form>
     </div>
 
 
-<!----- JAVASCRIPT LINK -------->
-<script src="../static/js/reviews-page.js"></script>
 </body>
 </html>
+
