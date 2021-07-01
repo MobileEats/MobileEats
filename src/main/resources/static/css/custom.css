@@ -447,3 +447,80 @@ a .vendor-name:active{
     margin-top: .5em;
     color: #76b852;
 }
+
+/*** VENDOR PROFILE ***/
+
+.banner-img{
+    width: 100%;
+    max-height: 400px;
+    -webkit-filter: blur(2px);
+}
+
+.vendor-profile-name{
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.4);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -200%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
+
+.vendor-body{
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 75%;
+    width: 75%;
+    margin: 7em auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.vendor-body button{
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+.vendor-body button:hover{
+    text-decoration: none;
+    background-color: #8DC26F;
+    transform: scale(1.1);
+    transition-timing-function: ease-in-out;
+}
+
+.vendor-body button:active{
+    text-decoration: none;
+    background-color: #43A047;
+    transform: translateY(3px);
+}
+
+.location{
+    font-weight: bold;
+}
+
+.vendor-body a {
+    color: #8DC26F;
+}
+
+.follow-btn{
+    transform: translate(0px, -300px);
+}
