@@ -17,13 +17,14 @@
     <div class="vendor-card" th:each="vendor : ${vendors}">
         <div th:id="${vendor.id}">
 
-            <a class="vendor-name" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 class="vendor-property vendor-name" th:text="${vendor.name}" /></a>
+            <a class="vendor-name" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 class="vendor-property vendor-name truck-name" th:text="${vendor.name}" /></a>
             <hr>
             <div class="label">Category: </div>
             <th:block th:each=" categories : ${vendor.categories}">
                 <p class="vendor-property category" th:text="${categories.name}"></p>
             </th:block>
             <div class="label">Location: </div>
+            <label class="vendorImg" hidden th:utext="${vendor.profileImageUrl}"></label>
             <p class="vendor-property vendor-location" th:text="${vendor.location}" />
         </div>
     </div>
