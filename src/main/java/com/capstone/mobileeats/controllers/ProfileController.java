@@ -10,22 +10,42 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class ProfileController {
-    private UserRepository users;
-    private VendorRepository vendors;//same as vendorsdao
+    private UserRepository userDao;
+    private VendorRepository vendorDao;
 
 
-    public ProfileController(UserRepository users, VendorRepository vendors){
-        this.users = users;
-        this.vendors = vendors;
+    public ProfileController(UserRepository userDao, VendorRepository vendorDao){
+        this.userDao = userDao;
+        this.vendorDao = vendorDao;
     }
 
     @GetMapping("/profile")
     public String userOrVendor(Model model){
         try{
-            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("user", user);
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", currentUser);
+
+            User user = userDao.getById(currentUser.getId());
+            System.out.println("user = " + user);
+
+            List<Vendor> following = currentUser.getFollowing();
+            List<Vendor> vendors = vendorDao.findAll();
+
+            for(int i = 0; i < vendors.size(); i++){
+//                System.out.println("test " + i + " = " + vendors.get(i));
+                Vendor vendor = vendors.get(i);
+
+                if(vendor.getFollowers().contains(user) & !following.contains(vendor)){
+                    following.add(vendor);
+                }
+                System.out.println("vendor followers: " + vendor.getFollowers());
+            }
+//            ^^error: repeats the list every time the page refreshes
+
             return "userOwnedProfile";
         }catch(ClassCastException e){
             Vendor vendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -36,10 +56,10 @@ public class ProfileController {
     @PostMapping(value = "/profile")
     public @ResponseBody
     String sendPost(@RequestBody PostTo postTo) {
-        Vendor updateVendor = vendors.getById(postTo.getId());
+        Vendor updateVendor = vendorDao.getById(postTo.getId());
         updateVendor.setLocation(postTo.getLocation());
         updateVendor.setOpen(postTo.getOpen());
-        vendors.save(updateVendor);
+        vendorDao.save(updateVendor);
         return "vendorProfile";
     }
 
