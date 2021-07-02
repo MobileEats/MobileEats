@@ -35,6 +35,8 @@ public class ProfileController {
             List<Vendor> following = currentUser.getFollowing();
             List<Vendor> vendors = vendorDao.findAll();
 
+            following.clear();
+
             for(int i = 0; i < vendors.size(); i++){
 //                System.out.println("test " + i + " = " + vendors.get(i));
                 Vendor vendor = vendors.get(i);
@@ -45,6 +47,7 @@ public class ProfileController {
                 System.out.println("vendor followers: " + vendor.getFollowers());
             }
 //            ^^error: repeats the list every time the page refreshes
+//            fixed: clear array every time the page refreshes
 
             return "userOwnedProfile";
         }catch(ClassCastException e){
