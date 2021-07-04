@@ -45,24 +45,35 @@ public class MenuController {
 
     @GetMapping("/vendors/{id}/menu/create")
     public String showCreateItemForm(Model model, @PathVariable long id){
-        model.addAttribute("item", new MenuItem());
         model.addAttribute("vendor", vendors.getById(id));
         model.addAttribute("types", itemTypes.findAll());
         model.addAttribute("categories", itemCategories.findAll());
         return "addMenuItem";
     }
     @PostMapping("/vendors/{id}/menu/create")
-    public String createItem(@ModelAttribute MenuItem item, @RequestParam(name = "type") String typeName, @RequestParam(name = "categories") List<String> categoriesNames, @PathVariable long id){
+    public String createItem(@RequestParam(name = "type") String typeName, @RequestParam(name = "categories") String categoriesString, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description, @RequestParam(name = "image_url") String imageUrl, @PathVariable long id){
+        MenuItem item = new MenuItem();
+        System.out.println(categoriesString);
         ItemType type = itemTypes.findByName(typeName);
         List<ItemCategory> categories = new ArrayList<>();
         Menu menu = vendors.getById(id).getMenu();
+        String[] categoriesNames = convertStringToList(categoriesString);
         for (String categoryName : categoriesNames){
             categories.add(itemCategories.findByName(categoryName));
         }
         item.setItemType(type);
         item.setCategories(categories);
+        item.setName(name);
+        item.setDescription(description);
+        item.setImage_url(imageUrl);
         item.setMenu(menu);
         menuItems.save(item);
         return "redirect:/vendors/" + id + "/menu";
+    }
+
+    public String[] convertStringToList(String str){
+        //remove the brackets
+        String newStr = str.replaceAll("[|]", "");
+        return newStr.split(",");
     }
 }
