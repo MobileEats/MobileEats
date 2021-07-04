@@ -8,6 +8,7 @@ import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -144,7 +145,8 @@ public class VendorController {
     @PostMapping("/vendors/{id}/edit")
     public String updatePostSubmit(@ModelAttribute Vendor vendor) {
         vendorDao.save(vendor);
-        Authentication newAuth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials());
         SecurityContextHolder.getContext().setAuthentication(newAuth);
         return "redirect:/profile";
     }
