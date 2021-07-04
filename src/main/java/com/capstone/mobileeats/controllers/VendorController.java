@@ -3,6 +3,7 @@ package com.capstone.mobileeats.controllers;
 
 import com.capstone.mobileeats.models.*;
 
+import com.capstone.mobileeats.repositories.MenuRepository;
 import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
@@ -29,12 +30,14 @@ public class VendorController {
 
     private final UserRepository userDao;
     private final VendorRepository vendorDao;
+    private final MenuRepository menuDao;
 
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
-    public VendorController(UserRepository userDao, VendorRepository vendorDao, PasswordEncoder passwordEncoder, EmailService emailService) {
+    public VendorController(MenuRepository menuDao, UserRepository userDao, VendorRepository vendorDao, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userDao = userDao;
+        this.menuDao = menuDao;
 
         this.vendorDao = vendorDao;
         this.passwordEncoder = passwordEncoder;
@@ -80,8 +83,11 @@ public class VendorController {
     public String createVendor(@ModelAttribute Vendor vendor) {
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
-        vendor.setMenu(new Menu("Menu", "", vendor, new ArrayList<MenuItem>()));
-        Vendor saveVendor = vendorDao.save(vendor);
+        vendorDao.save(vendor);
+        Menu menu = new Menu("Menu", "", vendor, new ArrayList<>());
+        menuDao.save(menu);
+        vendor.setMenu(menu);
+        vendorDao.save(vendor);
 
         emailService.newVendorCreated(vendor, "New vendor account with MobileEats!", "Thank you for creating an account with MobileEats for " + vendor.getName() + ". \nThe email used for registration is: " + vendor.getEmail() + "\nThe user name is : " + vendor.getUsername() + " \nIf you find this to be an error please contact us.");
         return "redirect:/profile";
