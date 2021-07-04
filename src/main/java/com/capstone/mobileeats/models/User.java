@@ -21,7 +21,7 @@ public class User {
     @Column(nullable = true, length = 100)
     private String email;
 
-    @Column(length = 150)
+    @Column(length = 255)
     private String image_url;
 
     @Column(nullable = true, length = 100)
@@ -30,7 +30,7 @@ public class User {
     @Column(nullable = true)
     private String password;
 
-    @Column(nullable = true, length = 100)
+    @Column(nullable = true, length = 255)
     private String location;
 
     @Column
