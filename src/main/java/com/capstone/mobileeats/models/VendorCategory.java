@@ -12,7 +12,7 @@ public class VendorCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(length = 64)
+    @Column(length = 150)
     private String name;
 
     public VendorCategory(){}

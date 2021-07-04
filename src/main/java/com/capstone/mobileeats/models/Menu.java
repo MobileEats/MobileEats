@@ -11,10 +11,10 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 64)
+    @Column(nullable = false, length = 255)
     private String name;
 
-    @Column(name = "image_url", nullable = true, length = 256)
+    @Column(name = "image_url", nullable = true, length = 255)
     private String imageUrl;
 
     @OneToOne
