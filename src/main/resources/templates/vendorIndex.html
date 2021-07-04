@@ -11,36 +11,16 @@
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
-<!-- Button trigger modal -->
-<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
-<!--    Launch demo modal-->
-<!--</button>-->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Location Search</h5>
-<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                    <span aria-hidden="true">&times;</span>-->
-<!--                </button>-->
-            </div>
-            <div class="modal-body">
-                <a id="modalLocate">Geolocate</a>
-                <br>
-                <label>Enter you address: </label>
-                <input class="form-control mr-sm-2" type="text" id="address" placeholder="123 Main Street, City, State">
-                <button type="button" class="btn btn-secondary" id="modalAddress" >Search</button>
-            </div>
-<!--            <div class="modal-footer">-->
-<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                <button type="button" class="btn btn-primary">Save changes</button>-->
-<!--            </div>-->
-        </div>
-    </div>
+<div class="geoSearch mt-2 ml-3">
+    <label>Locate Me:</label>
+    <a href="#" id="modalLocate"><i class="fas fa-search-location fa-2x"></i></a>
+    <label> or Enter you address: </label>
+    <input class="" type="text" id="address" size="50" placeholder="123 Main Street, City, State">
+    <button type="button" class="btn btn-primary" id="modalAddress" >Search</button>
 </div>
-<div id='map' class="mt-5 mb-5 cards"></div>
+
+<div id='map' class="mx-auto my-2 cards"></div>
 
 <div class="cards">
     <h1 class="vendor-header">Vendors</h1>

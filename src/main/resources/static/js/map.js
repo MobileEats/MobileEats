@@ -27,17 +27,18 @@ map.on('load', event => {
 //*********** FIND LAT LONG FROM ADDRESS SAVED ON DATABASE OR SEARCHED **************
 $(document).ready(function () {
 
-    $('#exampleModal').modal('show');
+    // $('#exampleModal').modal('show');
     $("#modalAddress").on('click', function (){
         modalAddress = $('#address').val();
         console.log(modalAddress);
-        $("#exampleModal").modal("hide");
+        // $("#exampleModal").modal("hide");
         searchAddress(modalAddress, 10);
         plotVendors();
     });
     $("#modalLocate").click(function () {
-        $("#exampleModal").modal("hide");
-        geoLocation(18);
+        // $("#exampleModal").modal("hide");
+        geoLocation(10, true);
+        // plotVendors();
     });
 });
 
