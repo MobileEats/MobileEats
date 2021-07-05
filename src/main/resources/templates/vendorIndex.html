@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head" >
+<head th:replace="partials/head :: head">
 
     <!--<head th:replace="partials/navbar :: link_bootstrap">-->
     <meta charset="UTF-8">
@@ -11,6 +11,30 @@
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
+
+<!-- Modal -->
+<!--<div class="modal fade" id="exampleModal">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel">Location Search</h5>-->
+<!--                &lt;!&ndash;                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <span aria-hidden="true">&times;</span>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </button>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <a id="modalLocate">Geolocate</a>-->
+<!--                <br>-->
+<!--                <label>Enter you address: </label>-->
+<!--                <input class="form-control mr-sm-2" type="text" id="address" placeholder="123 Main Street, City, State">-->
+<!--                <button type="button" class="btn btn-secondary" id="modalAddress">Search</button>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;            <div class="modal-footer">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <button type="button" class="btn btn-primary">Save changes</button>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
 
 <div class="geoSearch mt-2 ml-3">
     <label>Locate Me:</label>
@@ -26,20 +50,21 @@
     <h1 class="vendor-header">Vendors</h1>
     <div class="vendor-card" th:each="vendor : ${vendors}">
         <div th:id="${vendor.id}">
-
-            <a class="vendor-name" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 class="vendor-property vendor-name truck-name" th:text="${vendor.name}" /></a>
+            <a class="vendor-name" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3
+                    class="vendor-property vendor-name truck-name" th:text="${vendor.name}"></h3></a>
             <hr>
-            <div class="label">Category: </div>
+
+            <div class=label th:text="'Rating: ' + ${rating.get(vendor.id - 1)}"></div> <!--what happens if a vendor deletes their account? ids will be out of order-->
+            <div class="label">Category:</div>
             <th:block th:each=" categories : ${vendor.categories}">
                 <p class="vendor-property category" th:text="${categories.name}"></p>
             </th:block>
-            <div class="label">Location: </div>
+            <div class="label">Location:</div>
             <label class="vendorImg" hidden th:utext="${vendor.profileImageUrl}"></label>
-            <p class="vendor-property vendor-location" th:text="${vendor.location}" />
+            <p class="vendor-property vendor-location" th:text="${vendor.location}"/>
         </div>
     </div>
 </div>
-
 
 <footer th:replace="partials/footer :: footer"></footer>
 </body>

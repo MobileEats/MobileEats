@@ -3,6 +3,7 @@ package com.capstone.mobileeats.controllers;
 
 import com.capstone.mobileeats.models.*;
 
+import com.capstone.mobileeats.repositories.ReviewRepository;
 import com.capstone.mobileeats.repositories.MenuRepository;
 import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
@@ -20,12 +21,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-
-import javax.lang.model.element.Element;
-import javax.script.SimpleScriptContext;
-import javax.swing.text.Document;
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 @Controller
@@ -33,16 +30,18 @@ public class VendorController {
 
     private final UserRepository userDao;
     private final VendorRepository vendorDao;
+    private final ReviewRepository reviewDao;
     private final MenuRepository menuDao;
 
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
-    public VendorController(MenuRepository menuDao, UserRepository userDao, VendorRepository vendorDao, PasswordEncoder passwordEncoder, EmailService emailService) {
+    public VendorController(MenuRepository menuDao, UserRepository userDao, VendorRepository vendorDao,ReviewRepository reviewDao, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userDao = userDao;
         this.menuDao = menuDao;
 
         this.vendorDao = vendorDao;
+        this.reviewDao = reviewDao;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
     }
@@ -63,7 +62,22 @@ public class VendorController {
     @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
     public String vendorsIndex(Model model) {
         //        LIST ALL VENDORS
-        model.addAttribute("vendors", vendorDao.findAll());
+        List<Vendor> vendors = vendorDao.findAll();
+        model.addAttribute("vendors", vendors);
+
+        List<Double> averages = new ArrayList<>();
+
+            for(int i = 0; i < vendors.size(); i++){
+                double addRatings = 0;
+                List<Review> reviews = vendors.get(i).getReviews();
+                for(int j = 0; j < reviews.size(); j++){
+                    addRatings += reviews.get(j).getRating();
+                }
+                double averageRating = addRatings / reviews.size();
+
+                averages.add((double) Math.round(averageRating * 100)/100);
+            }
+        model.addAttribute("rating", averages);
         return "vendorIndex";
     }
 
@@ -132,7 +146,6 @@ public class VendorController {
         vendorDao.save(vendor);
         return "redirect:/vendors/profile/" + id;
     }
-
 
 
     //UPDATE
