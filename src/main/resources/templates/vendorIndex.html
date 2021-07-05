@@ -50,9 +50,7 @@
                     class="vendor-property vendor-name truck-name" th:text="${vendor.name}"></h3></a>
             <hr>
 
-
-            <div th:text="${rating}"></div>
-
+            <div th:text="${vendor}"></div> <!-- returns all having last instance of rating (NaN) -->
 
             <div class="label">Category:</div>
             <th:block th:each=" categories : ${vendor.categories}">
