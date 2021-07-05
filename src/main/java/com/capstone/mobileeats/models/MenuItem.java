@@ -12,13 +12,13 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = true, length = 100)
+    @Column(nullable = true, length = 255)
     private String name;
 
     @Column(nullable = true, length = 1000)
     private String description;
 
-    @Column(length = 250)
+    @Column(length = 255)
     private String image_url;
 
     @ManyToOne
@@ -106,4 +106,6 @@ public class MenuItem {
     }
 
     public List<ItemCategory> getCategories(){ return categories; }
+
+    public void setCategories(List<ItemCategory> categories){ this.categories = categories; }
 }
