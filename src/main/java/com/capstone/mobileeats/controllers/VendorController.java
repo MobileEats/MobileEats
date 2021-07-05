@@ -3,6 +3,7 @@ package com.capstone.mobileeats.controllers;
 
 import com.capstone.mobileeats.models.*;
 
+import com.capstone.mobileeats.repositories.ReviewRepository;
 import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
@@ -18,12 +19,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-
-import javax.lang.model.element.Element;
-import javax.script.SimpleScriptContext;
-import javax.swing.text.Document;
 import java.util.ArrayList;
-
+import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -31,14 +29,16 @@ public class VendorController {
 
     private final UserRepository userDao;
     private final VendorRepository vendorDao;
+    private final ReviewRepository reviewDao;
 
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
-    public VendorController(UserRepository userDao, VendorRepository vendorDao, PasswordEncoder passwordEncoder, EmailService emailService) {
+    public VendorController(UserRepository userDao, VendorRepository vendorDao, ReviewRepository reviewDao, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userDao = userDao;
 
         this.vendorDao = vendorDao;
+        this.reviewDao = reviewDao;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
     }
@@ -59,7 +59,48 @@ public class VendorController {
     @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
     public String vendorsIndex(Model model) {
         //        LIST ALL VENDORS
-        model.addAttribute("vendors", vendorDao.findAll());
+        List<Vendor> vendors = vendorDao.findAll();
+        model.addAttribute("vendors", vendors);
+
+//        double averageRating = 0;
+
+
+
+        for(int i = 0; i < vendors.size(); i++){
+            double addRatings = 0;
+            List<Review> reviews = vendors.get(i).getReviews();
+            System.out.println("reviews = " + reviews);
+            for(int j = 0; j < reviews.size(); j++){
+                System.out.println(reviews.get(j).getRating());
+                addRatings += reviews.get(j).getRating();
+            }
+            System.out.println("addRatings = " + addRatings);
+            double averageRating = addRatings / reviews.size();
+            System.out.println("averageRating = " + averageRating);
+
+//            return Double.toString(averageRating);
+            model.addAttribute("rating", averageRating);
+        }
+
+
+//
+//
+////        System.out.println("reviews = " + reviews);
+//
+//        for(int i = 0; i < reviews.size(); i++){
+//            addRatings += reviews.get(i).getRating();
+//        }
+//
+//        double averageRating = addRatings / reviews.size();
+////
+////        System.out.println("rating size = " + reviews.size());
+////        System.out.println("add ratings = " + addRatings);
+////        System.out.println("averageRatings = " + averageRating);
+//        System.out.println(reviews);
+//
+////        model.addAttribute("rating", averageRating);
+//        model.addAttribute("rating", reviews);
+
         return "vendorIndex";
     }
 
