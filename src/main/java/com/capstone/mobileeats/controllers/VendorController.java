@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -62,22 +61,19 @@ public class VendorController {
         List<Vendor> vendors = vendorDao.findAll();
         model.addAttribute("vendors", vendors);
 
+        List<Double> averages = new ArrayList<>();
+
             for(int i = 0; i < vendors.size(); i++){
                 double addRatings = 0;
                 List<Review> reviews = vendors.get(i).getReviews();
-                System.out.println("reviews = " + reviews);
                 for(int j = 0; j < reviews.size(); j++){
-                    System.out.println(reviews.get(j).getRating());
                     addRatings += reviews.get(j).getRating();
                 }
-                System.out.println("addRatings = " + addRatings);
                 double averageRating = addRatings / reviews.size();
-//            double averageRating = 123; //printing last instance of loop, since the last vendor has no reviews, it returns NaN
-                System.out.println("averageRating = " + averageRating);
 
-                model.addAttribute("rating", averageRating);
+                averages.add((double) Math.round(averageRating * 100)/100);
             }
-
+        model.addAttribute("rating", averages);
         return "vendorIndex";
     }
 
@@ -143,7 +139,6 @@ public class VendorController {
         vendorDao.save(vendor);
         return "redirect:/vendors/profile/" + id;
     }
-
 
 
     //UPDATE
