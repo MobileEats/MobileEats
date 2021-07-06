@@ -27,6 +27,10 @@
                 <button type="submit" name="follow" th:text="${following}">
                 </button>
             </form>
+            <!-- Button to redirect user to contact page -->
+            <div class="contact-form-button" >
+                <button type="submit" id="message-button" onclick="document.location.href='/contactUsPage'">Message</button>
+            </div>
         </div>
         <label>Mark as Open: </label>
         <label class="switch">
