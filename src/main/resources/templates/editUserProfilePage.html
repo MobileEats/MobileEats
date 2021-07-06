@@ -16,6 +16,8 @@
         <input id="password" type="hidden" th:field="*{password}" th:value="${user.password}"/>
         <label for="email">Email</label>
         <input id="email" type="text" th:field="*{email}" th:value="${user.email}"/>
+        <label for="location">Location</label>
+        <input id="location" type="text" th:field="*{location}" th:value="${user.location}">
         <div class="form-group d-none">
             <input th:field="*{image_url}" type="text" class="form-control" id="image_url" value="${user.image_url}">
         </div>
@@ -23,8 +25,9 @@
             <label for="filestack">Profile Picture</label>
             <button id="filestack" type="button">Select Image</button>
         </div>
-        <label for="location">Location</label>
-        <input id="location" type="text" th:field="*{location}" th:value="${user.location}">
+        <div id="thumbnail-container" class="mb-4">
+            <img id="thumbnail" th:src="${user.image_url}" width="200px">
+        </div>
         <button type="submit">Submit Changes</button>
         <p class="message"><strong>Want to reset your password?</strong></p>
         <p class="message"><a href="/resetPassword">Change Account Password</a></p>

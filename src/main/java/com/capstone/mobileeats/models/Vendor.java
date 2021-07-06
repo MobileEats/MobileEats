@@ -35,8 +35,8 @@ public class Vendor {
     @Column(nullable = true, length = 64)
     private String password;
 
-    @Column(name = "profile_image_url", nullable = true, length = 256)
-    private String profileImageUrl;
+    @Column(length = 255)
+    private String image_url;
 
     @Column(nullable = true, length = 64)
     private String location;
@@ -81,7 +81,7 @@ public class Vendor {
         phoneNumber = copy.phoneNumber;
         email = copy.email;
         password = copy.password;
-        profileImageUrl = copy.profileImageUrl;
+        image_url = copy.image_url;
         location = copy.location;
         isOpen = copy.isOpen;
         categories = copy.categories;
@@ -92,22 +92,22 @@ public class Vendor {
     }
 
 
-    public Vendor(String name, String description, String phoneNumber, String profileImageUrl, String location) {
+    public Vendor(String name, String description, String phoneNumber, String image_url, String location) {
         this.name = name;
         this.description = description;
         this.phoneNumber = phoneNumber;
-        this.profileImageUrl = profileImageUrl;
+        this.image_url = image_url;
         this.location = location;
     }
 
 
-    public Vendor(String name, String description, String phoneNumber, String email, String password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
+    public Vendor(String name, String description, String phoneNumber, String email, String password, String image_url, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
         this.name = name;
         this.description = description;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-        this.profileImageUrl = profileImageUrl;
+        this.image_url = image_url;
         this.location = location;
         this.isOpen = isOpen;
         this.categories = categories;
@@ -117,14 +117,14 @@ public class Vendor {
         this.menu = menu;
     }
 
-    public Vendor(long id, String name, String description, String phoneNumber, String email, String password, String profileImageUrl, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
+    public Vendor(long id, String name, String description, String phoneNumber, String email, String password, String image_url, String location, boolean isOpen, List<VendorCategory> categories, List<User> followers, List<Review> reviews, List<VendorImage> images, Menu menu) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-        this.profileImageUrl = profileImageUrl;
+        this.image_url = image_url;
         this.location = location;
         this.isOpen = isOpen;
         this.categories = categories;
@@ -182,12 +182,12 @@ public class Vendor {
         this.password = password;
     }
 
-    public String getProfileImageUrl() {
-        return profileImageUrl;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setProfileImageUrl(String profileImageUrl) {
-        this.profileImageUrl = profileImageUrl;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public String getLocation() {
