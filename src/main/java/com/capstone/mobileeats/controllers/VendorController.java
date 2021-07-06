@@ -64,29 +64,36 @@ public class VendorController {
     public String vendorsIndex(Model model) {
         //        LIST ALL VENDORS
         List<Vendor> vendors = vendorDao.findAll();
-        model.addAttribute("vendors", vendors);
-
-        List<Double> averages = new ArrayList<>();
-
-            for(int i = 0; i < vendors.size(); i++){
-                double addRatings = 0;
-                List<Review> reviews = vendors.get(i).getReviews();
-                for(int j = 0; j < reviews.size(); j++){
-                    addRatings += reviews.get(j).getRating();
-                }
-                double averageRating = addRatings / reviews.size();
-
-                averages.add((double) Math.round(averageRating * 100)/100);
-            }
-        model.addAttribute("rating", averages);
-        return "vendorIndex";
+        return getString(model, vendors);
     }
 
     @GetMapping("/vendor") //tried creating separate post mapping for the search queries but returns whitelabel error
     public String vendorsIndex(@RequestParam(name = "search") String search, Model model) {
 //        SEARCH VENDORS
+
         String searchQuery = "%" + search + "%";
-        model.addAttribute("vendors", vendorDao.searchByTitle(searchQuery)); //searches through title, description, and category
+        List<Vendor> searchedVendors = vendorDao.searchByTitle(searchQuery);
+
+        return getString(model, searchedVendors);
+    }
+
+//    this is just a method containing my AVERAGE RATING function so I don't have to repeat it in the vendor and vendors mappings
+    private String getString(Model model, List<Vendor> vendors) {
+        model.addAttribute("vendors", vendors); //searches through title, description, and category
+
+        List<Double> averages = new ArrayList<>();
+
+        for(int i = 0; i < vendors.size(); i++){
+            double addRatings = 0;
+            List<Review> reviews = vendors.get(i).getReviews();
+            for(int j = 0; j < reviews.size(); j++){
+                addRatings += reviews.get(j).getRating();
+            }
+            double averageRating = addRatings / reviews.size();
+
+            averages.add((double) Math.round(averageRating * 100)/100);
+        }
+        model.addAttribute("rating", averages);
 
         return "vendorIndex";
     }
