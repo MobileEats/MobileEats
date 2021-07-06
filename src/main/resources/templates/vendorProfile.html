@@ -30,17 +30,20 @@
 <!--            Authenticated as <span sec:authentication="name"></span></div>-->
 
 
-        <div class="follow-btn" th:switch="${user}">
-<!--            if user is not logged in, button takes you to the login page-->
-            <button th:case="null" type="submit" name="register" onclick="document.location.href='/login'">+ Follow</button>
+        <th:block th:switch="${loggedVendor}"> <!--only displays child elements if a vendor is NOT logged in-->
+            <th:block th:case="null"> <!--hence why we check for null-->
+                <div class="follow-btn" th:switch="${user}">
+                    <!--            if user is not logged in, button takes you to the login page-->
+                    <button th:case="null" type="submit" name="register" onclick="document.location.href='/login'">+ Follow</button>
 
-
-<!--            otherwise, it redirects to a method in VendorController to update the followers table in our sql database-->
-            <form th:case="*" th:action="${'/vendors/profile/'+ vendor.id + '/follow'}" th:method="POST">
-                <button type="submit" name="follow" th:text="${following}">
-                </button>
-            </form>
-        </div>
+                    <!--            otherwise, it redirects to a method in VendorController to update the followers table in our sql database-->
+                    <form th:case="*" th:action="${'/vendors/profile/'+ vendor.id + '/follow'}" th:method="POST">
+                        <button type="submit" name="follow" th:text="${following}">
+                        </button>
+                    </form>
+                </div>
+            </th:block>
+        </th:block>
 
         <h5 th:utext="${vendor.getFollowers().size()} + ' ' + Followers"></h5>
         <label class="vendorId" hidden th:utext="${vendor.id}"></label>
