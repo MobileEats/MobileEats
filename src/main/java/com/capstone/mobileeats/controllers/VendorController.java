@@ -115,25 +115,33 @@ public class VendorController {
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model) {
 
-        Vendor vendor = vendorDao.getById(id);
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDao.getById(currentUser.getId());
+        try{
+            Vendor vendor = vendorDao.getById(id);
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userDao.getById(currentUser.getId());
 
-        model.addAttribute("user", user);
-        model.addAttribute("vendorId", id);
-        model.addAttribute("vendor", vendor);
+            model.addAttribute("user", user);
+            model.addAttribute("vendorId", id);
+            model.addAttribute("vendor", vendor);
 
-        if (vendor.getFollowers().contains(user)) {
-            String following = "Following";
-            model.addAttribute("following", following);
-        } else {
-            String follow = "+ Follow";
-            model.addAttribute("following", follow);
+            if (vendor.getFollowers().contains(user)) {
+                String following = "Following";
+                model.addAttribute("following", following);
+            } else {
+                String follow = "+ Follow";
+                model.addAttribute("following", follow);
+            }
+            return "vendorProfile";
+        } catch (ClassCastException e){
+            Vendor vendor = vendorDao.getById(id);
+
+            model.addAttribute("vendorId", id);
+            model.addAttribute("vendor", vendor);
+            return "vendorProfile";
         }
-//        model.addAttribute("location", vendor.getLocation());
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        result.addObject("location", objectMapper.writeValueAsString(location));
-        return "vendorProfile";
+////        model.addAttribute("location", vendor.getLocation());
+////        ObjectMapper objectMapper = new ObjectMapper();
+////        result.addObject("location", objectMapper.writeValueAsString(location));
     }
 
     @PostMapping(value = "/vendors/profile/{id}")
@@ -167,21 +175,25 @@ public class VendorController {
 
     @PostMapping("/vendors/profile/{id}/follow")
     public String follow(@PathVariable Long id) {
-        Vendor vendor = vendorDao.getById(id);
+        try {
+            Vendor vendor = vendorDao.getById(id);
 
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        User user = userDao.getById(currentUser.getId());
+            User user = userDao.getById(currentUser.getId());
 
-        if (vendor.getFollowers().contains(user)) {
-            vendor.getFollowers().remove(user);
-        } else {
-            vendor.getFollowers().add(user);
+            if (vendor.getFollowers().contains(user)) {
+                vendor.getFollowers().remove(user);
+            } else {
+                vendor.getFollowers().add(user);
+            }
+
+            vendorDao.save(vendor);
+
+            return "redirect:/vendors/profile/" + id;
+
+        } catch (ClassCastException e){
+            return "redirect:/vendors/profile/" + id;
         }
-
-        vendorDao.save(vendor);
-
-        return "redirect:/vendors/profile/" + id;
     }
-
 }
