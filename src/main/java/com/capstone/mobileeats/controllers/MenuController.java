@@ -37,7 +37,6 @@ public class MenuController {
             }
             else {model.addAttribute("owner", false); }
             vendor = vendors.getById(id);
-            System.out.println(vendor.getMenu().getName());
             List<MenuItem> items = vendor.getMenu().getItems();
             model.addAttribute("vendor", vendor);
             model.addAttribute("items", items);
@@ -45,8 +44,6 @@ public class MenuController {
         } catch(Exception e) {
             model.addAttribute("owner", false);
             vendor = vendors.getById(id);
-            System.out.println(vendor.getName());
-            System.out.println(vendor.getMenu().getName());
             List<MenuItem> items = vendor.getMenu().getItems();
             model.addAttribute("vendor", vendor);
             model.addAttribute("items", items);
@@ -58,7 +55,6 @@ public class MenuController {
     public String deleteMenuItem(@PathVariable Long vendorId, @PathVariable Long menuItemId, Model model) {
         MenuItem item = menuItems.getById(menuItemId);
         menuItems.delete(item);
-        System.out.println("HELLO!");
         return "redirect:/vendors/" + vendorId + "/menu";
     }
 
