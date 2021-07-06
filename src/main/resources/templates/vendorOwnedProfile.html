@@ -30,7 +30,7 @@
         </div>
         <label>Mark as Open: </label>
         <label class="switch">
-            <input type="checkbox" name="open" value="open" id="open">
+            <input type="checkbox" name="open" th:checked="${vendor.isOpen}" id="open">
             <span class="slider round"></span>
         </label>
         <h5 th:utext="${vendor.getFollowers().size()} + ' ' + Followers"></h5>

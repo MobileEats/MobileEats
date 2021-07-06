@@ -20,7 +20,6 @@ var map = new mapboxgl.Map(mapOptions);
 var marker = new mapboxgl.Marker({color: "red", draggable: true})
 
 map.on('load', event => {
-    console.log(event);
     map.resize()
 })
 
