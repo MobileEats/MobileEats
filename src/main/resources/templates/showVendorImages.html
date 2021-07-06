@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head">
+
+    <!--<head th:replace="partials/navbar :: link_bootstrap">-->
+    <meta charset="UTF-8">
+    <title>View Images</title>
+    <!--&lt;!&ndash;    <th:block th:replace="partials/navbar :: link_bootstrap" ></th:block>&ndash;&gt;-->
+
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<a th:href="'/vendors/' + ${vendor.id} + '/images/create'"><button type="button" class="btn btn-success">Add Image</button></a>
+
+<div class="cards">
+    <h1 class="vendor-header" th:text="${vendor.name} + '\'s Photos'"></h1>
+    <div class="vendor-card" th:each="image : ${images}">
+        <div th:id="${image.id}">
+            <hr>
+                <img th:src="${image.imageUrl}">
+
+            <div class="d-flex">
+                <a th:href="@{'/vendors/' + ${vendor.id} + '/images/' + ${image.id} + '/delete'}"><button type="button" class="btn btn-danger">Delete</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="partials/footer :: footer"></footer>
+</body>
+</html>

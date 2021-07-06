@@ -39,7 +39,7 @@
         <a sec:authorize="isAuthenticated()" href="/logout">Logout</a>
 <!--WILL HAVE TO CHANGE THE 1 TO THE SESSION SCOPE OF THE LOGGED IN USER-->
         <a sec:authorize="isAuthenticated()" href="/profile">
-            <img src="/images/pexels4.jpeg" alt="Company Logo" width="30" height="30" class="rounded-circle">
+            <img th:src="${#authentication.principal.image_url}" alt="Company Logo" width="30" height="30" class="rounded-circle">
             <!--redirects to profile, image will have default src when not logged in-->
             Profile
         </a>

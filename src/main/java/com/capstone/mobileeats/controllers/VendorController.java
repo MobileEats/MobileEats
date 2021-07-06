@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Controller
@@ -100,6 +101,9 @@ public class VendorController {
     public String createVendor(@ModelAttribute Vendor vendor) {
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
+        if (vendor.getImage_url().isBlank()){
+            vendor.setImage_url("/images/user-solid.svg");
+        }
         vendorDao.save(vendor);
         Menu menu = new Menu("Menu", "", vendor, new ArrayList<>());
         menuDao.save(menu);
