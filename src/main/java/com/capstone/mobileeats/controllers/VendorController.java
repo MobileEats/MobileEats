@@ -142,14 +142,23 @@ public class VendorController {
                 String follow = "+ Follow";
                 model.addAttribute("following", follow);
             }
-            return "vendorProfile";
-        } catch (ClassCastException e){
-            Vendor vendor = vendorDao.getById(id);
+            System.out.println("try vendor: " + vendor);
+        } catch (ClassCastException e){ //if a user isn't logged in, it will check to see if they are a vendor or a guest
+            try{
+                Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                User user = userDao.getById(currentVendor.getId());
+                Vendor vendor = vendorDao.getById(id);
 
-            model.addAttribute("vendorId", id);
-            model.addAttribute("vendor", vendor);
-            return "vendorProfile";
+                model.addAttribute("loggedVendor", user);
+                model.addAttribute("vendorId", id);
+                model.addAttribute("vendor", vendor);
+            } catch (ClassCastException f){
+                Vendor vendor = vendorDao.getById(id);
+                model.addAttribute("vendorId", id);
+                model.addAttribute("vendor", vendor);
+            }
         }
+        return "vendorProfile";
 ////        model.addAttribute("location", vendor.getLocation());
 ////        ObjectMapper objectMapper = new ObjectMapper();
 ////        result.addObject("location", objectMapper.writeValueAsString(location));
@@ -165,7 +174,6 @@ public class VendorController {
         vendorDao.save(vendor);
         return "redirect:/vendors/profile/" + id;
     }
-
 
     //UPDATE
     @GetMapping("/vendors/{id}/edit")
@@ -200,7 +208,7 @@ public class VendorController {
             }
 
             vendorDao.save(vendor);
-
+            System.out.println("try vendor 2: " + vendor);
             return "redirect:/vendors/profile/" + id;
 
         } catch (ClassCastException e){
