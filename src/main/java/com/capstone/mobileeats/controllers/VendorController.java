@@ -101,7 +101,7 @@ public class VendorController {
     public String createVendor(@ModelAttribute Vendor vendor) {
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
-        if (vendor.getImage_url() == null){
+        if (vendor.getImage_url().isBlank()){
             vendor.setImage_url("/images/user-solid.svg");
         }
         vendorDao.save(vendor);
