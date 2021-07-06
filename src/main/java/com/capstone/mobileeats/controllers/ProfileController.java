@@ -52,17 +52,19 @@ public class ProfileController {
             return "userOwnedProfile";
         }catch(ClassCastException e){
             Vendor vendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("vendor", vendor);
+            Vendor newVendor  = vendorDao.getById(vendor.getId());
+            model.addAttribute("vendor", newVendor);
             return "vendorOwnedProfile";
         }
     }
     @PostMapping(value = "/profile")
     public @ResponseBody
-    String sendPost(@RequestBody PostTo postTo) {
+    String sendPost(@RequestBody PostTo postTo, Model model) {
         Vendor updateVendor = vendorDao.getById(postTo.getId());
         updateVendor.setLocation(postTo.getLocation());
         updateVendor.setOpen(postTo.getOpen());
         vendorDao.save(updateVendor);
+//        model.addAttribute("vendor", updateVendor);
         return "vendorProfile";
     }
 
