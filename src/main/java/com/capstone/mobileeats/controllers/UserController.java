@@ -87,6 +87,9 @@ public class UserController {
     @PostMapping("users/create")
     public String createVendor(@ModelAttribute User user){
         String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        if (user.getImage_url().isBlank()){
+            user.setImage_url("/images/user-solid.svg");
+        }
         user.setPassword(hashed);
         User saveUser = users.save(user);
 

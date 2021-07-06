@@ -55,11 +55,11 @@ VALUES ('Cafe'),
 
 
 INSERT INTO users (email, first_name, image_url, is_admin, last_name, location, password, username)
-VALUES('roland@gmail.com', 'Roland', 'https://i.pravatar.cc/300',0,'Valdez', '807 Mission Rd, San Antonio, TX 78210','$2a$12$3kvJ6C69qvhe0bOX/sxhNOP.R0EyJCNfmNaMkXfXKnwLY/LO3lUQO','roland'),
-      ('kenyon@gmail.com', 'Kenyon', 'https://i.pravatar.cc/300',0,'Luce', '17703 La Cantera Pkwy, San Antonio, TX 78257','$2a$12$L3GusL3a/WRsFEUFdF8Cnuu9yvaqC9kLOY5jFXaVALIIx5/S2Kz9.','kenyon');
+VALUES('roland@gmail.com', 'Roland', '/images/user-solid.svg',0,'Valdez', '807 Mission Rd, San Antonio, TX 78210','$2a$12$3kvJ6C69qvhe0bOX/sxhNOP.R0EyJCNfmNaMkXfXKnwLY/LO3lUQO','roland'),
+      ('kenyon@gmail.com', 'Kenyon', '/images/user-solid.svg',0,'Luce', '17703 La Cantera Pkwy, San Antonio, TX 78257','$2a$12$L3GusL3a/WRsFEUFdF8Cnuu9yvaqC9kLOY5jFXaVALIIx5/S2Kz9.','kenyon');
 
 
-INSERT INTO vendors (description, email, is_open, location, name, password, phone_number, profile_image_url)
+INSERT INTO vendors (description, email, is_open, location, name, password, phone_number, image_url)
 VALUES ('We are a taco truck serving North San Antonio', 'roland@mobileeats.app', 1,'17000 W I-10, San Antonio, TX 78257','Roland''s Taco Truck','$2a$12$3kvJ6C69qvhe0bOX/sxhNOP.R0EyJCNfmNaMkXfXKnwLY/LO3lUQO',2105555555,'https://threebestrated.com/images/RickysTacos-SanAntonio-TX-1.jpeg'),
        ('We are a hamburger truck serving Down Town San Antonio', 'kenyon@mobileeats.app', 1,'300 Alamo Plaza, San Antonio, TX 78205','Kenyon''s Hamburger Truck','$2a$12$L3GusL3a/WRsFEUFdF8Cnuu9yvaqC9kLOY5jFXaVALIIx5/S2Kz9.',2105555556,'https://threebestrated.com/images/TacosElRegio-SanAntonio-TX.jpeg');
 
