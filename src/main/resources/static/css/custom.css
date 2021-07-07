@@ -532,13 +532,13 @@ a .vendor-name:active{
 /*** MEDIA QUERIES ***/
 
 /* Screen Size for Mobile View */
-@media only screen and (min-width: 0px) and (max-device-width: 480px) {
+@media only screen and (min-width: 0px) and (max-width: 576px) {
     button.navbar-toggler {
           margin-left: auto;
       }
 
     div.bg-text {
-        margin-top: -10em;
+        margin-top: -5em;
     }
 
     div.landing-icon.register {
@@ -565,6 +565,17 @@ a .vendor-name:active{
         background-color: rgba(0,0,0, 0.4);
         border-radius: 50%;
         margin: 1em;
+    }
+
+    .navbar-collapse {
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .active, .dot:hover {
+        background-color: #f1f1f1;
+        margin-left: 21px;
     }
 }
 
