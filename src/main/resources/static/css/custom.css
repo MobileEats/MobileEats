@@ -528,3 +528,22 @@ a .vendor-name:active{
 }
 
 
+/*** MEDIA QUERIES ***/
+
+/* Screen Size for Mobile View */
+@media only screen and (min-width: 0px) and (max-device-width: 480px) {
+    div.bg-text {
+        top: 65%;
+    }
+}
+
+/* Screen Size for Tablet */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+}
+
+/* Screen Size for Desktop */
+@media only screen and (min-width: 769px) {
+
+}
+
