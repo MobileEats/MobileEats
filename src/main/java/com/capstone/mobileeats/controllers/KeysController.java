@@ -20,7 +20,7 @@ public class KeysController {
     Or an environment vairable like this
     CONFIG_JSKEYS_GOOGLE=1234abcgoogle
      */
-    @RequestMapping(path = "/keys.js", produces = "application/javascript")
+    @RequestMapping(path = "/js/keys.js", produces = "application/javascript")
     @ResponseBody
     public String apikey(){
         StringBuilder keysJs = new StringBuilder();
