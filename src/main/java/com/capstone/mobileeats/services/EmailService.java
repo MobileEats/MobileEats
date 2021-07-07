@@ -66,10 +66,25 @@ public class EmailService {
         }
     }
 
-    public void newReviewCreated(Review review, String subject, String body) {
+    public void newReviewUser(Review review, String subject, String body) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
-//        msg.setTo(review.getId());// need to do a search by id to get email for user that created the review
+        msg.setTo(review.getOwner().getEmail());
+        msg.setSubject(subject);
+        msg.setText(body);
+
+        try{
+            this.emailSender.send(msg);
+        }
+        catch (MailException ex) {
+            // simply log it and go on...
+            System.err.println(ex.getMessage());
+        }
+    }
+    public void newReviewVendor(Review review, String subject, String body) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(review.getVendor().getEmail());
         msg.setSubject(subject);
         msg.setText(body);
 
