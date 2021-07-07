@@ -46,7 +46,7 @@ public class ReviewsController {
         reviews.save(review);
         emailService.newReviewUser(review, "You submitted a review!", "Thank you for submitting a review. \nYou submitted a review for : " +  review.getVendor().getName() + "\nYou submitted a rating of : " + review.getRating() + " \nAnd this is the comment you entered: " + review.getBody() + "\n\nIf you believe this is incorrect please let us know.");
         emailService.newReviewVendor(review, "Review was submitted of your business!", "Below is a copy of what was submitted. \nYou received a rating of : " + review.getRating() + " \nAnd this is the comment that was entered: " + review.getBody() + "\n\nIf you have any question please contact MobileEats.");
-        return "index";
+        return "redirect:/vendors";
     }
 
 }
