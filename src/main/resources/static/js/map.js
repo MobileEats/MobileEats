@@ -9,7 +9,7 @@ var options = {
 
 // ************* DISPLAY MAP ON LOAD - Default to San Antonio ******************
 var coord = [29.4241, -98.4936]; // lat[0] long[1] standard format
-mapboxgl.accessToken = mapboxToken;
+mapboxgl.accessToken = MAPBOX_API_KEY;
 var mapOptions = {
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
@@ -42,7 +42,7 @@ $(document).ready(function () {
 });
 
 function searchAddress(address, zoom){// function will pull address class address and plot the point
-    geocode(address, mapboxToken).then(function (results) {
+    geocode(address, MAPBOX_API_KEY).then(function (results) {
         mapOptions.center = results;
         marker.remove();
         map.flyTo({center: results, zoom: zoom, duration: 9000});
@@ -99,7 +99,7 @@ function plotVendors(){
             address: $(val).html(),
             img: "<img id='popupImg'src='" + imgArray[index] + "'><h6>" + nameArray[index] + "</h6>"
         }
-        geocode($(val).html(), mapboxToken).then(function (results) {
+        geocode($(val).html(), MAPBOX_API_KEY).then(function (results) {
             let el = document.createElement('div');
             el.className = 'marker';
             marker = new mapboxgl.Marker(el)
@@ -121,7 +121,7 @@ $("#locate").click(function () {
 //*************  SAVE CURRENT LOCATION TO DATABASE ON BUTTON CLICK**********************
 $('#updateCurrent').click(function () {
     var coord = marker.getLngLat();
-    reverseGeocode({lat: coord.lat, lng: coord.lng}, mapboxToken).then(function (results) {
+    reverseGeocode({lat: coord.lat, lng: coord.lng}, MAPBOX_API_KEY).then(function (results) {
         $('.address').html(results.features[0].place_name);
         openLocation();//calls function on vendors-profile.js and post to vendor controller
     });
