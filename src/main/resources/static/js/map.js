@@ -131,6 +131,7 @@ function getTravelTime(){
         coord = [crd.latitude, crd.longitude];
         let duration;
         $(".vendor-location").each(function (index, val) {
+
             geocode($(val).html(), MAPBOX_API_KEY).then(function (results) {
                 $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord[1] + "," + coord[0] + ";" + results[0] + "," + results[1] + "?access_token=" + MAPBOX_API_KEY).done(function (results){
                     console.log(results);

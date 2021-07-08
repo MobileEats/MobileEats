@@ -52,7 +52,10 @@
         <h5 th:utext="${vendor.reviews.size()} + ' ' + reviews"></h5>
 
 <!--       TODO: make work around for guest and vendor views (render review link only if user.id exists)-->
-<!--        <a class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>-->
+
+        <th:block th:switch="${user}">
+            <a th:case="!null" class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>
+        </th:block>
 
     </div>
     <div class="d-flex flex-column align-items-center mb-3">
