@@ -1,4 +1,5 @@
 "use strict";
+let vendorCoord = [];
 var modalAddress;
 var vendorAddress;
 var options = {
@@ -37,6 +38,7 @@ $(document).ready(function () {
     $("#modalLocate").click(function () {
         // $("#exampleModal").modal("hide");
         geoLocation(10, true);
+        getTravelTime();
         // plotVendors();
     });
 });
@@ -54,7 +56,7 @@ function searchAddress(address, zoom){// function will pull address class addres
 }
 
 function geoLocation(zoom,bool) {
-        function success(pos) {
+    function success(pos) {
         var crd = pos.coords;
         var coord = [crd.latitude, crd.longitude];
         map = new mapboxgl.Map(mapOptions);
@@ -110,6 +112,43 @@ function plotVendors(){
             marker.setPopup(PopUp);
         });
     });
+
+}
+
+function secToMin(secs){
+    if(secs%60===0){
+        return secs/60;
+    }else{
+        return Math.round(secs/60);
+    }
+}
+
+function getTravelTime(){
+    let crd;
+    let coord = [];
+    function success(pos) {
+        crd = pos.coords;
+        coord = [crd.latitude, crd.longitude];
+        let duration;
+        $(".vendor-location").each(function (index, val) {
+            geocode($(val).html(), MAPBOX_API_KEY).then(function (results) {
+                $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord[1] + "," + coord[0] + ";" + results[0] + "," + results[1] + "?access_token=" + MAPBOX_API_KEY).done(function (results){
+                    console.log(results);
+                    duration = secToMin(results.routes[0].duration);
+                    if (duration >= 60){
+                        duration = duration /60;
+                        duration = duration.toFixed(1);
+                        $(".travel-time").eq(index).html("You are about " + duration + " hours away.");
+                    }
+                    else{
+                        $(".travel-time").eq(index).html("You are about " + duration + " minutes away.");
+                    }
+
+                })
+            })
+        })
+    }
+    navigator.geolocation.getCurrentPosition(success);
 
 }
 
