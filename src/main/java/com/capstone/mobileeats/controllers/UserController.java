@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -108,7 +109,10 @@ public class UserController {
     //UPDATE
     @GetMapping("/users/{id}/edit")
     public String updatePostForm(@PathVariable long id, Model model) {
-        model.addAttribute("user", users.getById(id));
+        User user = users.getById(id);
+        model.addAttribute("user", user);
+        List<Vendor> following = user.getFollowing();
+        model.addAttribute("following", following);
         return "editUserProfilePage";
     }
 
