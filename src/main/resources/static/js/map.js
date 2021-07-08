@@ -1,4 +1,5 @@
 "use strict";
+let vendorCoord = [];
 var modalAddress;
 var vendorAddress;
 var options = {
@@ -37,6 +38,7 @@ $(document).ready(function () {
     $("#modalLocate").click(function () {
         // $("#exampleModal").modal("hide");
         geoLocation(10, true);
+        getTravelTime();
         // plotVendors();
     });
 });
@@ -110,6 +112,35 @@ function plotVendors(){
             marker.setPopup(PopUp);
         });
     });
+
+}
+
+function secToMin(secs){
+    if(secs%60===0){
+        return secs/60;
+    }else{
+        return Math.round(secs/60);
+    }
+}
+
+function getTravelTime(){
+    let crd;
+    let coord = [];
+    function success(pos) {
+        crd = pos.coords;
+        coord = [crd.latitude, crd.longitude];
+        let duration;
+        $(".vendor-location").each(function (index, val) {
+            geocode($(val).html(), mapboxToken).then(function (results) {
+                $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord[1] + "," + coord[0] + ";" + results[0] + "," + results[1] + "?access_token=" + mapboxToken).done(function (results){
+                    console.log(results);
+                    duration = secToMin(results.routes[0].duration);
+                    document.getElementsByClassName("travel-time").innerHTML = "About " + duration + " minutes away";
+                })
+            })
+        })
+    }
+    navigator.geolocation.getCurrentPosition(success);
 
 }
 
