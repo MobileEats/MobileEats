@@ -77,7 +77,7 @@ INSERT INTO reviews(body, rating, user_id, vendor_id)
 VALUES ('really liked the tacos - roland', 5, 1, 1),
        ('really liked the burger - roland', 5, 1, 2),
        ('hated the tacos - kenyon', 1, 2, 1),
-       ('hated the burgers - kenyon', 2, 2, 2);;
+       ('hated the burgers - kenyon', 2, 2, 2);
 
 
 INSERT INTO vendor_image(image_url, vendor_id)
