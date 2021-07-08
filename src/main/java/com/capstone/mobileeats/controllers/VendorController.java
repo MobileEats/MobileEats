@@ -225,4 +225,9 @@ public class VendorController {
             return "redirect:/vendors/profile/" + id;
         }
     }
+
+//    @GetMapping("/vendors/contact")
+//    public String contact(){
+//        return "contactUsPage";
+//    }
 }
