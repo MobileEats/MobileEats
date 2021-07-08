@@ -59,9 +59,12 @@
             <th:block th:each=" categories : ${vendor.categories}">
                 <p class="vendor-property category" th:text="${categories.name}"></p>
             </th:block>
-            <div class="label">Location:</div>
-            <label class="vendorImg" hidden th:utext="${vendor.image_url}"></label>
-            <p class="vendor-property vendor-location" th:text="${vendor.location}"/>
+
+            <div class="label">Location: </div>
+            <label class="vendorImg" hidden th:utext="${vendor.Image_url}"></label>
+            <p class="vendor-property vendor-location" th:text="${vendor.location}" />
+            <div class="travel-time"></div>
+
         </div>
     </div>
 </div>
