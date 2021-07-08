@@ -1,19 +1,19 @@
-$("#open").on("click", function () {
-    openLocation();
+
+$(window).on("load", function() {
+
+    //on reload it needs to check value of isOpen
 
 });
 
+$("#open").on("click", function () {
+    openLocation();
+});
 
 function openLocation(){
-
     let id = $('.vendorId').val();
-
     let location = $('.address').html();
-    console.log(id);
-    console.log(location);
-
     let urlTest = "/profile";
-    if( $( "input:checked" ).val() == "open"){
+    if( $("#open").prop("checked") == true){
         let data = {
             "open":true,
             "location": location,
@@ -26,7 +26,7 @@ function openLocation(){
             contentType: "application/json",
             dataType: "json",
             success: function (results) {
-                console.log(results);
+
             }
             // error: function (jqXHR) {
             //     $(document.body).text('Error: ' + jqXHR.status);
@@ -37,7 +37,6 @@ function openLocation(){
             "open":false,
             "location": location,
             "id": id
-
         }
         $.ajax({
             type: 'POST',
@@ -46,7 +45,7 @@ function openLocation(){
             contentType: "application/json",
             dataType: "json",
             success: function (results) {
-                console.log(results);
+
             }
             // error: function (jqXHR) {
             //     $(document.body).text('Error: ' + jqXHR.status);

@@ -3,6 +3,7 @@ package com.capstone.mobileeats.controllers;
 
 import com.capstone.mobileeats.models.*;
 
+import com.capstone.mobileeats.repositories.ReviewRepository;
 import com.capstone.mobileeats.repositories.MenuRepository;
 import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
@@ -20,12 +21,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-
-import javax.lang.model.element.Element;
-import javax.script.SimpleScriptContext;
-import javax.swing.text.Document;
 import java.util.ArrayList;
-
+import java.util.List;
+import java.util.Objects;
 
 
 @Controller
@@ -33,16 +31,18 @@ public class VendorController {
 
     private final UserRepository userDao;
     private final VendorRepository vendorDao;
+    private final ReviewRepository reviewDao;
     private final MenuRepository menuDao;
 
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
-    public VendorController(MenuRepository menuDao, UserRepository userDao, VendorRepository vendorDao, PasswordEncoder passwordEncoder, EmailService emailService) {
+    public VendorController(MenuRepository menuDao, UserRepository userDao, VendorRepository vendorDao,ReviewRepository reviewDao, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userDao = userDao;
         this.menuDao = menuDao;
 
         this.vendorDao = vendorDao;
+        this.reviewDao = reviewDao;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
     }
@@ -63,15 +63,37 @@ public class VendorController {
     @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
     public String vendorsIndex(Model model) {
         //        LIST ALL VENDORS
-        model.addAttribute("vendors", vendorDao.findAll());
-        return "vendorIndex";
+        List<Vendor> vendors = vendorDao.findAll();
+        return getString(model, vendors);
     }
 
     @GetMapping("/vendor") //tried creating separate post mapping for the search queries but returns whitelabel error
     public String vendorsIndex(@RequestParam(name = "search") String search, Model model) {
 //        SEARCH VENDORS
+
         String searchQuery = "%" + search + "%";
-        model.addAttribute("vendors", vendorDao.searchByTitle(searchQuery)); //searches through title, description, and category
+        List<Vendor> searchedVendors = vendorDao.searchByTitle(searchQuery);
+
+        return getString(model, searchedVendors);
+    }
+
+//    this is just a method containing my AVERAGE RATING function so I don't have to repeat it in the vendor and vendors mappings
+    private String getString(Model model, List<Vendor> vendors) {
+        model.addAttribute("vendors", vendors); //searches through title, description, and category
+
+        List<Double> averages = new ArrayList<>();
+
+        for(int i = 0; i < vendors.size(); i++){
+            double addRatings = 0;
+            List<Review> reviews = vendors.get(i).getReviews();
+            for(int j = 0; j < reviews.size(); j++){
+                addRatings += reviews.get(j).getRating();
+            }
+            double averageRating = addRatings / reviews.size();
+
+            averages.add((double) Math.round(averageRating * 100)/100);
+        }
+        model.addAttribute("rating", averages);
 
         return "vendorIndex";
     }
@@ -86,6 +108,9 @@ public class VendorController {
     public String createVendor(@ModelAttribute Vendor vendor) {
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
+        if (vendor.getImage_url().isBlank()){
+            vendor.setImage_url("/images/user-solid.svg");
+        }
         vendorDao.save(vendor);
         Menu menu = new Menu("Menu", "", vendor, new ArrayList<>());
         menuDao.save(menu);
@@ -101,25 +126,42 @@ public class VendorController {
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model) {
 
-        Vendor vendor = vendorDao.getById(id);
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDao.getById(currentUser.getId());
+        try{
+            Vendor vendor = vendorDao.getById(id);
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userDao.getById(currentUser.getId());
 
-        model.addAttribute("user", user);
-        model.addAttribute("vendorId", id);
-        model.addAttribute("vendor", vendor);
+            model.addAttribute("user", user);
+            model.addAttribute("vendorId", id);
+            model.addAttribute("vendor", vendor);
 
-        if (vendor.getFollowers().contains(user)) {
-            String following = "Following";
-            model.addAttribute("following", following);
-        } else {
-            String follow = "+ Follow";
-            model.addAttribute("following", follow);
+            if (vendor.getFollowers().contains(user)) {
+                String following = "Following";
+                model.addAttribute("following", following);
+            } else {
+                String follow = "+ Follow";
+                model.addAttribute("following", follow);
+            }
+            System.out.println("try vendor: " + vendor);
+        } catch (ClassCastException e){ //if a user isn't logged in, it will check to see if they are a vendor or a guest
+            try{
+                Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                User user = userDao.getById(currentVendor.getId());
+                Vendor vendor = vendorDao.getById(id);
+
+                model.addAttribute("loggedVendor", user);
+                model.addAttribute("vendorId", id);
+                model.addAttribute("vendor", vendor);
+            } catch (ClassCastException f){
+                Vendor vendor = vendorDao.getById(id);
+                model.addAttribute("vendorId", id);
+                model.addAttribute("vendor", vendor);
+            }
         }
-//        model.addAttribute("location", vendor.getLocation());
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        result.addObject("location", objectMapper.writeValueAsString(location));
         return "vendorProfile";
+////        model.addAttribute("location", vendor.getLocation());
+////        ObjectMapper objectMapper = new ObjectMapper();
+////        result.addObject("location", objectMapper.writeValueAsString(location));
     }
 
     @PostMapping(value = "/vendors/profile/{id}")
@@ -132,8 +174,6 @@ public class VendorController {
         vendorDao.save(vendor);
         return "redirect:/vendors/profile/" + id;
     }
-
-
 
     //UPDATE
     @GetMapping("/vendors/{id}/edit")
@@ -154,21 +194,25 @@ public class VendorController {
 
     @PostMapping("/vendors/profile/{id}/follow")
     public String follow(@PathVariable Long id) {
-        Vendor vendor = vendorDao.getById(id);
+        try {
+            Vendor vendor = vendorDao.getById(id);
 
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        User user = userDao.getById(currentUser.getId());
+            User user = userDao.getById(currentUser.getId());
 
-        if (vendor.getFollowers().contains(user)) {
-            vendor.getFollowers().remove(user);
-        } else {
-            vendor.getFollowers().add(user);
+            if (vendor.getFollowers().contains(user)) {
+                vendor.getFollowers().remove(user);
+            } else {
+                vendor.getFollowers().add(user);
+            }
+
+            vendorDao.save(vendor);
+            System.out.println("try vendor 2: " + vendor);
+            return "redirect:/vendors/profile/" + id;
+
+        } catch (ClassCastException e){
+            return "redirect:/vendors/profile/" + id;
         }
-
-        vendorDao.save(vendor);
-
-        return "redirect:/vendors/profile/" + id;
     }
-
 }

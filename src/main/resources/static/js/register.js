@@ -1,4 +1,4 @@
-const client = filestack.init(filestackKey);
+const client = filestack.init(FILESTACK_API_KEY);
 
 const uploadDone = (results) => {
     const fileData = results.filesUploaded[0];

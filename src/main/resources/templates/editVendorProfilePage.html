@@ -19,14 +19,14 @@
         <label for="location">Location</label>
         <input id="location" type="text" th:field="*{location}" th:value="${vendor.location}">
         <div class="form-group d-none">
-            <input th:field="*{profileImageUrl}" type="text" class="form-control" id="image_url">
+            <input th:field="*{Image_url}" type="text" class="form-control" id="image_url">
         </div>
         <div class="form-group">
             <label for="filestack">Profile Picture</label>
             <button id="filestack" type="button">Select Image</button>
         </div>
         <div id="thumbnail-container" class="mb-4">
-            <img id="thumbnail" th:src="${vendor.profileImageUrl}" width="200px">
+            <img id="thumbnail" th:src="${vendor.Image_url}" width="200px">
         </div>
         <button type="submit">Submit Changes</button>
         <p class="message"><strong>Want to reset your password?</strong></p>

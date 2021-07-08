@@ -20,17 +20,23 @@
 
         <div class="follow-btn" th:switch="${user}">
             <!--            if user is not logged in, button takes you to the login page-->
-            <button th:case="null" type="submit" name="register" onclick="document.location.href='/login'">+ Follow</button>
+            <button th:case="null" type="submit" name="register" onclick="document.location.href='/login'">+ Follow
+            </button>
 
             <!--            otherwise, it redirects to a method in VendorController to update the followers table in our sql database-->
             <form th:case="*" th:action="${'/vendors/profile/'+ vendor.id + '/follow'}" th:method="POST">
                 <button type="submit" name="follow" th:text="${following}">
                 </button>
             </form>
+            <!-- Button to redirect user to contact page -->
+            <div class="contact-form-button">
+                <button type="submit" id="message-button" onclick="document.location.href='/contactUsPage'">Message
+                </button>
+            </div>
         </div>
         <label>Mark as Open: </label>
         <label class="switch">
-            <input type="checkbox" name="open" value="open" id="open">
+            <input type="checkbox" name="open" th:checked="${vendor.isOpen}" id="open">
             <span class="slider round"></span>
         </label>
         <h5 th:utext="${vendor.getFollowers().size()} + ' ' + Followers"></h5>
@@ -41,15 +47,21 @@
         <a th:href="'/vendors/' + ${vendor.id} + '/edit'">Edit Profile</a>
     </div>
     <div class="d-flex flex-column align-items-center mb-3">
-        My Menu
+        <div class="d-flex flex-column align-items-center mb-3">
+            <a th:href="'/vendors/' + ${vendor.id} + '/menu'">My Menu</a>
+        </div>
     </div>
 </div>
 <div class="d-flex flex-column justify-content-center">
-    <div class="d-flex row mx-auto" id="map"  style='width: 400px; height: 300px;'></div>
+    <div class="d-flex row mx-auto" id="map" style='width: 400px; height: 300px;'></div>
     <div class="geolocation mx-auto row">
         <div sec:authorize="isAuthenticated()">
-            <a id="locate"><button>Find Me</button></a>
-            <a id="updateCurrent"><button>Post My Location</button></a>
+            <a id="locate">
+                <button>Find Me</button>
+            </a>
+            <a id="updateCurrent">
+                <button>Post My Location</button>
+            </a>
         </div>
     </div>
 
@@ -57,6 +69,11 @@
 
 <div class="slideshow-container">
 
+    <div class="d-flex flex-column align-items-center mb-3">
+        <div class="d-flex flex-column align-items-center mb-3">
+            <a th:href="'/vendors/' + ${vendor.id} + '/images'">My Menu</a>
+        </div>
+    </div>
     <!-- Full-width images with number and caption text -->
     <div class="mySlides fade">
         <div class="numbertext">1 / 3</div>
@@ -88,7 +105,6 @@
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
 </div>
-
 
 
 <footer th:replace="partials/footer :: footer"></footer>
