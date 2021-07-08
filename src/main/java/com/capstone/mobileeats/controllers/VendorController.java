@@ -9,6 +9,7 @@ import com.capstone.mobileeats.repositories.UserRepository;
 import com.capstone.mobileeats.repositories.VendorRepository;
 import com.capstone.mobileeats.services.EmailService;
 
+import org.springframework.expression.spel.SpelEvaluationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -64,29 +65,36 @@ public class VendorController {
     public String vendorsIndex(Model model) {
         //        LIST ALL VENDORS
         List<Vendor> vendors = vendorDao.findAll();
-        model.addAttribute("vendors", vendors);
-
-        List<Double> averages = new ArrayList<>();
-
-            for(int i = 0; i < vendors.size(); i++){
-                double addRatings = 0;
-                List<Review> reviews = vendors.get(i).getReviews();
-                for(int j = 0; j < reviews.size(); j++){
-                    addRatings += reviews.get(j).getRating();
-                }
-                double averageRating = addRatings / reviews.size();
-
-                averages.add((double) Math.round(averageRating * 100)/100);
-            }
-        model.addAttribute("rating", averages);
-        return "vendorIndex";
+        return getString(model, vendors);
     }
 
     @GetMapping("/vendor") //tried creating separate post mapping for the search queries but returns whitelabel error
     public String vendorsIndex(@RequestParam(name = "search") String search, Model model) {
 //        SEARCH VENDORS
+
         String searchQuery = "%" + search + "%";
-        model.addAttribute("vendors", vendorDao.searchByTitle(searchQuery)); //searches through title, description, and category
+        List<Vendor> searchedVendors = vendorDao.searchByTitle(searchQuery);
+
+        return getString(model, searchedVendors);
+    }
+
+//    this is just a method containing my AVERAGE RATING function so I don't have to repeat it in the vendor and vendors mappings
+    private String getString(Model model, List<Vendor> vendors) {
+        model.addAttribute("vendors", vendors); //searches through title, description, and category
+
+        List<Double> averages = new ArrayList<>();
+
+        for(int i = 0; i < vendors.size(); i++){
+            double addRatings = 0;
+            List<Review> reviews = vendors.get(i).getReviews();
+            for(int j = 0; j < reviews.size(); j++){
+                addRatings += reviews.get(j).getRating();
+            }
+            double averageRating = addRatings / reviews.size();
+
+            averages.add((double) Math.round(averageRating * 100)/100);
+        }
+        model.addAttribute("rating", averages);
 
         return "vendorIndex";
     }
@@ -121,7 +129,7 @@ public class VendorController {
 
         try{
             Vendor vendor = vendorDao.getById(id);
-            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //checks if user is logged in
             User user = userDao.getById(currentUser.getId());
 
             model.addAttribute("user", user);
@@ -135,14 +143,33 @@ public class VendorController {
                 String follow = "+ Follow";
                 model.addAttribute("following", follow);
             }
-            return "vendorProfile";
-        } catch (ClassCastException e){
-            Vendor vendor = vendorDao.getById(id);
 
-            model.addAttribute("vendorId", id);
-            model.addAttribute("vendor", vendor);
-            return "vendorProfile";
+            System.out.println("user " + user.getUsername() + " viewing: " + vendor.getName());
+
+        } catch (ClassCastException e){ //if a user isn't logged in, it will check to see if they are a vendor or a guest
+            try{
+                Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //checks if vendor is logged in
+                User user = userDao.getById(currentVendor.getId());
+                Vendor vendor = vendorDao.getById(id);
+
+                model.addAttribute("loggedVendor", user);
+                model.addAttribute("vendorId", id);
+                model.addAttribute("vendor", vendor);
+
+                Vendor meAsAVendor = vendorDao.getById(currentVendor.getId());
+                System.out.println("vendor " + meAsAVendor.getName() + " viewing: " + vendor.getName());
+
+            } catch (ClassCastException f){ //catches exception when no vendor or user is logged in (guest)
+                    Vendor vendor = vendorDao.getById(id);
+                    model.addAttribute("vendorId", id); //still needs vendor info to display the correct page
+                    model.addAttribute("vendor", vendor);
+
+                    System.out.println("user guest viewing: " + vendor.getName());
+
+            }
+            model.addAttribute("user", null); //workaround for review link in vendorProfile... hard codes user to null if it does not detect a logged user, which is then checked in the html using th:switch case
         }
+        return "vendorProfile";
 ////        model.addAttribute("location", vendor.getLocation());
 ////        ObjectMapper objectMapper = new ObjectMapper();
 ////        result.addObject("location", objectMapper.writeValueAsString(location));
@@ -158,7 +185,6 @@ public class VendorController {
         vendorDao.save(vendor);
         return "redirect:/vendors/profile/" + id;
     }
-
 
     //UPDATE
     @GetMapping("/vendors/{id}/edit")
@@ -193,7 +219,6 @@ public class VendorController {
             }
 
             vendorDao.save(vendor);
-
             return "redirect:/vendors/profile/" + id;
 
         } catch (ClassCastException e){
