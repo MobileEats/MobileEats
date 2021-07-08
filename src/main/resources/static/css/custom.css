@@ -538,7 +538,7 @@ a .vendor-name:active{
       }
 
     div.bg-text {
-        margin-top: -5em;
+        margin-top: -3em;
     }
 
     div.landing-icon.register {
@@ -571,17 +571,29 @@ a .vendor-name:active{
         display: flex;
         justify-content: space-between;
         text-align: center;
-
-
     }
 
     .navbar {
         z-index: 9999;
     }
 
+    .nav-link {
+        display: inline-flex;
+        padding: 0.5rem -1rem;
+    }
+
     .active, .dot:hover {
-        background-color: #f1f1f1;
+        background-color: ghostwhite;
         margin-left: 21px;
+        align-items: center;
+    }
+
+    .nav-item.active.ml-auto.w-25.p-3.d-flex.justify-content-around {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: auto;
     }
 
     button.follow-button {
