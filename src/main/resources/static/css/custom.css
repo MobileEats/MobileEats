@@ -570,13 +570,40 @@ a .vendor-name:active{
     .navbar-collapse {
         display: flex;
         justify-content: space-between;
+        text-align: center;
 
+
+    }
+
+    .navbar {
+        z-index: 9999;
     }
 
     .active, .dot:hover {
         background-color: #f1f1f1;
         margin-left: 21px;
     }
+
+    button.follow-button {
+        margin-top: 10em;
+    }
+
+   .follow-btn {
+       margin-right: 10em;
+       margin-top: 1em;
+   }
+
+   div.contact-form-button {
+       margin-left: 0;
+       margin-bottom: 2em;
+   }
+
+   button#message-button {
+       position: absolute;
+       margin-left: 7em;
+       margin-top: -64px;
+
+   }
 }
 
 /* Screen Size for Tablet */
