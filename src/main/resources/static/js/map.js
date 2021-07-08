@@ -56,7 +56,7 @@ function searchAddress(address, zoom){// function will pull address class addres
 }
 
 function geoLocation(zoom,bool) {
-        function success(pos) {
+    function success(pos) {
         var crd = pos.coords;
         var coord = [crd.latitude, crd.longitude];
         map = new mapboxgl.Map(mapOptions);
@@ -131,11 +131,20 @@ function getTravelTime(){
         coord = [crd.latitude, crd.longitude];
         let duration;
         $(".vendor-location").each(function (index, val) {
-            geocode($(val).html(), mapboxToken).then(function (results) {
-                $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord[1] + "," + coord[0] + ";" + results[0] + "," + results[1] + "?access_token=" + mapboxToken).done(function (results){
+
+            geocode($(val).html(), MAPBOX_API_KEY).then(function (results) {
+                $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord[1] + "," + coord[0] + ";" + results[0] + "," + results[1] + "?access_token=" + MAPBOX_API_KEY).done(function (results){
                     console.log(results);
                     duration = secToMin(results.routes[0].duration);
-                    document.getElementsByClassName("travel-time").innerHTML = "About " + duration + " minutes away";
+                    if (duration >= 60){
+                        duration = duration /60;
+                        duration = duration.toFixed(1);
+                        $(".travel-time").eq(index).html("You are about " + duration + " hours away.");
+                    }
+                    else{
+                        $(".travel-time").eq(index).html("You are about " + duration + " minutes away.");
+                    }
+
                 })
             })
         })
