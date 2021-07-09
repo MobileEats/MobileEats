@@ -174,7 +174,7 @@ public class VendorController {
 ////        ObjectMapper objectMapper = new ObjectMapper();
 ////        result.addObject("location", objectMapper.writeValueAsString(location));
     }
-
+//************ do we need this **********************
     @PostMapping(value = "/vendors/profile/{id}")
     public @ResponseBody
     String sendPost(@RequestBody PostTo postTo, @PathVariable Long id) {
@@ -189,8 +189,18 @@ public class VendorController {
     //UPDATE
     @GetMapping("/vendors/{id}/edit")
     public String updatePostForm(@PathVariable long id, Model model) {
-        model.addAttribute("vendor", vendorDao.getById(id));
-        return "editVendorProfilePage";
+        try{
+            Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (id == currentVendor.getId()) {
+                model.addAttribute("vendor", vendorDao.getById(id));
+                return "editVendorProfilePage";
+            }
+            return "redirect:/vendors";
+        }
+        catch(ClassCastException e){
+            return "redirect:/vendors";
+        }
+
     }
 
     @PostMapping("/vendors/{id}/edit")

@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .authorizeRequests()
                 //TODO: UPDATE THESE AS WE ADD NEW PAGES
-                .antMatchers("/profile")
+                .antMatchers("/profile", "/vendors/*/edit")
                 .authenticated()
         ;
     }

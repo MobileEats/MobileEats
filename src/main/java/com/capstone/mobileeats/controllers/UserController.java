@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -98,7 +99,7 @@ public class UserController {
 //        return "redirect:/users/profile/" + saveUser.getId();
 
     }
-
+//*******is thi needed ********
     @GetMapping(path = "/user/profile/{id}")
     public String postId(@PathVariable long id, Model model) {
         model.addAttribute("user", users.getById(id));
@@ -108,8 +109,21 @@ public class UserController {
     //UPDATE
     @GetMapping("/users/{id}/edit")
     public String updatePostForm(@PathVariable long id, Model model) {
-        model.addAttribute("user", users.getById(id));
-        return "editUserProfilePage";
+        try{
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if(id == currentUser.getId()){
+                User user = users.getById(currentUser.getId());
+                model.addAttribute("user", user);
+                List<Vendor> following = user.getFollowing();
+                model.addAttribute("following", following);
+                return "editUserProfilePage";
+            }
+            return "redirect:/vendors";
+        }
+        catch(ClassCastException e){
+            return "redirect:/vendors";
+        }
+
     }
 
     @PostMapping("/users/{id}/edit")

@@ -47,8 +47,7 @@ public class User {
     @OneToMany(mappedBy = "owner")
     private List<Review> reviews;
 
-    public User() { }
-
+    public User() {}
 
     public User(User copy) {
         id = copy.id;
@@ -90,6 +89,8 @@ public class User {
     public List<Vendor> getFollowing() {
         return following;
     }
+
+    public void setFollowing(List<Vendor> following) { this.following = following; }
 
     public List<Review> getReviews() {
         return reviews;

@@ -532,13 +532,13 @@ a .vendor-name:active{
 /*** MEDIA QUERIES ***/
 
 /* Screen Size for Mobile View */
-@media only screen and (min-width: 0px) and (max-device-width: 480px) {
+@media only screen and (min-width: 320px) and (max-width: 480px) {
     button.navbar-toggler {
           margin-left: auto;
       }
 
     div.bg-text {
-        margin-top: -10em;
+        margin-top: -3em;
     }
 
     div.landing-icon.register {
@@ -566,6 +566,56 @@ a .vendor-name:active{
         border-radius: 50%;
         margin: 1em;
     }
+
+    .navbar-collapse {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .navbar {
+        z-index: 9999;
+    }
+
+    .nav-link {
+        display: inline-flex;
+        padding: 0.5rem -1rem;
+    }
+
+    .active, .dot:hover {
+        background-color: ghostwhite;
+        margin-left: 21px;
+        align-items: center;
+    }
+
+    .nav-item.active.ml-auto.w-25.p-3.d-flex.justify-content-around {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: auto;
+    }
+
+    button.follow-button {
+        margin-top: 10em;
+    }
+
+   .follow-btn {
+       margin-right: 10em;
+       margin-top: 1em;
+   }
+
+   div.contact-form-button {
+       margin-left: 0;
+       margin-bottom: 2em;
+   }
+
+   button#message-button {
+       position: absolute;
+       margin-left: 7em;
+       margin-top: -64px;
+
+   }
 }
 
 /* Screen Size for Tablet */
