@@ -533,6 +533,11 @@ a .vendor-name:active{
 
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
+
+    .vendor-profile-name {
+        margin-top: 2.5em;
+    }
+
     button.navbar-toggler {
           margin-left: auto;
       }
@@ -627,6 +632,10 @@ a .vendor-name:active{
 /* Screen Size for Tablet */
 @media only screen and (min-width: 481px) and (max-width: 768px) {
 
+    .vendor-profile-name {
+        margin-top: 3em;
+    }
+
    button.navbar-toggler {
        margin-left: auto;
    }
@@ -675,6 +684,26 @@ a .vendor-name:active{
         margin-right: auto;
     }
 
+    button.follow-button {
+        margin-top: 10em;
+    }
+
+    .follow-btn {
+        margin-right: 10em;
+        margin-top: 1em;
+    }
+
+    div.contact-form-button {
+        margin-left: 0;
+        margin-bottom: 2em;
+    }
+
+    button#message-button {
+        position: absolute;
+        margin-left: 7em;
+        margin-top: -64px;
+
+    }
 }
 
 /* Screen Size for Desktop */
