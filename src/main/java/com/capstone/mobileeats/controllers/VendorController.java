@@ -61,14 +61,14 @@ public class VendorController {
         return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
-    @GetMapping("/vendors") //tried creating separate post mapping for the search queries but returns whitelabel error
+    @GetMapping("/vendors")
     public String vendorsIndex(Model model) {
         //        LIST ALL VENDORS
         List<Vendor> vendors = vendorDao.findAll();
         return getString(model, vendors);
     }
 
-    @GetMapping("/vendor") //tried creating separate post mapping for the search queries but returns whitelabel error
+    @GetMapping("/vendor")
     public String vendorsIndex(@RequestParam(name = "search") String search, Model model) {
 //        SEARCH VENDORS
 
@@ -269,7 +269,13 @@ public class VendorController {
 
             model.addAttribute("user", user);
         } catch (ClassCastException e){
-            model.addAttribute("user", null);
+            try{
+                Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //checks if vendor is logged in
+                User user = userDao.getById(currentVendor.getId());
+                model.addAttribute("user", "vendor");
+            } catch(ClassCastException f){
+                model.addAttribute("user", "guest");
+            }
         }
 
         return "vendorReviews";
