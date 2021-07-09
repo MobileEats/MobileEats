@@ -14,6 +14,7 @@
         <label for="username">Username</label>
         <input id="username" type="text" th:field="*{username}" th:value="${user.username}"/>
         <input id="password" type="hidden" th:field="*{password}" th:value="${user.password}"/>
+        <input id="following" type="hidden" th:field="*{following}" th:value="${user.following}"/>
         <label for="email">Email</label>
         <input id="email" type="text" th:field="*{email}" th:value="${user.email}"/>
         <label for="location">Location</label>
