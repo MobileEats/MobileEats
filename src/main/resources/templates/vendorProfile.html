@@ -47,7 +47,7 @@
                         <!--                        CONTACT-->
                         <div class="contact-form-button">
                             <button type="submit" id="message-button"
-                                    onclick="document.location.href='/vendors/contact'">Message
+                                    th:onclick="|window.location.href='/vendors/contact/${vendor.id}'|">Message
                             </button>
                         </div>
                     </div>

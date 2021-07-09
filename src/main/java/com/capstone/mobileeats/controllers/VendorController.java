@@ -237,8 +237,21 @@ public class VendorController {
     }
 
     //CONTACT
-    @GetMapping("/vendors/contact")
-    public String contact(){
+    @GetMapping("/vendors/contact/{id}")
+    public String contactUs(@PathVariable Long id){
+
+
         return "contactUsPage";
+    }
+
+    @PostMapping("/vendors/contact/{id}")
+    public String contactUsEmail(@PathVariable Long id,
+                                 @RequestParam(name = "name") String name,
+                                 @RequestParam(name = "email") String email,
+                                 @RequestParam(name = "subject") String subject,
+                                 @RequestParam(name = "message") String message){
+        Vendor vendor = vendorDao.getById(id);
+        emailService.contactVendor(email, "New message from " + name + " submitted through MobileEats!", subject + "\n\n" + message + "\n\n" + name + "\n" + email + "\n\nIf there are any issues with this message please contact MobileEats website");
+        return "redirect:/vendor/profile/" + id;
     }
 }

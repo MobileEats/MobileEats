@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head">
     <meta charset="UTF-8" >
     <title>Contact Us</title>
     <link rel="shortcut icon" type="image/png" href="/static/images/mobileeats_logo2.png">
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <!-- FORM-BODY-DIV -->
 <div class="contact-form-body">
 
@@ -61,6 +63,6 @@
 </div>
 
 
-
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>
