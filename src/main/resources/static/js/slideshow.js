@@ -1,4 +1,4 @@
-var slideIndex = 1;
+var slideIndex = 0;
 showSlides(slideIndex);
 
 // Next/previous controls
@@ -8,6 +8,7 @@ function plusSlides(n) {
 
 // Thumbnail image controls
 function currentSlide(n) {
+    console.log(n);
     showSlides(slideIndex = n);
 }
 
