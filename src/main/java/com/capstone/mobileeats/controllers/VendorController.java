@@ -241,4 +241,16 @@ public class VendorController {
     public String contact(){
         return "contactUsPage";
     }
+
+    @GetMapping("/vendors/profile/{id}/reviews")
+    public String reviews(@PathVariable Long id, Model model){
+        Vendor vendor = vendorDao.getById(id);
+        List<Review> vendorReviews = vendor.getReviews();
+
+        model.addAttribute("reviews", vendorReviews);
+        model.addAttribute("vendor", vendor);
+
+        System.out.println("vendorReviews = " + vendorReviews);
+        return "vendorReviews";
+    }
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head">
+    <meta charset="UTF-8">
+    <title>Vendor Profile</title>
+
+</head>
+<body>
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<div class="cards">
+    <h1 class="vendor-header"><span th:text="${vendor.name} + '\'s'"></span> Reviews</h1>
+
+    <div class="vendor-card" th:each="review : ${reviews}"> <!-- i iterates through vendors, but unlike vendor, nothings passing to it from backend-->
+        <div class=label th:id="${review.id}">
+
+            <h3 th:text="${review.owner.getUsername()}"></h3>
+            <h3 th:text="'Rating: ' + ${review.rating}"></h3>
+            <hr>
+            <h3 th:text="${review.body}"></h3>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
