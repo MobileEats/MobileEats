@@ -145,6 +145,7 @@ public class VendorController {
             }
 
             System.out.println("user " + user.getUsername() + " viewing: " + vendor.getName());
+            model.addAttribute("open", vendor.isOpen());
 
         } catch (ClassCastException e) { //if a user isn't logged in, it will check to see if they are a vendor or a guest
             try {
@@ -159,13 +160,15 @@ public class VendorController {
                 Vendor meAsAVendor = vendorDao.getById(currentVendor.getId());
                 System.out.println("vendor " + meAsAVendor.getName() + " viewing: " + vendor.getName());
 
+                model.addAttribute("open", vendor.isOpen());
+
             } catch (ClassCastException f) { //catches exception when no vendor or user is logged in (guest)
                 Vendor vendor = vendorDao.getById(id);
                 model.addAttribute("vendorId", id); //still needs vendor info to display the correct page
                 model.addAttribute("vendor", vendor);
 
                 System.out.println("user guest viewing: " + vendor.getName());
-
+                model.addAttribute("open", vendor.isOpen());
             }
             model.addAttribute("user", null); //workaround for review link in vendorProfile... hard codes user to null if it does not detect a logged user, which is then checked in the html using th:switch case
         }
