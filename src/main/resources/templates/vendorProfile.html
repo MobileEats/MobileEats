@@ -18,23 +18,25 @@
         <!--                Need to fix followers and reviews-->
         <input class="vendorId" hidden th:value="${vendor.id}">
 
-<!--        <div sec:authentication="isAuthenticated()">-->
-            <label>Mark as Open: </label>
-            <label class="switch">
-                <input type="checkbox" name="open" value="open" id="open">
-                <span class="slider round"></span>
-            </label>
-<!--        </div>-->
+        <!--        <div sec:authentication="isAuthenticated()">-->
+        <label>Mark as Open: </label>
+        <label class="switch">
+            <input type="checkbox" name="open" value="open" id="open">
+            <span class="slider round"></span>
+        </label>
+        <!--        </div>-->
 
-<!--        <div sec:authorize="isAuthenticated()">-->
-<!--            Authenticated as <span sec:authentication="name"></span></div>-->
+        <!--        <div sec:authorize="isAuthenticated()">-->
+        <!--            Authenticated as <span sec:authentication="name"></span></div>-->
 
 
         <th:block th:switch="${loggedVendor}"> <!--only displays child elements if a vendor is NOT logged in-->
             <th:block th:case="null"> <!--hence why we check for null-->
                 <div class="follow-btn" th:switch="${user}">
                     <!--            if user is not logged in, button takes you to the login page-->
-                    <button th:case="null" type="submit" name="register" onclick="document.location.href='/login'">+ Follow</button>
+                    <button th:case="null" type="submit" name="register" onclick="document.location.href='/login'">+
+                        Follow
+                    </button>
 
                     <div th:case="*">
                         <!--otherwise, it redirects to a method in VendorController to update the followers table in our sql database-->
@@ -42,9 +44,10 @@
                             <button type="submit" name="follow" th:text="${following}"></button>
                         </form>
 
-<!--                        CONTACT-->
+                        <!--                        CONTACT-->
                         <div class="contact-form-button">
-                            <button type="submit" id="message-button" onclick="document.location.href='/vendors/contact'">Message
+                            <button type="submit" id="message-button"
+                                    onclick="document.location.href='/vendors/contact'">Message
                             </button>
                         </div>
                     </div>
@@ -59,11 +62,7 @@
         <div class="location">Location: <h5 class="address" th:utext="${vendor.location}"></h5></div>
         <h5 th:utext="${vendor.reviews.size()} + ' ' + reviews"></h5>
 
-<!--       TODO: make work around for guest and vendor views (render review link only if user.id exists)-->
-
-        <th:block th:switch="${user}">
-            <a th:case="!null" class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>
-        </th:block>
+        <a th:if="${user} != null" class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>
 
     </div>
     <div class="d-flex flex-column align-items-center mb-3">
@@ -71,11 +70,15 @@
     </div>
 </div>
 <div class="d-flex flex-column justify-content-center">
-    <div class="d-flex row mx-auto" id="map"  style='width: 400px; height: 400px;'></div>
+    <div class="d-flex row mx-auto" id="map" style='width: 400px; height: 400px;'></div>
     <div class="geolocation mx-auto row">
         <div sec:authorize="isAuthenticated()">
-            <a id="locate"><button>Find Me</button></a>
-            <a id="updateCurrent"><button>Post My Location</button></a>
+            <a id="locate">
+                <button>Find Me</button>
+            </a>
+            <a id="updateCurrent">
+                <button>Post My Location</button>
+            </a>
         </div>
     </div>
 
@@ -114,7 +117,6 @@
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
 </div>
-
 
 
 <footer th:replace="partials/footer :: footer"></footer>
