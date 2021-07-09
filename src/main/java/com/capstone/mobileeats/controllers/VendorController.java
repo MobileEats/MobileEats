@@ -236,8 +236,9 @@ public class VendorController {
         }
     }
 
-//    @GetMapping("/vendors/contact")
-//    public String contact(){
-//        return "contactUsPage";
-//    }
+    //CONTACT
+    @GetMapping("/vendors/contact")
+    public String contact(){
+        return "contactUsPage";
+    }
 }
