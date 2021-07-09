@@ -53,9 +53,19 @@ public class MenuController {
 
     @GetMapping("/vendors/{vendorId}/menu/{menuItemId}/delete")
     public String deleteMenuItem(@PathVariable Long vendorId, @PathVariable Long menuItemId, Model model) {
-        MenuItem item = menuItems.getById(menuItemId);
-        menuItems.delete(item);
-        return "redirect:/vendors/" + vendorId + "/menu";
+        try{
+            Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if( vendorId == currentVendor.getId()){
+                MenuItem item = menuItems.getById(menuItemId);
+                menuItems.delete(item);
+                return "redirect:/vendors/" + vendorId + "/menu";
+            }
+            return "redirect:/vendors";
+        }
+        catch (ClassCastException e){
+            return "redirect:/vendors";
+        }
+
     }
 
     @GetMapping("/vendors/{vendorId}/menu/{menuItemId}/edit")

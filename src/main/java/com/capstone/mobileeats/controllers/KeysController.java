@@ -2,10 +2,12 @@ package com.capstone.mobileeats.controllers;
 
 import com.capstone.mobileeats.models.ConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
+
 
 @Controller
 public class KeysController {
@@ -20,6 +22,7 @@ public class KeysController {
     Or an environment vairable like this
     CONFIG_JSKEYS_GOOGLE=1234abcgoogle
      */
+
     @RequestMapping(path = "/js/keys.js", produces = "application/javascript")
     @ResponseBody
     public String apikey(){
