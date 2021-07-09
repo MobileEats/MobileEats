@@ -19,11 +19,17 @@
         <input class="vendorId" hidden th:value="${vendor.id}">
 
         <!--        <div sec:authentication="isAuthenticated()">-->
-        <label>Mark as Open: </label>
+
+<!--        <label>Mark as Open: </label>-->
         <label class="switch">
-            <input type="checkbox" name="open" value="open" id="open">
+            <th:block th:switch="${open}">
+                <input th:case="true" type="checkbox" name="open" value="open" id="open" checked disabled>
+                <input th:case="false" type="checkbox" name="open" value="open" id="closed" disabled>
+            </th:block>
+
             <span class="slider round"></span>
         </label>
+
         <!--        </div>-->
 
         <!--        <div sec:authorize="isAuthenticated()">-->
