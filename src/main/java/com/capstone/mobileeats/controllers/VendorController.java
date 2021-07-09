@@ -251,7 +251,7 @@ public class VendorController {
                                  @RequestParam(name = "subject") String subject,
                                  @RequestParam(name = "message") String message){
         Vendor vendor = vendorDao.getById(id);
-        emailService.contactVendor(email, "New message from " + name + " submitted through MobileEats!", subject + "\n\n" + message + "\n\n" + name + "\n" + email + "\n\nIf there are any issues with this message please contact MobileEats website");
-        return "redirect:/vendor/profile/" + id;
+        emailService.contactVendor(email, "New message from " + name + " submitted through MobileEats!", "Subject: " + subject + "\n\nMessage: " + message + "\n\n" + name + "\n" + email + "\n\nIf there are any issues with this message please contact MobileEats website");
+        return "redirect:/vendors/profile/" + id;
     }
 }
