@@ -21,16 +21,15 @@
         <!--        <div sec:authentication="isAuthenticated()">-->
 
 <!--        <label>Mark as Open: </label>-->
-
+        <label class="switch">
             <th:block th:switch="${open}">
-                <label th:case="true" class="switch">
                 <input th:case="true" type="checkbox" name="open" value="open" id="open" checked disabled>
                 <input th:case="false" type="checkbox" name="open" value="open" id="closed" disabled>
-                <span th:case="true" class="slider round"></span>
             </th:block>
 
-
+            <span class="slider round"></span>
         </label>
+
 
         <!--        </div>-->
 
