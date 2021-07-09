@@ -59,7 +59,7 @@
         <div class="location">Location: <h5 class="address" th:utext="${vendor.location}"></h5></div>
         <a th:utext="${vendor.reviews.size()} + ' ' + reviews" th:href="'/vendors/profile/' + ${vendor.id} + '/reviews'"></a>
 
-        <a th:if="${user} != null" class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>
+<!--        <a th:if="${user} != null" class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>-->
 
     </div>
     <div class="d-flex flex-column align-items-center mb-3">
