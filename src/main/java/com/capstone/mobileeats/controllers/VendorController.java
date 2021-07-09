@@ -38,7 +38,7 @@ public class VendorController {
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
-    public VendorController(MenuRepository menuDao, UserRepository userDao, VendorRepository vendorDao,ReviewRepository reviewDao, PasswordEncoder passwordEncoder, EmailService emailService) {
+    public VendorController(MenuRepository menuDao, UserRepository userDao, VendorRepository vendorDao, ReviewRepository reviewDao, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userDao = userDao;
         this.menuDao = menuDao;
 
@@ -78,21 +78,21 @@ public class VendorController {
         return getString(model, searchedVendors);
     }
 
-//    this is just a method containing my AVERAGE RATING function so I don't have to repeat it in the vendor and vendors mappings
+    //    this is just a method containing my AVERAGE RATING function so I don't have to repeat it in the vendor and vendors mappings
     private String getString(Model model, List<Vendor> vendors) {
         model.addAttribute("vendors", vendors); //searches through title, description, and category
 
         List<Double> averages = new ArrayList<>();
 
-        for(int i = 0; i < vendors.size(); i++){
+        for (int i = 0; i < vendors.size(); i++) {
             double addRatings = 0;
             List<Review> reviews = vendors.get(i).getReviews();
-            for(int j = 0; j < reviews.size(); j++){
+            for (int j = 0; j < reviews.size(); j++) {
                 addRatings += reviews.get(j).getRating();
             }
             double averageRating = addRatings / reviews.size();
 
-            averages.add((double) Math.round(averageRating * 100)/100);
+            averages.add((double) Math.round(averageRating * 100) / 100);
         }
         model.addAttribute("rating", averages);
 
@@ -109,7 +109,7 @@ public class VendorController {
     public String createVendor(@ModelAttribute Vendor vendor) {
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
-        if (vendor.getImage_url().isBlank()){
+        if (vendor.getImage_url().isBlank()) {
             vendor.setImage_url("/images/user-solid.svg");
         }
         vendorDao.save(vendor);
@@ -127,7 +127,7 @@ public class VendorController {
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model) {
 
-        try{
+        try {
             Vendor vendor = vendorDao.getById(id);
             User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //checks if user is logged in
             User user = userDao.getById(currentUser.getId());
@@ -146,8 +146,8 @@ public class VendorController {
 
             System.out.println("user " + user.getUsername() + " viewing: " + vendor.getName());
 
-        } catch (ClassCastException e){ //if a user isn't logged in, it will check to see if they are a vendor or a guest
-            try{
+        } catch (ClassCastException e) { //if a user isn't logged in, it will check to see if they are a vendor or a guest
+            try {
                 Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //checks if vendor is logged in
                 User user = userDao.getById(currentVendor.getId());
                 Vendor vendor = vendorDao.getById(id);
@@ -159,12 +159,12 @@ public class VendorController {
                 Vendor meAsAVendor = vendorDao.getById(currentVendor.getId());
                 System.out.println("vendor " + meAsAVendor.getName() + " viewing: " + vendor.getName());
 
-            } catch (ClassCastException f){ //catches exception when no vendor or user is logged in (guest)
-                    Vendor vendor = vendorDao.getById(id);
-                    model.addAttribute("vendorId", id); //still needs vendor info to display the correct page
-                    model.addAttribute("vendor", vendor);
+            } catch (ClassCastException f) { //catches exception when no vendor or user is logged in (guest)
+                Vendor vendor = vendorDao.getById(id);
+                model.addAttribute("vendorId", id); //still needs vendor info to display the correct page
+                model.addAttribute("vendor", vendor);
 
-                    System.out.println("user guest viewing: " + vendor.getName());
+                System.out.println("user guest viewing: " + vendor.getName());
 
             }
             model.addAttribute("user", null); //workaround for review link in vendorProfile... hard codes user to null if it does not detect a logged user, which is then checked in the html using th:switch case
@@ -174,7 +174,8 @@ public class VendorController {
 ////        ObjectMapper objectMapper = new ObjectMapper();
 ////        result.addObject("location", objectMapper.writeValueAsString(location));
     }
-//************ do we need this **********************
+
+    //************ do we need this **********************
     @PostMapping(value = "/vendors/profile/{id}")
     public @ResponseBody
     String sendPost(@RequestBody PostTo postTo, @PathVariable Long id) {
@@ -189,15 +190,14 @@ public class VendorController {
     //UPDATE
     @GetMapping("/vendors/{id}/edit")
     public String updatePostForm(@PathVariable long id, Model model) {
-        try{
+        try {
             Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             if (id == currentVendor.getId()) {
                 model.addAttribute("vendor", vendorDao.getById(id));
                 return "editVendorProfilePage";
             }
             return "redirect:/vendors";
-        }
-        catch(ClassCastException e){
+        } catch (ClassCastException e) {
             return "redirect:/vendors";
         }
 
@@ -231,19 +231,32 @@ public class VendorController {
             vendorDao.save(vendor);
             return "redirect:/vendors/profile/" + id;
 
-        } catch (ClassCastException e){
+        } catch (ClassCastException e) {
             return "redirect:/vendors/profile/" + id;
         }
     }
 
     //CONTACT
-    @GetMapping("/vendors/contact")
-    public String contact(){
+    @GetMapping("/vendors/contact/{id}")
+    public String contactUs(@PathVariable Long id) {
+
+
         return "contactUsPage";
     }
 
+    @PostMapping("/vendors/contact/{id}")
+    public String contactUsEmail(@PathVariable Long id,
+                                 @RequestParam(name = "name") String name,
+                                 @RequestParam(name = "email") String email,
+                                 @RequestParam(name = "subject") String subject,
+                                 @RequestParam(name = "message") String message) {
+        Vendor vendor = vendorDao.getById(id);
+        emailService.contactVendor(email, "New message from " + name + " submitted through MobileEats!", "Subject: " + subject + "\n\nMessage: " + message + "\n\n" + name + "\n" + email + "\n\nIf there are any issues with this message please contact MobileEats website");
+        return "redirect:/vendors/profile/" + id;
+    }
+
     @GetMapping("/vendors/profile/{id}/reviews")
-    public String reviews(@PathVariable Long id, Model model){
+    public String reviews(@PathVariable Long id, Model model) {
         Vendor vendor = vendorDao.getById(id);
         List<Review> vendorReviews = vendor.getReviews();
 
