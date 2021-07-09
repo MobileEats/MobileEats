@@ -12,6 +12,7 @@
 
 <div class="cards">
     <h1 class="vendor-header"><span th:text="${vendor.name} + '\'s'"></span> Reviews</h1>
+    <a th:if="${user} != null" class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>
 
     <div class="vendor-card" th:each="review : ${reviews}"> <!-- i iterates through vendors, but unlike vendor, nothings passing to it from backend-->
         <div class=label th:id="${review.id}">

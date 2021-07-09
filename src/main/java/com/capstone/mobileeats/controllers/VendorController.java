@@ -263,7 +263,15 @@ public class VendorController {
         model.addAttribute("reviews", vendorReviews);
         model.addAttribute("vendor", vendor);
 
-        System.out.println("vendorReviews = " + vendorReviews);
+        try{
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userDao.getById(currentUser.getId());
+
+            model.addAttribute("user", user);
+        } catch (ClassCastException e){
+            model.addAttribute("user", null);
+        }
+
         return "vendorReviews";
     }
 }
