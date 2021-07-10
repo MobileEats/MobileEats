@@ -28,17 +28,17 @@ public class Vendor {
     @Column(name = "phone_number", nullable = true, length = 16)
     private String phoneNumber;
 
-    @Column(nullable = true, unique = true, length = 64)
+    @Column(nullable = true, unique = true, length = 255)
     private String email;
 
 
-    @Column(nullable = true, length = 64)
+    @Column(nullable = true, length = 255)
     private String password;
 
     @Column(length = 255)
     private String image_url;
 
-    @Column(nullable = true, length = 64)
+    @Column(nullable = true, length = 255)
     private String location;
 
     @Column(name = "is_open", nullable = true)
