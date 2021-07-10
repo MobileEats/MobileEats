@@ -46,9 +46,7 @@ public class UserController {
     public String resetPassword(@RequestParam String email){
         String newPasswordPlain = genPassword();
         String newPasswordHashed = BCrypt.hashpw(newPasswordPlain, BCrypt.gensalt());
-        System.out.println(email);
         User user = users.findByEmail(email);
-        System.out.println(user.getEmail());
         if (Objects.isNull(user)){
             Vendor vendor = vendors.findByEmail(email);
             if (Objects.isNull(vendor)){
@@ -123,7 +121,6 @@ public class UserController {
         catch(ClassCastException e){
             return "redirect:/vendors";
         }
-
     }
 
     @PostMapping("/users/{id}/edit")
