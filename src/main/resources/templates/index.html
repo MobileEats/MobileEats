@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,8 +30,11 @@
     <a class="redirect-link" href="/register">
         <div class="landing-icon register">Sign-up</div>
     </a>
-    <a class="redirect-link" href="/vendors">
+    <a class="redirect-link" sec:authorize="!isAuthenticated()" href="/vendors">
         <div class="landing-icon view">Continue as Guest</div>
+    </a>
+    <a class="redirect-link" sec:authorize="isAuthenticated()" href="/vendors">
+        <div class="landing-icon view">View Vendors</div>
     </a>
     <a class="redirect-link" href="/login">
         <div class="landing-icon login">Login</div>
