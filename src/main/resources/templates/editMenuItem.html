@@ -8,8 +8,8 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="form form-register">
-    <div class="register-header">Add Menu Item</div>
-    <form th:action="'/vendors/' + ${vendor.id} + '/menu/create'" th:method="post">
+    <div class="register-header">Edit Menu Item</div>
+    <form th:action="'/vendors/' + ${vendor.id} + '/menu/' + ${item.id} + '/edit'" th:method="post">
         <div class="form-group">
             <label for="name">Name</label>
             <input name="name" type="text" class="form-control" id="name" placeholder="Chicken Taco"
@@ -43,7 +43,7 @@
             <label for="filestack">Item Image</label>
             <button id="filestack" type="button">Select Image</button>
         </div>
-        <button class="btn btn-light" type="submit">Add Item</button>
+        <button class="btn btn-light" type="submit">Edit Item</button>
     </form>
 </div>
 
