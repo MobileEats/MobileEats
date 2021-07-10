@@ -1,7 +1,7 @@
 "use strict";
-let vendorCoord = [];
+
 var modalAddress;
-var vendorAddress;
+
 var options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -18,40 +18,35 @@ var mapOptions = {
     zoom: 9.7// captures all of 1604 Loop
 }
 var map = new mapboxgl.Map(mapOptions);
-var marker = new mapboxgl.Marker({color: "red", draggable: true})
-
+var marker = new mapboxgl.Marker({color: "blue", draggable: true})
+var markerlocation= new mapboxgl.Marker({color: "red", draggable: true});
 map.on('load', event => {
     map.resize()
 })
 
 //*********** FIND LAT LONG FROM ADDRESS SAVED ON DATABASE OR SEARCHED **************
 $(document).ready(function () {
-
-    // $('#exampleModal').modal('show');
+    plotVendors();
     $("#modalAddress").on('click', function (){
         modalAddress = $('#address').val();
-        console.log(modalAddress);
-        // $("#exampleModal").modal("hide");
         searchAddress(modalAddress, 10);
-        plotVendors();
+        getTravelTime();
     });
     $("#modalLocate").click(function () {
-        // $("#exampleModal").modal("hide");
         geoLocation(10, true);
         getTravelTime();
-        // plotVendors();
     });
 });
 
 function searchAddress(address, zoom){// function will pull address class address and plot the point
     geocode(address, MAPBOX_API_KEY).then(function (results) {
         mapOptions.center = results;
-        marker.remove();
+        markerlocation.remove();
         map.flyTo({center: results, zoom: zoom, duration: 9000});
-        marker = new mapboxgl.Marker({color: "red", draggable: true})
+        markerlocation = new mapboxgl.Marker({color: "red", draggable: true})
             .setLngLat(results)
             .addTo(map);
-        marker.on('dragend', onDragEnd);
+        markerlocation.on('dragend', onDragEnd(10));
     });
 }
 
@@ -59,16 +54,18 @@ function geoLocation(zoom,bool) {
     function success(pos) {
         var crd = pos.coords;
         var coord = [crd.latitude, crd.longitude];
-        map = new mapboxgl.Map(mapOptions);
+        // map = new mapboxgl.Map(mapOptions);
         var lngLat = [coord[1], coord[0]];
+        markerlocation.remove();
+
         map.flyTo({center: lngLat, zoom: zoom, duration: 5000})
-        marker = new mapboxgl.Marker({color: "red", draggable: true})
+        markerlocation = new mapboxgl.Marker({color: "red", draggable: true})
             .setLngLat(lngLat)
             .addTo(map);
-        marker.on('dragend', onDragEnd);
-        if(bool === true){
-            plotVendors();
-        }
+        markerlocation.on('dragend', onDragEnd(10));
+        // if(bool === true){
+        //     // plotVendors();
+        // }
     }
     function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -77,10 +74,11 @@ function geoLocation(zoom,bool) {
 }
 
 // ************* GET LOCATION FROM MARKER DRAG ******************
-function onDragEnd() {
-    var lngLat = marker.getLngLat();
+function onDragEnd(zoom) {
+    var lngLat = markerlocation.getLngLat();
     // var lngLat = coord;
-    map.flyTo({center: lngLat, zoom: 15, duration: 1000});
+    map.flyTo({center: lngLat, zoom: zoom, duration: 1000});
+    getTravelTime();
 
 }
 
@@ -124,17 +122,18 @@ function secToMin(secs){
 }
 
 function getTravelTime(){
-    let crd;
-    let coord = [];
     function success(pos) {
-        crd = pos.coords;
-        coord = [crd.latitude, crd.longitude];
+        let coord = markerlocation.getLngLat();
         let duration;
         $(".vendor-location").each(function (index, val) {
-
+            // console.log(val);
             geocode($(val).html(), MAPBOX_API_KEY).then(function (results) {
-                $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord[1] + "," + coord[0] + ";" + results[0] + "," + results[1] + "?access_token=" + MAPBOX_API_KEY).done(function (results){
-                    console.log(results);
+                console.log("long",coord.lng);
+                console.log("lat", coord.lat);
+                console.log("result long", results[0]);
+                console.log("result lat", results[1]);
+                $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord.lng + "," + coord.lat + ";" + results[0] + "," + results[1] + "?access_token=" + MAPBOX_API_KEY).done(function (results){
+
                     duration = secToMin(results.routes[0].duration);
                     if (duration >= 60){
                         duration = duration /60;
