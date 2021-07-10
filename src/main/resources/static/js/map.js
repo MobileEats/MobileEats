@@ -47,8 +47,6 @@ function searchAddress(address, zoom){// function will pull address class addres
             .setLngLat(results)
             .addTo(map);
         markerLocation.on('dragend', onDragEnd);
-        console.log("in search");
-
         getTravelTime(results);
     });
 }
@@ -64,7 +62,6 @@ function geoLocation(zoom) {
             .setLngLat(lngLat)
             .addTo(map);
         markerLocation.on('dragend', onDragEnd);
-        console.log("in geo");
     }
     function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -75,7 +72,6 @@ function geoLocation(zoom) {
 // ************* GET LOCATION FROM MARKER DRAG ******************
 function onDragEnd() {
     var lngLat = markerLocation.getLngLat();
-    console.log(lngLat);
     coord = [lngLat.lng, lngLat.lat];
     map.flyTo({center: lngLat, zoom: 10, duration: 1000});
     getTravelTime(coord);
@@ -127,11 +123,9 @@ function getTravelTime(lnglat){
         if(lnglat == null){
             crd = pos.coords;
             coord = [crd.latitude, crd.longitude];
-            console.log("if",coord)
         }
         else{
             coord = [lnglat[1],lnglat[0]]
-            console.log("else",coord);
         }
         let duration;
         $(".vendor-location").each(function (index, val) {
@@ -155,7 +149,12 @@ function getTravelTime(lnglat){
     function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
     }
-    navigator.geolocation.getCurrentPosition(success, error, options);
+    if(lnglat == null) {
+        navigator.geolocation.getCurrentPosition(success, error, options);
+    }
+    else{
+        success();
+    }
 }
 
 
@@ -166,7 +165,7 @@ $("#locate").click(function () {
 
 //*************  SAVE CURRENT LOCATION TO DATABASE ON BUTTON CLICK**********************
 $('#updateCurrent').click(function () {
-    var coord = marker.getLngLat();
+    var coord = markerLocation.getLngLat();
     reverseGeocode({lat: coord.lat, lng: coord.lng}, MAPBOX_API_KEY).then(function (results) {
         $('.address').html(results.features[0].place_name);
         openLocation();//calls function on vendors-profile.js and post to vendor controller
