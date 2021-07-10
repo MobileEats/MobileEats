@@ -533,6 +533,11 @@ a .vendor-name:active{
 
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
+
+    .vendor-profile-name {
+        margin-top: 2.5em;
+    }
+
     button.navbar-toggler {
           margin-left: auto;
       }
@@ -627,6 +632,78 @@ a .vendor-name:active{
 /* Screen Size for Tablet */
 @media only screen and (min-width: 481px) and (max-width: 768px) {
 
+    .vendor-profile-name {
+        margin-top: 3em;
+    }
+
+   button.navbar-toggler {
+       margin-left: auto;
+   }
+
+    .register {
+        width: 7em;
+        height: 7em;
+    }
+
+    div.landing-icon.register {
+        width: 8em;
+        height: 8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid #f1f1f1;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.4);
+        border-radius: 50%;
+        margin: 1em;
+    }
+
+    .navbar-collapse {
+        display: flex;
+        justify-content: space-evenly;
+        text-align: center;
+        margin-left: 3em;
+    }
+
+    .nav-link {
+        display: inline-flex;
+        padding: 0.5rem -1rem;
+    }
+
+    .active, .dot:hover {
+        background-color: ghostwhite;
+        margin-left: 21px;
+        align-items: center;
+    }
+
+    .nav-item.active.ml-auto.w-25.p-3.d-flex.justify-content-around {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: auto;
+    }
+
+    button.follow-button {
+        margin-top: 10em;
+    }
+
+    .follow-btn {
+        margin-right: 10em;
+        margin-top: 1em;
+    }
+
+    div.contact-form-button {
+        margin-left: 0;
+        margin-bottom: 2em;
+    }
+
+    button#message-button {
+        position: absolute;
+        margin-left: 7em;
+        margin-top: -64px;
+
+    }
 }
 
 /* Screen Size for Desktop */
