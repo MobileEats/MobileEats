@@ -34,7 +34,7 @@ $(document).ready(function () {
     });
     $("#modalLocate").click(function () {
         geoLocation(10);
-        getTravelTime();
+        getTravelTime(null);
     });
 });
 
@@ -46,7 +46,9 @@ function searchAddress(address, zoom){// function will pull address class addres
         markerLocation = new mapboxgl.Marker({color: "red", draggable: true})
             .setLngLat(results)
             .addTo(map);
-        markerLocation.on('dragend', onDragEnd(10));
+        markerLocation.on('dragend', onDragEnd);
+        console.log("in search");
+
         getTravelTime(results);
     });
 }
@@ -61,7 +63,8 @@ function geoLocation(zoom) {
         markerLocation = new mapboxgl.Marker({color: "red", draggable: true})
             .setLngLat(lngLat)
             .addTo(map);
-        markerLocation.on('dragend', onDragEnd(10));
+        markerLocation.on('dragend', onDragEnd);
+        console.log("in geo");
     }
     function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -70,11 +73,12 @@ function geoLocation(zoom) {
 }
 
 // ************* GET LOCATION FROM MARKER DRAG ******************
-function onDragEnd(zoom) {
+function onDragEnd() {
     var lngLat = markerLocation.getLngLat();
     console.log(lngLat);
-    map.flyTo({center: lngLat, zoom: zoom, duration: 1000});
-    // getTravelTime();
+    coord = [lngLat.lng, lngLat.lat];
+    map.flyTo({center: lngLat, zoom: 10, duration: 1000});
+    getTravelTime(coord);
 }
 
 function plotVendors(){
@@ -84,7 +88,7 @@ function plotVendors(){
     $(".truck-name").each(function (index, val) {
         nameArray[index] = $(val).html();
     });
-    console.log(nameArray);
+
     $(".vendorImg").each(function (index, val) {
         imgArray[index] = $(val).html();
     });
@@ -126,17 +130,14 @@ function getTravelTime(lnglat){
             console.log("if",coord)
         }
         else{
-
             coord = [lnglat[1],lnglat[0]]
             console.log("else",coord);
         }
-
         let duration;
         $(".vendor-location").each(function (index, val) {
 
             geocode($(val).html(), MAPBOX_API_KEY).then(function (results) {
                 $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord[1] + "," + coord[0] + ";" + results[0] + "," + results[1] + "?access_token=" + MAPBOX_API_KEY).done(function (results){
-                    console.log(results);
                     duration = secToMin(results.routes[0].duration);
                     if (duration >= 60){
                         duration = duration /60;
@@ -151,7 +152,10 @@ function getTravelTime(lnglat){
             })
         })
     }
-    navigator.geolocation.getCurrentPosition(success);
+    function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    navigator.geolocation.getCurrentPosition(success, error, options);
 }
 
 
