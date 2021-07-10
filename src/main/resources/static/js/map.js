@@ -19,7 +19,7 @@ var mapOptions = {
 }
 var map = new mapboxgl.Map(mapOptions);
 var marker = new mapboxgl.Marker({color: "blue", draggable: true})
-var markerlocation= new mapboxgl.Marker({color: "red", draggable: true});
+var markerLocation= new mapboxgl.Marker({color: "red", draggable: true});
 map.on('load', event => {
     map.resize()
 })
@@ -30,10 +30,10 @@ $(document).ready(function () {
     $("#modalAddress").on('click', function (){
         modalAddress = $('#address').val();
         searchAddress(modalAddress, 10);
-        getTravelTime();
+
     });
     $("#modalLocate").click(function () {
-        geoLocation(10, true);
+        geoLocation(10);
         getTravelTime();
     });
 });
@@ -41,31 +41,27 @@ $(document).ready(function () {
 function searchAddress(address, zoom){// function will pull address class address and plot the point
     geocode(address, MAPBOX_API_KEY).then(function (results) {
         mapOptions.center = results;
-        markerlocation.remove();
+        markerLocation.remove();
         map.flyTo({center: results, zoom: zoom, duration: 9000});
-        markerlocation = new mapboxgl.Marker({color: "red", draggable: true})
+        markerLocation = new mapboxgl.Marker({color: "red", draggable: true})
             .setLngLat(results)
             .addTo(map);
-        markerlocation.on('dragend', onDragEnd(10));
+        markerLocation.on('dragend', onDragEnd(10));
+        getTravelTime(results);
     });
 }
 
-function geoLocation(zoom,bool) {
+function geoLocation(zoom) {
     function success(pos) {
         var crd = pos.coords;
         var coord = [crd.latitude, crd.longitude];
-        // map = new mapboxgl.Map(mapOptions);
         var lngLat = [coord[1], coord[0]];
-        markerlocation.remove();
-
+        markerLocation.remove();
         map.flyTo({center: lngLat, zoom: zoom, duration: 5000})
-        markerlocation = new mapboxgl.Marker({color: "red", draggable: true})
+        markerLocation = new mapboxgl.Marker({color: "red", draggable: true})
             .setLngLat(lngLat)
             .addTo(map);
-        markerlocation.on('dragend', onDragEnd(10));
-        // if(bool === true){
-        //     // plotVendors();
-        // }
+        markerLocation.on('dragend', onDragEnd(10));
     }
     function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -75,11 +71,10 @@ function geoLocation(zoom,bool) {
 
 // ************* GET LOCATION FROM MARKER DRAG ******************
 function onDragEnd(zoom) {
-    var lngLat = markerlocation.getLngLat();
-    // var lngLat = coord;
+    var lngLat = markerLocation.getLngLat();
+    console.log(lngLat);
     map.flyTo({center: lngLat, zoom: zoom, duration: 1000});
-    getTravelTime();
-
+    // getTravelTime();
 }
 
 function plotVendors(){
@@ -121,19 +116,27 @@ function secToMin(secs){
     }
 }
 
-function getTravelTime(){
+function getTravelTime(lnglat){
+    let crd;
+    let coord = [];
     function success(pos) {
-        let coord = markerlocation.getLngLat();
+        if(lnglat == null){
+            crd = pos.coords;
+            coord = [crd.latitude, crd.longitude];
+            console.log("if",coord)
+        }
+        else{
+
+            coord = [lnglat[1],lnglat[0]]
+            console.log("else",coord);
+        }
+
         let duration;
         $(".vendor-location").each(function (index, val) {
-            // console.log(val);
-            geocode($(val).html(), MAPBOX_API_KEY).then(function (results) {
-                console.log("long",coord.lng);
-                console.log("lat", coord.lat);
-                console.log("result long", results[0]);
-                console.log("result lat", results[1]);
-                $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord.lng + "," + coord.lat + ";" + results[0] + "," + results[1] + "?access_token=" + MAPBOX_API_KEY).done(function (results){
 
+            geocode($(val).html(), MAPBOX_API_KEY).then(function (results) {
+                $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord[1] + "," + coord[0] + ";" + results[0] + "," + results[1] + "?access_token=" + MAPBOX_API_KEY).done(function (results){
+                    console.log(results);
                     duration = secToMin(results.routes[0].duration);
                     if (duration >= 60){
                         duration = duration /60;
@@ -149,12 +152,12 @@ function getTravelTime(){
         })
     }
     navigator.geolocation.getCurrentPosition(success);
-
 }
+
 
 // ************* GET GEOLOCATION ON BUTTON CLICK ON VENDOR PROFILE VIEW******************
 $("#locate").click(function () {
-    geoLocation(18, false);
+    geoLocation(18);
 });
 
 //*************  SAVE CURRENT LOCATION TO DATABASE ON BUTTON CLICK**********************
