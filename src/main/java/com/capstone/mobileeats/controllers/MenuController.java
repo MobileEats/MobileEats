@@ -78,12 +78,11 @@ public class MenuController {
     }
 
     @PostMapping("/vendors/{vendorId}/menu/{menuItemId}/edit")
-    public String editItem(@RequestParam(name = "type") String typeName, @RequestParam(name = "categories") String categoriesString, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description, @RequestParam(name = "image_url") String imageUrl, @PathVariable long id) {
-        MenuItem item = new MenuItem();
-        System.out.println(categoriesString);
+    public String editItem(@RequestParam(name = "type") String typeName, @RequestParam(name = "categories") String categoriesString, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description, @RequestParam(name = "image_url") String imageUrl, @PathVariable long vendorId, @PathVariable long menuItemId) {
+        MenuItem item = menuItems.getById(menuItemId);
         ItemType type = itemTypes.findByName(typeName);
         List<ItemCategory> categories = new ArrayList<>();
-        Menu menu = vendors.getById(id).getMenu();
+        Menu menu = vendors.getById(vendorId).getMenu();
         String[] categoriesNames = convertStringToList(categoriesString);
         for (String categoryName : categoriesNames) {
             categories.add(itemCategories.findByName(categoryName));
@@ -95,7 +94,7 @@ public class MenuController {
         item.setImage_url(imageUrl);
         item.setMenu(menu);
         menuItems.save(item);
-        return "redirect:/vendors/" + id + "/menu";
+        return "redirect:/vendors/" + vendorId + "/menu";
     }
 
     @GetMapping("/vendors/{id}/menu/create")
