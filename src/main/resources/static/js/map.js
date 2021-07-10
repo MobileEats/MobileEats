@@ -27,6 +27,7 @@ map.on('load', event => {
 //*********** FIND LAT LONG FROM ADDRESS SAVED ON DATABASE OR SEARCHED **************
 $(document).ready(function () {
     plotVendors();
+    getTravelTime([coord[1],coord[0]]);
     $("#modalAddress").on('click', function (){
         modalAddress = $('#address').val();
         searchAddress(modalAddress, 10);
@@ -126,6 +127,7 @@ function getTravelTime(lnglat){
         }
         else{
             coord = [lnglat[1],lnglat[0]]
+            console.log(coord);
         }
         let duration;
         $(".vendor-location").each(function (index, val) {
