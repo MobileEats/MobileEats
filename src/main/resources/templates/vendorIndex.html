@@ -41,30 +41,35 @@
     <a href="#" id="modalLocate"><i class="fas fa-search-location fa-2x"></i></a>
     <label> or Enter you address: </label>
     <input class="" type="text" id="address" size="50" placeholder="123 Main Street, City, State">
-    <button type="button" class="btn btn-primary" id="modalAddress" >Search</button>
+    <button type="button" class="btn btn-primary" id="modalAddress">Search</button>
 </div>
 
 <div id='map' class="mx-auto my-2 cards"></div>
 
 <div class="cards">
     <h1 class="vendor-header">Vendors</h1>
-    <div class="vendor-card" th:each="vendor, i : ${vendors}"> <!-- i iterates through vendors, but unlike vendor, nothings passing to it from backend-->
+    <div class="vendor-card" th:each="vendor, i : ${vendors}">
+        <!-- i iterates through vendors, but unlike vendor, nothings passing to it from backend-->
         <div th:id="${vendor.id}">
             <a class="vendor-name" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3
                     class="vendor-property vendor-name truck-name" th:text="${vendor.name}"></h3></a>
             <hr>
 
-            <div class=label th:text="'Rating: ' + ${rating.get(i.index)}"></div> <!--what happens if a vendor deletes their account? ids will be out of order-->
+            <div th:switch="${rating.get(i.index)}">
+                <div th:case="0" class="label">No Rating</div>
+                <div th:case="*" th:text="'Rating: ' + ${rating.get(i.index)}" class=label></div>
+                <!--what happens if a vendor deletes their account? ids will be out of order-->
+            </div>
+
             <div class="label">Category:</div>
             <th:block th:each=" categories : ${vendor.categories}">
                 <p class="vendor-property category" th:text="${categories.name}"></p>
             </th:block>
 
-            <div class="label">Location: </div>
+            <div class="label">Location:</div>
             <label class="vendorImg" hidden th:utext="${vendor.Image_url}"></label>
-            <p class="vendor-property vendor-location" th:text="${vendor.location}" />
+            <p class="vendor-property vendor-location" th:text="${vendor.location}"/>
             <div class="travel-time"></div>
-
         </div>
     </div>
 </div>
