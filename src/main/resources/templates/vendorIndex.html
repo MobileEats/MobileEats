@@ -7,10 +7,12 @@
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
-
-<div class="geoSearch mt-2 ml-3">
+<hr>
+<h1 class="vendor-header">Want To Locate Yourself?</h1>
+<p class="locate-message">Either click the magnifying glass, or enter your location in the search bar and hit the search button!</p>
+<div class="geoSearch">
 <!--    <label>Locate Me:</label>-->
-    <a href="#" id="modalLocate"><i class="fas fa-search-location fa-2x"></i></a>
+    <a href="#" id="modalLocate"><i class="locate-icon fas fa-search-location fa-2x"></i></a>
 <!--    <label> or Enter you address: </label>-->
     <input class="" type="text" id="address" size="50" placeholder="Enter your address">
     <button type="button" class="btn btn-primary" id="modalAddress" >Search</button>
@@ -27,7 +29,14 @@
             <div class="travel-time ml-4"></div>
             <hr>
 
-            <div class=label th:text="'Rating: ' + ${rating.get(i.index)}"></div> <!--what happens if a vendor deletes their account? ids will be out of order-->
+<!--            GET VENDOR AVERAGE STAR RATING-->
+            <div class="label">
+                <div class="star-ratings">
+                    <span th:style="'width:' + ${((rating.get(i.index)) / 5) * 100} +  '%'" class="star-ratings-fill"></span>
+                </div>
+                <!--what happens if a vendor deletes their account? ids will be out of order-->
+            </div>
+
             <div class="label">Category:</div>
             <th:block th:each=" categories : ${vendor.categories}">
                 <p class="vendor-property category" th:text="${categories.name}"></p>

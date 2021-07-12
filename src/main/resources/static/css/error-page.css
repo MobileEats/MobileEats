@@ -32,3 +32,37 @@
 .banner-img{
     width: 100%;
 }
+
+.redirect-link{
+    color: #f2f2f2;
+}
+
+.redirect-link:active{
+    color: #cccccc;
+}
+
+/*** NAVBAR ***/
+
+.navbar-input{
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    border: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.navbar-button{
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
