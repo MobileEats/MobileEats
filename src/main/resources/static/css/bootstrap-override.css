@@ -1,0 +1,52 @@
+/*Bootstrap  overrides*/
+.bg-light2{
+    background-color: #DADED4;
+}
+body{
+    background: #DADED4;
+    color:#3C403D;
+}
+.cards{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.vendor-card{
+    /*background-color: #EAE7DC;*/
+    margin-right: auto;
+    margin-left: auto;
+    width: 60vw;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 15px;
+}
+#map{
+    border-radius: 7px;
+    width: 75vw;
+    min-height: 40vh;
+}
+.btn-primary{
+    background-color: #DADED4;
+    border-color: #3C403D;
+    color:#3C403D;
+}
+.btn-primary:hover {
+    background-color: #FFFFFF;
+    color: #3C403D;
+    border-color: #3C403D;
+}
+
+a{
+     color:#3C403D;
+ }
+a:hover{
+    color: #FFFFFF;
+}
+a .vendor-name{
+    color: #3C403D;
+}
+
+.vendor-name:hover{
+    color: white;
+    border-color: #3C403D;
+}
