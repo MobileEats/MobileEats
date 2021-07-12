@@ -61,6 +61,10 @@
                 <!--what happens if a vendor deletes their account? ids will be out of order-->
             </div>
 
+            <div class="label" style="width: 50%; border: 1px solid #1a1a1a">
+                <div th:style="'background: red; height: 3em; width: ' + ${((rating.get(i.index)) / 5) * 100} + '%'"></div>
+            </div>
+
             <div class="label">Category:</div>
             <th:block th:each=" categories : ${vendor.categories}">
                 <p class="vendor-property category" th:text="${categories.name}"></p>
