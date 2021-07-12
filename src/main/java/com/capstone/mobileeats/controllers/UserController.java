@@ -144,8 +144,6 @@ public class UserController {
         if(Objects.isNull(user)){
             return "redirect:/editPassword";
         }
-        System.out.println("user.getPassword() = " + user.getPassword());
-        System.out.println("oldPassword = " + oldPassword);
         if(BCrypt.checkpw(oldPassword, user.getPassword())){
             user.setPassword(hashedPassword);
             users.save(user);
