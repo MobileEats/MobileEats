@@ -131,4 +131,26 @@ public class UserController {
         return "redirect:/profile";
     }
 
+    //edit password
+    @GetMapping("/users/{id}/editPassword")
+    public String showEditPassword(@PathVariable long id){
+        return "editPassword";
+    }
+
+    @PostMapping("/users/{id}/editPassword")
+    public String editPassword(@PathVariable long id, @RequestParam String oldPassword, @RequestParam String newPassword){
+        User user = users.getById(id);
+        String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+        if(Objects.isNull(user)){
+            return "redirect:/editPassword";
+        }
+        System.out.println("user.getPassword() = " + user.getPassword());
+        System.out.println("oldPassword = " + oldPassword);
+        if(BCrypt.checkpw(oldPassword, user.getPassword())){
+            user.setPassword(hashedPassword);
+            users.save(user);
+        }
+        return "passwordChangeConfirm";
+    }
+
 }
