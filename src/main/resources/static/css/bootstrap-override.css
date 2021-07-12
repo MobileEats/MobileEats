@@ -41,6 +41,9 @@ a{
  }
 a:hover{
     color: #b2b2b2;
+    text-decoration: none;
+    transform: scale(1.1);
+    transition: ease-in-out;
 }
 a .vendor-name{
     color: #3C403D;
