@@ -11,28 +11,45 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<a th:if="${owner}" th:href="'/vendors/' + ${vendor.id} + '/menu/create'"><button type="button" class="btn btn-success">Add Menu Item</button></a>
 
-<div class="cards">
+
+<!--<div class="cards">-->
     <h1 class="vendor-header" th:text="${vendor.name} + '\'s Menu'"></h1>
+<div class="d-flex justify-content-center mb-2">
+<a th:if="${owner}" th:href="'/vendors/' + ${vendor.id} + '/menu/create'"><button type="button" class="btn btn-primary">Add Menu Item</button></a>
+</div>
     <div class="vendor-card" th:each="item : ${items}">
         <div th:id="${item.id}">
 
             <h3 class="vendor-property vendor-name" th:text="${item.name}" />
             <hr>
-            <div class="label">Type: </div>
-                <p class="vendor-property category" th:text="${item.itemType.name}"></p>
-            <div class="label">Categories: </div>
-            <th:block th:each=" category : ${item.categories}">
-                <p class="vendor-property category" th:text="${category.name}"></p>
-            </th:block>
             <div class="d-flex">
-                <a th:if="${owner}" th:href="@{'/vendors/' + ${vendor.id} + '/menu/' + ${item.id} + '/delete'}"><button type="button" class="btn btn-danger">Delete</button></a>
-                <a th:if="${owner}" th:href="@{'/vendors/' + ${vendor.id} + '/menu/' + ${item.id} + '/edit'}"><button type="button" class="btn btn-warning">Edit</button></a>
+                <div class="col-6">
+                    <div class="label">Type: </div>
+                    <p class="vendor-property category" th:text="${item.itemType.name}"></p>
+                    <div class="label">Categories: </div>
+                    <th:block th:each=" category : ${item.categories}">
+                        <p class="vendor-property category" th:text="${category.name}"></p>
+                    </th:block>
+                </div>
+                <div class="col-6">
+                    <img class="vendor-img-resize" src="" alt="menu item">
+                </div>
+            </div>
+
+
+            <div class="d-flex justify-content-center">
+                <div class="mr-1">
+                    <a th:if="${owner}" th:href="@{'/vendors/' + ${vendor.id} + '/menu/' + ${item.id} + '/delete'}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
+                </div>
+                <div class="ml-1">
+                    <a th:if="${owner}" th:href="@{'/vendors/' + ${vendor.id} + '/menu/' + ${item.id} + '/edit'}"><button type="button" class="btn btn-outline-warning">Edit</button></a>
+                </div>
+
             </div>
         </div>
     </div>
-</div>
+<!--</div>-->
 
 <footer th:replace="partials/footer :: footer"></footer>
 </body>
