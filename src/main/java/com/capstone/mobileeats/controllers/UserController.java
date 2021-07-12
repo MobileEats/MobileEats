@@ -133,17 +133,22 @@ public class UserController {
 
     //edit password
     @GetMapping("/users/{id}/editPassword")
-    public String showEditPassword(@PathVariable long id, @ModelAttribute Model model){
+    public String showEditPassword(@PathVariable long id, Model model){
         model.addAttribute("user", users.getById(id));
+        System.out.println(users.getById(id).getPassword());
         return "editPassword";
     }
 
     @PostMapping("/users/{id}/editPassword")
-    public String editPassword(@RequestParam String oldPassword, @RequestParam String newPassword, @ModelAttribute User user){
+    public String editPassword(@RequestParam String oldPassword, @RequestParam String newPassword, @PathVariable long id){
+        User user = users.getById(id);
         String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
         if(Objects.isNull(user)){
             return "redirect:/editPassword";
         }
+        System.out.println(oldPassword);
+        System.out.println(newPassword);
+        System.out.println(user.getPassword());
         if(BCrypt.checkpw(oldPassword, user.getPassword())){
             user.setPassword(hashedPassword);
             users.save(user);

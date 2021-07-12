@@ -13,34 +13,40 @@
     <form th:action="@{/vendors/create}" th:method="post" th:object="${vendor}">
         <div class="form-group">
             <label for="name">Name</label>
-            <input th:field="*{name}" type="text" class="form-control" id="name" placeholder="Ramen Express">
+            <input type="text" class="form-control" id="name" placeholder="Ramen Express" name="name">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <input th:field="*{description}" type="text" class="form-control" id="description"
-                   placeholder="We have the best noodles in town!">
+            <input type="text" class="form-control" id="description"
+                   placeholder="We have the best noodles in town!" name="description">
+        </div>
+        <div class="form-group">
+            <label for="categories">Categories</label>
+            <select class="" name="categories" id="categories" multiple>
+                <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}"></option>
+            </select>
         </div>
         <div class="form-group">
             <label for="phoneNumber">Phone Number</label>
-            <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber" placeholder="2105555555">
+            <input type="text" class="form-control" id="phoneNumber" placeholder="2105555555" name="phoneNumber">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input th:field="*{email}" type="email" class="form-control" id="email"
-                   placeholder="ramenexpress@gmail.com">
+            <input type="email" class="form-control" id="email"
+                   placeholder="ramenexpress@gmail.com" name="email">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="********">
+            <input type="password" class="form-control" id="password" placeholder="********" name="password">
         </div>
         <div class="form-group">
             <label for="location">Location</label>
-            <input th:field="*{location}" type="text" class="form-control" id="location"
-                   placeholder="San Antonio, Texas">
+            <input type="text" class="form-control" id="location"
+                   placeholder="San Antonio, Texas" name="location">
         </div>
         <!-- THE BELOW FORM GROUP HOLDS THE URL TO THE UPLOADED IMAGE, IT IS INVISIBLE -->
         <div class="form-group d-none">
-            <input th:field="*{image_url}" type="text" class="form-control" id="image_url">
+            <input type="text" class="form-control" id="image_url" name="image_url">
         </div>
         <div class="form-group">
             <label for="filestack">Profile Picture</label>
