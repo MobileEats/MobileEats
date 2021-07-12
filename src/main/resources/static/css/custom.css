@@ -712,3 +712,18 @@ a .vendor-name:active{
 
 }
 
+/*VENDOR AVERAGE STAR RATING CSS*/
+.star-ratings {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+    font-size: 0;
+    height: 21px; /*crops image height to avoid the image repeating, same for width*/
+    line-height: 0;
+    overflow: hidden;
+    width: 110px;
+}
+.star-ratings-fill {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x 0 100%; /*can fill from 0 to 100% of the image*/
+    float: left;
+    height: 21px; /*has to match height in star-ratings so they can overlap each other correctly*/
+    display: block;
+}
