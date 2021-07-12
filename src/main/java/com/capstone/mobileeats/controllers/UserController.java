@@ -124,12 +124,31 @@ public class UserController {
     }
 
     @PostMapping("/users/{id}/edit")
-    public String updatePostSubmit(@ModelAttribute User user) {
+    public String updatePostSubmit(@ModelAttribute User user, Model model) {
         users.save(user);
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials());
-        SecurityContextHolder.getContext().setAuthentication(newAuth);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return "redirect:/profile";
+    }
+
+    //edit password
+    @GetMapping("/users/{id}/editPassword")
+    public String showEditPassword(@PathVariable long id){
+        return "editPassword";
+    }
+
+    @PostMapping("/users/{id}/editPassword")
+    public String editPassword(@PathVariable long id, @RequestParam String oldPassword, @RequestParam String newPassword){
+        User user = users.getById(id);
+        String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+        if(Objects.isNull(user)){
+            return "redirect:/editPassword";
+        }
+        if(BCrypt.checkpw(oldPassword, user.getPassword())){
+            user.setPassword(hashedPassword);
+            users.save(user);
+        }
+        return "passwordChangeConfirm";
     }
 
 }

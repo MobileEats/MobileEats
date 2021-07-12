@@ -3,10 +3,7 @@ package com.capstone.mobileeats.controllers;
 
 import com.capstone.mobileeats.models.*;
 
-import com.capstone.mobileeats.repositories.ReviewRepository;
-import com.capstone.mobileeats.repositories.MenuRepository;
-import com.capstone.mobileeats.repositories.UserRepository;
-import com.capstone.mobileeats.repositories.VendorRepository;
+import com.capstone.mobileeats.repositories.*;
 import com.capstone.mobileeats.services.EmailService;
 
 import org.springframework.expression.spel.SpelEvaluationException;
@@ -34,14 +31,15 @@ public class VendorController {
     private final VendorRepository vendorDao;
     private final ReviewRepository reviewDao;
     private final MenuRepository menuDao;
+    private final VendorCategoryRepository vendorCategoryDao;
 
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
-    public VendorController(MenuRepository menuDao, UserRepository userDao, VendorRepository vendorDao, ReviewRepository reviewDao, PasswordEncoder passwordEncoder, EmailService emailService) {
+    public VendorController(MenuRepository menuDao, UserRepository userDao, VendorRepository vendorDao, ReviewRepository reviewDao, VendorCategoryRepository vendorCategoryDao, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userDao = userDao;
         this.menuDao = menuDao;
-
+        this.vendorCategoryDao = vendorCategoryDao;
         this.vendorDao = vendorDao;
         this.reviewDao = reviewDao;
         this.passwordEncoder = passwordEncoder;
@@ -101,12 +99,18 @@ public class VendorController {
 
     @GetMapping("/vendors/create")
     public String vendorCreateProfile(Model model) {
-        model.addAttribute("vendor", new Vendor());
+        model.addAttribute("categories", vendorCategoryDao.findAll());
         return "registerVendor";
     }
 
     @PostMapping("vendors/create")
-    public String createVendor(@ModelAttribute Vendor vendor) {
+    public String createVendor(@RequestParam String name, @RequestParam String description, @RequestParam(name = "categories") String categoriesString, @RequestParam String phoneNumber, @RequestParam String email, @RequestParam String password, @RequestParam String location, @RequestParam String image_url) {
+        List<VendorCategory> categories = new ArrayList<>();
+        String[] categoriesNames = convertStringToList(categoriesString);
+        for (String categoryName : categoriesNames) {
+            categories.add(vendorCategoryDao.findByName(categoryName));
+        }
+        Vendor vendor = new Vendor(name, description, phoneNumber, email, password, image_url, location, false, categories, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), null);
         String hashed = BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt());
         vendor.setPassword(hashed);
         if (vendor.getImage_url().isBlank()) {
@@ -123,6 +127,11 @@ public class VendorController {
 //        return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
+    public String[] convertStringToList(String str) {
+        //remove the brackets
+        String newStr = str.replaceAll("[|]", "");
+        return newStr.split(",");
+    }
 
     @GetMapping("/vendors/profile/{id}")
     public String show(@PathVariable long id, Model model) {
@@ -207,11 +216,10 @@ public class VendorController {
     }
 
     @PostMapping("/vendors/{id}/edit")
-    public String updatePostSubmit(@ModelAttribute Vendor vendor) {
+    public String updatePostSubmit(@ModelAttribute Vendor vendor, Model model) {
         vendorDao.save(vendor);
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials());
-        SecurityContextHolder.getContext().setAuthentication(newAuth);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(vendor, vendor.getPassword(), SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return "redirect:/profile";
     }
 
@@ -283,4 +291,25 @@ public class VendorController {
 
         return "vendorReviews";
     }
+
+    //edit password
+    @GetMapping("/vendors/{id}/editPassword")
+    public String showEditPassword(@PathVariable long id, @ModelAttribute Model model){
+        model.addAttribute("vendor", vendorDao.getById(id));
+        return "editPassword";
+    }
+
+    @PostMapping("/vendors/{id}/editPassword")
+    public String editPassword(@RequestParam String oldPassword, @RequestParam String newPassword, @ModelAttribute Vendor vendor){
+        String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+            if (Objects.isNull(vendor)){
+                return "redirect:/editPassword";
+            }
+            if(BCrypt.checkpw(oldPassword, vendor.getPassword())){
+                vendor.setPassword(hashedPassword);
+                vendorDao.save(vendor);
+            }
+        return "passwordChangeConfirm";
+    }
 }
+

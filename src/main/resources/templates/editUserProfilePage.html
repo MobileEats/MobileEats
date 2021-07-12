@@ -30,8 +30,8 @@
             <img id="thumbnail" th:src="${user.image_url}" width="200px">
         </div>
         <button type="submit">Submit Changes</button>
-        <p class="message"><strong>Want to reset your password?</strong></p>
-        <p class="message"><a href="/resetPassword">Change Account Password</a></p>
+        <p class="message"><strong>Want to change your password?</strong></p>
+        <p class="message"><a th:href="@{'/users/' + ${user.id} + '/editPassword'}">Change Account Password</a></p>
     </form>
 
 </div>
