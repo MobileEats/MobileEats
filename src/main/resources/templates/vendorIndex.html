@@ -3,23 +3,22 @@
 <head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>Discover Vendors</title>
-
 </head>
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div class="geoSearch mt-2 ml-3">
-    <label>Locate Me:</label>
+<!--    <label>Locate Me:</label>-->
     <a href="#" id="modalLocate"><i class="fas fa-search-location fa-2x"></i></a>
-    <label> or Enter you address: </label>
-    <input class="" type="text" id="address" size="50" placeholder="123 Main Street, City, State">
+<!--    <label> or Enter you address: </label>-->
+    <input class="" type="text" id="address" size="50" placeholder="Enter your address">
     <button type="button" class="btn btn-primary" id="modalAddress" >Search</button>
 </div>
 
-<div id='map' class="mx-auto my-2 cards"></div>
+<div id='map' class="map-index cards"></div>
 
-<div class="cards">
+<!--<div class="cards">-->
     <h1 class="vendor-header">Vendors</h1>
     <div class="vendor-card" th:each="vendor, i : ${vendors}"> <!-- i iterates through vendors, but unlike vendor, nothings passing to it from backend-->
         <div th:id="${vendor.id}">
@@ -39,9 +38,9 @@
             <p class="vendor-property vendor-location" th:text="${vendor.location}" />
 
 
-        </div>
     </div>
 </div>
+
 
 <footer th:replace="partials/footer :: footer"></footer>
 </body>
