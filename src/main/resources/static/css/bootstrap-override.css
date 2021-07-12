@@ -3,7 +3,7 @@
     background-color: #DADED4;
 }
 body{
-    background: #DADED4;
+    background: #DADED4;/*new color#e1e0dc old was #DADED4*/
     color:#3C403D;
 }
 .cards{
@@ -51,6 +51,24 @@ a .vendor-name{
     border-color: #3C403D;
 }
 
+/*#img-logo{*/
+/*    border: 2px solid #3C403D;*/
+/*    border-radius: 7px;*/
+/*}*/
+.vendor-img-resize{
+    width: 200px;
+}
+.vendor-card-image{
+    width: 350px;
+}
+.vendor-body{
+    margin: 0;
+
+}
+.form{
+    border-radius: 15px;
+
+
 /*** NAVBAR ***/
 
 .navbar-input{
@@ -75,4 +93,5 @@ a .vendor-name{
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     cursor: pointer;
+
 }

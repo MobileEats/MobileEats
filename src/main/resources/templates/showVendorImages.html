@@ -11,21 +11,28 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<a th:href="'/vendors/' + ${vendor.id} + '/images/create'"><button type="button" class="btn btn-success">Add Image</button></a>
 
-<div class="cards">
+
+<!--<div class="cards">-->
     <h1 class="vendor-header" th:text="${vendor.name} + '\'s Photos'"></h1>
-    <div class="vendor-card" th:each="image : ${images}">
-        <div th:id="${image.id}">
-            <hr>
-                <img th:src="${image.imageUrl}">
-
-            <div class="d-flex">
-                <a th:href="@{'/vendors/' + ${vendor.id} + '/images/' + ${image.id} + '/delete'}"><button type="button" class="btn btn-danger">Delete</button></a>
+<div class="d-flex justify-content-center mb-2">
+    <a th:href="'/vendors/' + ${vendor.id} + '/images/create'"><button type="button" class="btn btn-primary">Add Image</button></a>
+</div>
+    <div class="d-flex mx-auto">
+        <div class="vendor-card vendor-card-image mx-2" th:each="image : ${images}">
+            <div th:id="${image.id}">
+                <div class="d-flex justify-content-center">
+                    <img class="vendor-img-resize" th:src="${image.imageUrl}">
+                </div>
+                <div class="d-flex justify-content-center mt-1">
+                    <a th:href="@{'/vendors/' + ${vendor.id} + '/images/' + ${image.id} + '/delete'}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+
+<!--</div>-->
 
 <footer th:replace="partials/footer :: footer"></footer>
 </body>
