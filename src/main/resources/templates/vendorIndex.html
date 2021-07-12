@@ -29,15 +29,13 @@
             <div class="travel-time ml-4"></div>
             <hr>
 
-            <div th:switch="${rating.get(i.index)}">
-                <div th:case="0" class="label">No Rating</div>
-                <div th:case="*" th:text="'Rating: ' + ${rating.get(i.index)}" class=label></div>
+<!--            GET VENDOR AVERAGE STAR RATING-->
+            <div class="label">
+                <div class="star-ratings">
+                    <span th:style="'width:' + ${((rating.get(i.index)) / 5) * 100} +  '%'" class="star-ratings-fill"></span>
+                </div>
                 <!--what happens if a vendor deletes their account? ids will be out of order-->
             </div>
-
-<!--            <div class="label" style="width: 50%; border: 1px solid black">-->
-<!--                <div th:style="'background: yellow; height: 3em; width: ' + ${((rating.get(i.index)) / 5) * 100} + '%'"></div>-->
-<!--            </div>-->
 
             <div class="label">Category:</div>
             <th:block th:each=" categories : ${vendor.categories}">
