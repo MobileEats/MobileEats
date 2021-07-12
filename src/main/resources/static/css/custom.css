@@ -535,6 +535,25 @@ a .vendor-name:active{
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
 
+    .form-inline {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ml-auto, .mx-auto {
+        margin: auto auto!important;
+    }
+
+    input.field {
+        width: 50%;
+    }
+
+    input#address {
+        width: 50%;
+    }
+
     .vendor-profile-name {
         margin-top: 2.5em;
     }
@@ -583,6 +602,7 @@ a .vendor-name:active{
         justify-content: space-evenly;
         text-align: center;
         margin-left: 3em;
+        width: 50%;
     }
 
     .navbar {
@@ -612,22 +632,24 @@ a .vendor-name:active{
         margin-top: 10em;
     }
 
-   .follow-btn {
-       margin-right: 10em;
-       margin-top: 1em;
-   }
+    .follow-btn {
+        margin-right: 10em;
+        margin-top: 1em;
+    }
 
-   div.contact-form-button {
-       margin-left: 0;
-       margin-bottom: 2em;
-   }
+    div.contact-form-button {
+        margin-left: 0;
+        margin-bottom: 2em;
+    }
 
-   button#message-button {
-       position: absolute;
-       margin-left: 7em;
-       margin-top: -64px;
+    button#message-button {
+        position: absolute;
+        margin-left: 7em;
+        margin-top: -64px;
 
-   }
+    }
+
+
 }
 
 /* Screen Size for Tablet */
