@@ -345,7 +345,7 @@ a .vendor-name:active{
     font-size: xx-large;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: .5em;
 }
 
 .vendor-property{
@@ -528,6 +528,74 @@ a .vendor-name:active{
     transform: translate(0px, -300px);
 }
 
+/*** LOCATE ME STYLES ***/
+
+.geoSearch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin: 5em auto 2em;
+}
+
+.geoSearch input{
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    border: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin: 0 1em 0 2em;
+}
+
+.geoSearch button{
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.locate-message{
+    text-align: center;
+    margin: 0 0 0 0;
+    color: #808080;
+    font-size: 12px;
+}
+
+/*** NAVBAR ***/
+
+.navbar-input{
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    border: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.navbar-button{
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #4CAF50;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
 
 
 /*** MEDIA QUERIES ***/
