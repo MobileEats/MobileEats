@@ -101,7 +101,7 @@
 <div class="slideshow-container">
 
     <!-- Full-width images with number and caption text -->
-    <div class="mySlides fade" th:each="image, i : ${vendor.images}">
+    <div class="mySlides" th:each="image, i : ${vendor.images}">
         <div class="numbertext" th:text="${i.index + 1} + ' / ' + ${vendor.images.size}"></div>
         <img th:src="${vendor.images[i.index].imageUrl}" style="width:100%">
     </div>
