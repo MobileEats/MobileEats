@@ -124,11 +124,10 @@ public class UserController {
     }
 
     @PostMapping("/users/{id}/edit")
-    public String updatePostSubmit(@ModelAttribute User user) {
+    public String updatePostSubmit(@ModelAttribute User user, Model model) {
         users.save(user);
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials());
-        SecurityContextHolder.getContext().setAuthentication(newAuth);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return "redirect:/profile";
     }
 

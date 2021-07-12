@@ -207,11 +207,10 @@ public class VendorController {
     }
 
     @PostMapping("/vendors/{id}/edit")
-    public String updatePostSubmit(@ModelAttribute Vendor vendor) {
+    public String updatePostSubmit(@ModelAttribute Vendor vendor, Model model) {
         vendorDao.save(vendor);
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials());
-        SecurityContextHolder.getContext().setAuthentication(newAuth);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(vendor, vendor.getPassword(), SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return "redirect:/profile";
     }
 
