@@ -526,6 +526,7 @@ a .vendor-name:active{
 
 .follow-btn{
     transform: translate(0px, -300px);
+    margin-top: 4em;
 }
 
 /*** LOCATE ME STYLES ***/
