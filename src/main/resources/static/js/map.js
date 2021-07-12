@@ -1,7 +1,7 @@
 "use strict";
-let vendorCoord = [];
+
 var modalAddress;
-var vendorAddress;
+
 var options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -18,57 +18,51 @@ var mapOptions = {
     zoom: 9.7// captures all of 1604 Loop
 }
 var map = new mapboxgl.Map(mapOptions);
-var marker = new mapboxgl.Marker({color: "red", draggable: true})
-
+var marker = new mapboxgl.Marker({color: "blue", draggable: true})
+var markerLocation= new mapboxgl.Marker({color: "red", draggable: true});
 map.on('load', event => {
     map.resize()
 })
 
 //*********** FIND LAT LONG FROM ADDRESS SAVED ON DATABASE OR SEARCHED **************
 $(document).ready(function () {
-
-    // $('#exampleModal').modal('show');
+    plotVendors();
+    getTravelTime([coord[1],coord[0]]);
     $("#modalAddress").on('click', function (){
         modalAddress = $('#address').val();
-        console.log(modalAddress);
-        // $("#exampleModal").modal("hide");
         searchAddress(modalAddress, 10);
-        plotVendors();
+
     });
     $("#modalLocate").click(function () {
-        // $("#exampleModal").modal("hide");
-        geoLocation(10, true);
-        getTravelTime();
-        // plotVendors();
+        geoLocation(10);
+        getTravelTime(null);
     });
 });
 
 function searchAddress(address, zoom){// function will pull address class address and plot the point
     geocode(address, MAPBOX_API_KEY).then(function (results) {
         mapOptions.center = results;
-        marker.remove();
+        markerLocation.remove();
         map.flyTo({center: results, zoom: zoom, duration: 9000});
-        marker = new mapboxgl.Marker({color: "red", draggable: true})
+        markerLocation = new mapboxgl.Marker({color: "red", draggable: true})
             .setLngLat(results)
             .addTo(map);
-        marker.on('dragend', onDragEnd);
+        markerLocation.on('dragend', onDragEnd);
+        getTravelTime(results);
     });
 }
 
-function geoLocation(zoom,bool) {
+function geoLocation(zoom) {
     function success(pos) {
         var crd = pos.coords;
         var coord = [crd.latitude, crd.longitude];
-        map = new mapboxgl.Map(mapOptions);
         var lngLat = [coord[1], coord[0]];
+        markerLocation.remove();
         map.flyTo({center: lngLat, zoom: zoom, duration: 5000})
-        marker = new mapboxgl.Marker({color: "red", draggable: true})
+        markerLocation = new mapboxgl.Marker({color: "red", draggable: true})
             .setLngLat(lngLat)
             .addTo(map);
-        marker.on('dragend', onDragEnd);
-        if(bool === true){
-            plotVendors();
-        }
+        markerLocation.on('dragend', onDragEnd);
     }
     function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -78,10 +72,10 @@ function geoLocation(zoom,bool) {
 
 // ************* GET LOCATION FROM MARKER DRAG ******************
 function onDragEnd() {
-    var lngLat = marker.getLngLat();
-    // var lngLat = coord;
-    map.flyTo({center: lngLat, zoom: 15, duration: 1000});
-
+    var lngLat = markerLocation.getLngLat();
+    coord = [lngLat.lng, lngLat.lat];
+    map.flyTo({center: lngLat, zoom: 10, duration: 1000});
+    getTravelTime(coord);
 }
 
 function plotVendors(){
@@ -91,7 +85,7 @@ function plotVendors(){
     $(".truck-name").each(function (index, val) {
         nameArray[index] = $(val).html();
     });
-    console.log(nameArray);
+
     $(".vendorImg").each(function (index, val) {
         imgArray[index] = $(val).html();
     });
@@ -123,18 +117,23 @@ function secToMin(secs){
     }
 }
 
-function getTravelTime(){
+function getTravelTime(lnglat){
     let crd;
     let coord = [];
     function success(pos) {
-        crd = pos.coords;
-        coord = [crd.latitude, crd.longitude];
+        if(lnglat == null){
+            crd = pos.coords;
+            coord = [crd.latitude, crd.longitude];
+        }
+        else{
+            coord = [lnglat[1],lnglat[0]]
+            console.log(coord);
+        }
         let duration;
         $(".vendor-location").each(function (index, val) {
 
             geocode($(val).html(), MAPBOX_API_KEY).then(function (results) {
                 $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + coord[1] + "," + coord[0] + ";" + results[0] + "," + results[1] + "?access_token=" + MAPBOX_API_KEY).done(function (results){
-                    console.log(results);
                     duration = secToMin(results.routes[0].duration);
                     if (duration >= 60){
                         duration = duration /60;
@@ -149,18 +148,26 @@ function getTravelTime(){
             })
         })
     }
-    navigator.geolocation.getCurrentPosition(success);
-
+    function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    if(lnglat == null) {
+        navigator.geolocation.getCurrentPosition(success, error, options);
+    }
+    else{
+        success();
+    }
 }
+
 
 // ************* GET GEOLOCATION ON BUTTON CLICK ON VENDOR PROFILE VIEW******************
 $("#locate").click(function () {
-    geoLocation(18, false);
+    geoLocation(18);
 });
 
 //*************  SAVE CURRENT LOCATION TO DATABASE ON BUTTON CLICK**********************
 $('#updateCurrent').click(function () {
-    var coord = marker.getLngLat();
+    var coord = markerLocation.getLngLat();
     reverseGeocode({lat: coord.lat, lng: coord.lng}, MAPBOX_API_KEY).then(function (results) {
         $('.address').html(results.features[0].place_name);
         openLocation();//calls function on vendors-profile.js and post to vendor controller

@@ -48,14 +48,14 @@ public class VendorController {
         this.emailService = emailService;
     }
 
-    @GetMapping("/vendor/edit/{id}")
+    @GetMapping("/vendor/edit/{id}")//not used?
     public String showVendorEditForm(@PathVariable long id, Model model) {
         Vendor currentVendor = vendorDao.getById(id);
         model.addAttribute("vendor", vendorDao.getById(currentVendor.getId()));
         return "editVendorProfilePage";
     }
 
-    @PostMapping("/vendor/edit/{id}")
+    @PostMapping("/vendor/edit/{id}")//not used?
     public String editVendorProfile(@ModelAttribute Vendor vendor) {
         Vendor saveVendor = vendorDao.save(vendor);
         return "redirect:/vendors/profile/" + saveVendor.getId();
@@ -68,7 +68,7 @@ public class VendorController {
         return getString(model, vendors);
     }
 
-    @GetMapping("/vendor")
+    @GetMapping("/vendor")//not used?
     public String vendorsIndex(@RequestParam(name = "search") String search, Model model) {
 //        SEARCH VENDORS
 
@@ -178,7 +178,7 @@ public class VendorController {
 ////        result.addObject("location", objectMapper.writeValueAsString(location));
     }
 
-    //************ do we need this **********************
+
     @PostMapping(value = "/vendors/profile/{id}")
     public @ResponseBody
     String sendPost(@RequestBody PostTo postTo, @PathVariable Long id) {

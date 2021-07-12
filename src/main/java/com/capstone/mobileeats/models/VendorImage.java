@@ -10,7 +10,7 @@ public class VendorImage {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name="vendor_id", nullable=false)
+    @JoinColumn(name = "vendor_id", referencedColumnName = "id", unique = false)
     private Vendor vendor;
 
     @Column(name = "image_url")

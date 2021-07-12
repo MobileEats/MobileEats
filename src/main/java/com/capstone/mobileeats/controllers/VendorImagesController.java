@@ -63,8 +63,7 @@ public class VendorImagesController {
 
     @PostMapping("/vendors/{id}/images/create")
     public String createVendorImage(@PathVariable long id, @ModelAttribute VendorImage image){
-        Vendor vendor = vendors.getById(id);
-        image.setVendor(vendor);
+        image.setVendor(vendors.getById(id));
         vendorImages.save(image);
         return "redirect:/vendors/" + id + "/images";
     }
