@@ -32,3 +32,11 @@
 .banner-img{
     width: 100%;
 }
+
+.redirect-link{
+    color: #f2f2f2;
+}
+
+.redirect-link:active{
+    color: #cccccc;
+}
