@@ -17,7 +17,8 @@
 <!--- ANIMATION LINK -------->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-<link rel="stylesheet" href="css/custom.css" />
+<link rel="stylesheet" href="/css/custom.css" />
+
 
 <!--bootstrap navbar-->
 <!--<nav th:fragment="bootstrap_navbar" class="navbar navbar-expand-lg navbar-light bg-light">-->
@@ -38,8 +39,8 @@
     </form>
 
 
-    <div class= "nav-item active ml-auto w-25 p-3 d-flex justify-content-around">
-        <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/register">Register</a>
+    <div class= "nav-link active">
+        <a class="nav-item-register nav-link" sec:authorize="!isAuthenticated()" href="/register">Register</a>
 
         <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/login">Login</a>
         <a class="nav-item nav-link " sec:authorize="isAuthenticated()" href="/logout">Logout</a>
