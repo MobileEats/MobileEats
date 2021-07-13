@@ -531,8 +531,9 @@ a .vendor-name:active{
 }
 
 .follow-btn{
-    transform: translate(0px, -300px);
-    margin-top: 4em;
+    position:absolute;
+    transform: translate(0px, -170px);
+    /*margin-top: 5em;*/
 }
 
 /*** LOCATE ME STYLES ***/

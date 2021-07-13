@@ -72,8 +72,9 @@
 <div class="slideshow-container">
     <!-- Full-width images with number and caption text -->
     <div class="mySlides text-center" th:each="image, i : ${vendor.images}">
-        <div class="numbertext d-flex justify-content-center" th:text="${i.index + 1} + ' / ' + ${vendor.images.size}"></div>
-        <img class="img-slideshow" th:src="${vendor.images[i.index].imageUrl}" >
+        <div class="numbertext d-flex justify-content-center"
+             th:text="${i.index + 1} + ' / ' + ${vendor.images.size}"></div>
+        <img class="img-slideshow" th:src="${vendor.images[i.index].imageUrl}">
     </div>
 
     <!-- Next and previous buttons -->
