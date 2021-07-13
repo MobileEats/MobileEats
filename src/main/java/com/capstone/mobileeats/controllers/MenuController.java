@@ -76,7 +76,7 @@ public class MenuController {
         model.addAttribute("categories", itemCategories.findAll());
         return "editMenuItem";
     }
-
+//***************
     @PostMapping("/vendors/{vendorId}/menu/{menuItemId}/edit")
     public String editItem(@RequestParam(name = "type") String typeName, @RequestParam(name = "categories") String categoriesString, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description, @RequestParam(name = "image_url") String imageUrl, @PathVariable long vendorId, @PathVariable long menuItemId) {
         MenuItem item = menuItems.getById(menuItemId);

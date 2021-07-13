@@ -138,3 +138,7 @@ a{
 .vendor-body a:hover {
     color: #808080;
 }
+.menu-img-resize{
+    width: 10vw;
+    height: auto;
+}
