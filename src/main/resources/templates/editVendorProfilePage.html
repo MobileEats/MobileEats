@@ -4,6 +4,7 @@
     <title>Edit Profile Page</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <div class="form">
     <div class="register-header">Edit Profile Info</div>
     <form class="animated" th:action="@{'/vendors/' + ${vendor.id} + '/edit'}" th:object="${vendor}" method="post">
@@ -24,12 +25,12 @@
         </div>
         <div class="form-group">
             <label for="filestack">Profile Picture</label>
-            <button id="filestack" type="button">Select Image</button>
+            <button class="btn btn-primary" id="filestack" type="button">Select Image</button>
         </div>
         <div id="thumbnail-container" class="mb-4">
             <img id="thumbnail" th:src="${vendor.Image_url}" width="200px">
         </div>
-        <button type="submit">Submit Changes</button>
+        <button class="btn btn-primary" type="submit">Submit Changes</button>
         <p class="message"><strong>Want to change your password?</strong></p>
         <p class="message"><a th:action="@{'/vendors/' + ${vendor.id} + '/editPassword'}" href="/vendors/{id}/editPassword">Change Account Password</a></p>
     </form>
