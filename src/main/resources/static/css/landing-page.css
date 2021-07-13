@@ -3,14 +3,15 @@
 }
 
 
-.bg-img {
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-    max-height: 30em;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+/*.bg-img { !*this is what is pushing down the 3 buttons*!*/
+    /*filter: blur(8px);*/
+    /*-webkit-filter: blur(8px);*/
+    /*max-height: 30em;*/
+    /*background-position: center;*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+/*}*/
+
 
 .bg-text {
     background-color: rgb(0,0,0);
@@ -19,7 +20,7 @@
     font-weight: bold;
     border: 3px solid #f1f1f1;
     position: absolute;
-    top: 50%;
+    top: 30%; /*removing some spacing from top*/
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -31,8 +32,16 @@
     height: 25%;
 }
 .banner-img{
+    /*moved from .bg-img*/
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    /**/
+    position: absolute;
     width: 100%;
+    height: 90%; /*lowering image height to remove scroll space*/
+    object-fit: cover;
 }
+
 .btn-container{
     display: flex;
     justify-content: space-evenly;
@@ -41,6 +50,7 @@
 
     animation-delay: 200ms;
 
+    margin-top: 20em; /*pushing down the buttons*/
 }
 .landing-icon{
     width: 7em;
