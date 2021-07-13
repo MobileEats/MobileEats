@@ -26,21 +26,23 @@ body{
     min-height: 40vh;
 }
 .btn-primary{
-    background-color: #DADED4;
+
+    background-color: #3C403D;
+    /*background-color: #DADED4;*/
+    color: #FFFFFF;
     border-color: #3C403D;
-    color:#3C403D;
 }
 .btn-primary:hover {
     background-color: #FFFFFF;
-    color: #3C403D;
     border-color: #3C403D;
+    color:#3C403D;
 }
 
 a{
      color:#3C403D;
  }
 a:hover{
-    color: #b2b2b2;
+    color: #808080;
     text-decoration: none;
     transform: scale(1.1);
     transition: ease-in-out;
@@ -50,7 +52,7 @@ a .vendor-name{
 }
 
 .vendor-name:hover{
-    color: white;
+    color: #808080;
     border-color: #3C403D;
 }
 
@@ -88,14 +90,140 @@ a .vendor-name{
 .navbar-button{
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
-    outline: 0;
-    background: #4CAF50;
-    border: 0;
+    /*outline: 0;*/
+    /*background: #4CAF50;*/
+    /*border: 0;*/
     padding: 15px;
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
     font-size: 14px;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    /*-webkit-transition: all 0.3s ease;*/
+    /*transition: all 0.3s ease;*/
     cursor: pointer;
+    background-color: #3C403D;
+    /*background-color: #DADED4;*/
+    color: #FFFFFF;
+    border-color: #3C403D;
+}
+.img-slideshow{
+    width: 100%;
+    height: auto;
 
 }
+.slideshow-container{
+    max-width: 60%;
+    /*width: 50%;*/
+    /*height: auto;*/
+}
+.btn {
+    cursor: pointer;
+}
+a{
+    cursor: pointer;
+}
+.register{
+    background-color: #3C403D;
+    /*background-color: #DADED4;*/
+    color: #FFFFFF;
+    border-color: #3C403D;
+}
+.register:hover{
+    background-color: #FFFFFF;
+    border: 1px solid #3C403D;
+    color:#3C403D;
+}
+
+.vendor-body a {
+    color:#3C403D;
+}
+.vendor-body a:hover {
+    color: #808080;
+}
+
+/*** ABOUT US PAGE ***/
+
+.about-project{
+    margin: 14% auto 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about-project h1{
+    margin-bottom: .5em;
+    width: 100%;
+    font-size: xxx-large;
+}
+
+.about-project p{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-left: 10em;
+    padding-right: 10em;
+    font-size: larger;
+}
+
+.repo{
+    margin: 1.25em 0 1em 0;
+    font-size: large;
+}
+
+.repo a{
+    font-size: large;
+}
+
+.repo a:hover{
+    text-decoration: none;
+    transform: scale(1.1);
+    transition-timing-function: ease-in-out;
+}
+
+.repo a:active{
+    transform: translateY(-1em);
+    color: #4d4d4d;
+}
+
+.about-us{
+    margin: 12% auto 26%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about-us h1{
+    margin-bottom: 3em;
+    width: 100%;
+    font-size: xxx-large;
+}
+
+.members{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.member{
+    width: 30%;
+    padding: 2em;
+    text-align: center;
+}
+
+.github{
+    margin-right: 1.5em;
+}
+
+.linkedin{
+    margin-left: 1.5em;
+}
+
+.member-icon{
+    margin-right: .25em;
+}
+
+.member-img{
+    border: #3C403D .20em solid;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
