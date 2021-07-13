@@ -100,13 +100,6 @@ VALUES ('https://cdn.filestackcontent.com/ogX0ahM8Qiq4ecYVMbjY',1),
        ('https://cdn.filestackcontent.com/hNzNt9UXQTixnSRiYKuw', 4),
        ('https://cdn.filestackcontent.com/i8MJOPWRdGmRaxOu90NM',5);
 
-INSERT INTO vendors_categories(category_id, vendor_id)
-VALUES (3,1),
-       (6,2),
-       (18,3),
-       (6,4),
-       (11,5);
-
 INSERT INTO followers(vendor_id, user_id)
 VALUES (2,1),
        (1,1),
@@ -116,18 +109,25 @@ VALUES (2,1),
        (4,4),
        (3,5);
 
-INSERT INTO menu_items_categories(category_id, menu_item_id)
-VALUES (13,1),
-       (13,2),
-       (12,3),
-       (13,4),
-       (12,5),
-       (10,6),
-       (10,7),
-       (10,8),
-       (13,9),
-       (13,10),
-       (13,11),
-       (12,12),
-       (10,13),
-       (13,14);
+# INSERT INTO vendors_categories(category_id, vendor_id)
+# VALUES (3,1),
+#        (6,2),
+#        (18,3),
+#        (6,4),
+#        (11,5);
+#
+# INSERT INTO menu_items_categories(category_id, menu_item_id)
+# VALUES (13,1),
+#        (13,2),
+#        (12,3),
+#        (13,4),
+#        (12,5),
+#        (10,6),
+#        (10,7),
+#        (10,8),
+#        (13,9),
+#        (13,10),
+#        (13,11),
+#        (12,12),
+#        (10,13),
+#        (13,14);
