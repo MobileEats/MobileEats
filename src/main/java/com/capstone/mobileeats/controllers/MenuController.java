@@ -38,8 +38,13 @@ public class MenuController {
             else {model.addAttribute("owner", false); }
             vendor = vendors.getById(id);
             List<MenuItem> items = vendor.getMenu().getItems();
+//            String image = vendor.getMenu().getImageUrl();
+//            System.out.println("image = " + image);
+//            model.addAttribute("image", image);
             model.addAttribute("vendor", vendor);
             model.addAttribute("items", items);
+//            Menu newMenu = me
+//            model.addAttribute("menuImage", ima);
             return "showMenu";
         } catch(Exception e) {
             model.addAttribute("owner", false);
