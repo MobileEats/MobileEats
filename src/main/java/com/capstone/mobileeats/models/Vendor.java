@@ -65,7 +65,6 @@ public class Vendor {
     @OneToMany(mappedBy = "vendor")
     private List<Review> reviews = new ArrayList<>();
 
-    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "vendor")
     private List<VendorImage> images = new ArrayList<>();
 
