@@ -313,17 +313,19 @@ input:checked + .slider:before {
     position: relative;
     z-index: 1;
     background: #FFFFFF;
-    max-width: 95%;
+    max-width: 70%;
     margin: 0 auto 100px auto;
-    padding: 45px;
+    padding-top: 3em;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding-left: 3em;
+    padding-right: 3em;
 }
 
 .vendor-card{
     background-color: #f2f2f2;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     width: 95%;
-    margin-bottom: 1em;
+    margin-bottom: 3em;
 }
 
 .vendor-name{
@@ -429,6 +431,24 @@ a .vendor-name:active{
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
     color: #43A047;
+}
+
+.cards a{
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: .5em;
+    border: #3C403D .10em solid;
+    padding: 1em;
+    margin-bottom: 1.25em;
+    background-color: #3C403D;
+    color: #FFFFFF;
+}
+
+.cards a:hover{
+    transform: scale(1.075);
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+    background-color: #ffffff;
+    color: #3C403D;
 }
 
 /**** USER PROFILE PAGE ****/
