@@ -206,6 +206,7 @@ public class VendorController {
             Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             if (id == currentVendor.getId()) {
                 model.addAttribute("vendor", vendorDao.getById(id));
+                model.addAttribute("categories", vendorCategoryDao.findAll());
                 return "editVendorProfilePage";
             }
             return "redirect:/vendors";
@@ -216,7 +217,21 @@ public class VendorController {
     }
 
     @PostMapping("/vendors/{id}/edit")
-    public String updatePostSubmit(@ModelAttribute Vendor vendor, Model model) {
+    public String updatePostSubmit(@PathVariable long id, @RequestParam String name, @RequestParam String description, @RequestParam(name = "categories") String categoriesString, @RequestParam String phoneNumber, @RequestParam String email, @RequestParam String password, @RequestParam String location, @RequestParam String Image_url) {
+        Vendor vendor = vendorDao.getById(id);
+        List<VendorCategory> categories = new ArrayList<>();
+        String[] categoriesNames = convertStringToList(categoriesString);
+        for (String categoryName : categoriesNames) {
+            categories.add(vendorCategoryDao.findByName(categoryName));
+        }
+        vendor.setName(name);
+        vendor.setDescription(description);
+        vendor.setCategories(categories);
+        vendor.setPhoneNumber(phoneNumber);
+        vendor.setEmail(email);
+        vendor.setPassword(password);
+        vendor.setLocation(location);
+        vendor.setImage_url(Image_url);
         vendorDao.save(vendor);
         Authentication authentication = new UsernamePasswordAuthenticationToken(vendor, vendor.getPassword(), SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);

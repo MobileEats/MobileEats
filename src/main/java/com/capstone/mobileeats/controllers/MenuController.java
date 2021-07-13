@@ -106,7 +106,7 @@ public class MenuController {
     }
 
     @PostMapping("/vendors/{id}/menu/create")
-    public String createItem(@RequestParam(name = "type") String typeName, @RequestParam(name = "categories") String categoriesString, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description, @RequestParam(name = "image_url") String imageUrl, @PathVariable long id) {
+    public String createItem(@RequestParam(name = "type") String typeName, @RequestParam(name = "categories") String categoriesString, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description, @RequestParam(name = "Image_url") String imageUrl, @PathVariable long id) {
         MenuItem item = new MenuItem();
         System.out.println(categoriesString);
         ItemType type = itemTypes.findByName(typeName);
