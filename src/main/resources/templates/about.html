@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Mobile Eats- About us</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/landing-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" type="image/png" href="/static/images/mobileeats_logo2.png">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/bootstrap-override.css">
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<hr>
+
+<div class="about-project">
+    <h1 class="vendor-header">About the Project</h1>
+    <p class="locate-message project-description">MobileEats is an application that allows mobile food vendors to be able to relay all business information such as current locations, menus, pricing among other things to a wide user audience. Users of the application can utilize it to track vendors via a map interface and can also submit reviews of the different vendors. Application also has notifications capability via Mailgun. This application was created as a team project with Java, Spring Boot, MySQL, HTML, CSS, JavaScript, and jQuery. Application was made as an MVC design pattern. And it implements full CRUD functionality with the custom built database.</p>
+    <div class="repo">
+        <a class="repo-link" href="https://github.com/MobileEats/MobileEats"><i class="fab fa-github mr-1"></i>Link to Repository</a>
+    </div>
+</div>
+<hr>
+<div class="about-us">
+    <h1 class="vendor-header">Meet the Team: </h1>
+    <div class="members">
+        <div class="member">
+            <img class="rounded-circle member-img" src="../images/headshots/jake_headshot.png" alt="member picture" width="150" height="150">
+            <h2 class="member-name">Jake Chadwell</h2>
+            <a class="github member-link" href="https://github.com/jakechadwell"><i class="member-icon fab fa-github-square"></i>Github</a>
+            <a class="linkedin member-link" href="https://www.linkedin.com/in/jake-chadwell-a89b8b20a"><i class="member-icon fab fa-linkedin"></i>LinkedIn</a>
+        </div>
+        <div class="member">
+            <img class="rounded-circle member-img" src="../images/headshots/andrew_headshot.png" alt="member picture" width="150" height="150">
+            <h2 class="member-name">Andrew Walsh</h2>
+            <a class="github member-link" href="https://github.com/andrew-walsh-dev"><i class="member-icon fab fa-github-square"></i>Github</a>
+            <a class="linkedin member-link" href="https://www.linkedin.com/in/andrew-walsh-dev"><i class="member-icon fab fa-linkedin"></i>LinkedIn</a>
+        </div>
+        <div class="member">
+            <img class="rounded-circle member-img" src="../images/headshots/roland_headshot.png" alt="member picture" width="150" height="150">
+            <h2 class="member-name">Roland Valdez</h2>
+            <a class="github member-link" href="https://github.com/roland-valdez"><i class="member-icon fab fa-github-square"></i>Github</a>
+            <a class="linkedin member-link" href="https://www.linkedin.com/in/roland-valdez"><i class="member-icon fab fa-linkedin"></i>LinkedIn</a>
+        </div>
+        <div class="member">
+            <img class="rounded-circle member-img" src="../images/headshots/kenyon_headshot.png" alt="member picture" width="150" height="150">
+            <h2 class="member-name">Kenyon Luce</h2>
+            <a class="github member-link" href="https://github.com/kenyon-luce"><i class="member-icon fab fa-github-square"></i>Github</a>
+            <a class="linkedin member-link" href="https://www.linkedin.com/in/kenyon-luce"><i class="member-icon fab fa-linkedin"></i>LinkedIn</a>
+        </div>
+        <div class="member">
+            <img class="rounded-circle member-img" src="../images/headshots/hunter_headshot.png" alt="member picture" width="150" height="150">
+            <h2 class="member-name">Hunter Parks</h2>
+            <a class="github member-link" href="https://github.com/hunter-parks"><i class="member-icon fab fa-github-square"></i>Github</a>
+            <a class="linkedin member-link" href="https://www.linkedin.com/in/hunter-parks-752b20212"><i class="member-icon fab fa-linkedin"></i>LinkedIn</a>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="partials/footer :: footer"></footer>
+</body>
+</html>

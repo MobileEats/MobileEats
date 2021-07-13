@@ -10,6 +10,11 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/about")
+    public String aboutUs(){
+        return "about";
+    }
+
     @GetMapping("/register")
     public String showLoginForm(){
         return "selectRegister";

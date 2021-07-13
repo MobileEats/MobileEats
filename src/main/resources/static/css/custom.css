@@ -194,11 +194,11 @@
     color: #EF3B3A;
 }
 body {
-    background: #76b852;
-    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-    background: -moz-linear-gradient(right, #76b852, #8DC26F);
-    background: -o-linear-gradient(right, #76b852, #8DC26F);
-    background: linear-gradient(to left, #76b852, #8DC26F);
+    background: #DADED4;
+    /*background: -webkit-linear-gradient(right, #76b852, #8DC26F);*/
+    /*background: -moz-linear-gradient(right, #76b852, #8DC26F);*/
+    /*background: -o-linear-gradient(right, #76b852, #8DC26F);*/
+    /*background: linear-gradient(to left, #76b852, #8DC26F);*/
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -313,17 +313,19 @@ input:checked + .slider:before {
     position: relative;
     z-index: 1;
     background: #FFFFFF;
-    max-width: 95%;
+    max-width: 70%;
     margin: 0 auto 100px auto;
-    padding: 45px;
+    padding-top: 3em;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding-left: 3em;
+    padding-right: 3em;
 }
 
 .vendor-card{
     background-color: #f2f2f2;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     width: 95%;
-    margin-bottom: 1em;
+    margin-bottom: 3em;
 }
 
 .vendor-name{
@@ -431,6 +433,24 @@ a .vendor-name:active{
     color: #43A047;
 }
 
+.cards a{
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: .5em;
+    border: #3C403D .10em solid;
+    padding: 1em;
+    margin-bottom: 1.25em;
+    background-color: #3C403D;
+    color: #FFFFFF;
+}
+
+.cards a:hover{
+    transform: scale(1.075);
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+    background-color: #ffffff;
+    color: #3C403D;
+}
+
 /**** USER PROFILE PAGE ****/
 
 .user-cont{
@@ -531,8 +551,9 @@ a .vendor-name:active{
 }
 
 .follow-btn{
-    transform: translate(0px, -300px);
-    margin-top: 4em;
+    position:absolute;
+    transform: translate(0px, -170px);
+    /*margin-top: 5em;*/
 }
 
 /*** LOCATE ME STYLES ***/
@@ -544,7 +565,7 @@ a .vendor-name:active{
     position: relative;
     z-index: 1;
     text-align: center;
-    margin: 5em auto 2em;
+    margin: 1.5em auto 2em;
 }
 
 .geoSearch input{

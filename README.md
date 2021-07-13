@@ -32,7 +32,7 @@ This is a Codeup capstone project created using Java, SpringBoot, MySQL, Javascr
 
 #### Jake Chadwell
 - [Github](https://github.com/jakechadwell) 
-- [LinkedIn](https://www.linkedin.com/in/jake-chadwell-a89b8b20a)
+- [LinkedIn](https://www.linkedin.com/in/jakechadwell)
 
 #### Andrew Walsh
 - [Github](https://github.com/andrew-walsh-dev) 

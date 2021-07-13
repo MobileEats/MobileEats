@@ -9,19 +9,25 @@
     <div class="register-header">Edit Profile Info</div>
     <form class="animated" th:action="@{'/vendors/' + ${vendor.id} + '/edit'}" th:object="${vendor}" method="post">
         <label for="first_name">Name</label>
-        <input id="first_name" type="text" th:field="*{name}" th:value="${vendor.name}">
+        <input id="first_name" type="text" name="name" th:value="${vendor.name}">
         <label for="description">Description</label>
-        <input id="description" type="text" th:field="*{description}" th:value="${vendor.description}">
-        <label for="last_name">Phone Number</label>
-        <input id="last_name" type="text" th:field="*{phoneNumber}" th:value="${vendor.phoneNumber}">
-        <input id="password" type="hidden" th:field="*{password}" th:value="${vendor.password}"/>
+        <input id="description" type="text" name="description" th:value="${vendor.description}">
+        <div class="form-group">
+            <label for="categories">Categories</label>
+            <select name="categories" id="categories" multiple>
+                <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}"></option>
+            </select>
+        </div>
+        <label for="phoneNumber">Phone Number</label>
+        <input id="phoneNumber" type="text" name="phoneNumber" th:value="${vendor.phoneNumber}">
+        <input id="password" type="hidden" name="password" th:value="${vendor.password}"/>
         <input id="followers" type="hidden" th:field="*{followers}" th:value="${vendor.followers}"/>
         <label for="email">Email</label>
-        <input id="email" type="text" th:field="*{email}" th:value="${vendor.email}"/>
+        <input id="email" type="text" name="email" th:value="${vendor.email}"/>
         <label for="location">Location</label>
-        <input id="location" type="text" th:field="*{location}" th:value="${vendor.location}">
+        <input id="location" type="text" name="location" th:value="${vendor.location}">
         <div class="form-group d-none">
-            <input th:field="*{Image_url}" type="text" class="form-control" id="image_url">
+            <input name="Image_url" type="text" class="form-control" id="image_url">
         </div>
         <div class="form-group">
             <label for="filestack">Profile Picture</label>
