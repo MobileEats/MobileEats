@@ -12,7 +12,7 @@
         <form th:action="'/vendors/' + ${vendor.id} + '/images/create'" th:method="post" th:object="${image}">
             <!-- THE BELOW FORM GROUP HOLDS THE URL TO THE UPLOADED IMAGE, IT IS INVISIBLE -->
             <div class="form-group d-none">
-                <input th:field="*{imageUrl}" type="text" class="form-control" id="image_url">
+                <input name="image_url" type="text" class="form-control" id="image_url">
             </div>
             <div class="form-group">
                 <label for="filestack">Profile Picture</label>

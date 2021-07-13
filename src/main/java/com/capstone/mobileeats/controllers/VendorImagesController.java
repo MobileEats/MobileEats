@@ -8,10 +8,7 @@ import com.capstone.mobileeats.repositories.VendorRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -57,13 +54,12 @@ public class VendorImagesController {
     @GetMapping("/vendors/{id}/images/create")
     public String showCreateImageForm(Model model, @PathVariable long id) {
         model.addAttribute("vendor", vendors.getById(id));
-        model.addAttribute("image", new VendorImage());
         return "addVendorImage";
     }
 
     @PostMapping("/vendors/{id}/images/create")
-    public String createVendorImage(@PathVariable long id, @ModelAttribute VendorImage image){
-        image.setVendor(vendors.getById(id));
+    public String createVendorImage(@PathVariable long id, @RequestParam String image_url){
+        VendorImage image = new VendorImage(vendors.getById(id), image_url);
         vendorImages.save(image);
         return "redirect:/vendors/" + id + "/images";
     }
