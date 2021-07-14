@@ -714,7 +714,7 @@ a .vendor-name:active{
 
     .nav-link {
         display: inline-flex;
-        padding: 0.5rem -1rem;
+        padding: 0.5rem 0.6rem;
     }
 
     .active, .dot:hover {
@@ -723,7 +723,16 @@ a .vendor-name:active{
         align-items: center;
     }
 
-    .nav-item.active.ml-auto.w-25.p-3.d-flex.justify-content-around {
+    /*.nav-item.active.ml-auto.w-25.p-3.d-flex.justify-content-around {*/
+    /*    display: flex;*/
+    /*    flex-direction: column;*/
+    /*    justify-content: center;*/
+    /*    align-items: center;*/
+    /*    margin-right: auto;*/
+    /*}*/
+
+    /*not sure what this does, but matching it to refactored nav-item just in case*/
+    .nav-item.active.ml-auto.w-25.d-flex.justify-content-end {
         display: flex;
         flex-direction: column;
         justify-content: center;
