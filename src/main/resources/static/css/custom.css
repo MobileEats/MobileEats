@@ -654,6 +654,26 @@ a .vendor-name:active{
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
 
+    /* Vendor Index Page */
+    div.vendor-card {
+        /* background-color: #EAE7DC; */
+        margin-right: auto;
+        margin-left: auto;
+        width: 70vw;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-radius: 15px;
+    }
+    .vendor-card {
+        /* background-color: #EAE7DC; */
+        margin-right: auto;
+        margin-left: auto;
+        width: 70vw;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-radius: 15px;
+    }
+
     /* About Us Page Styling */
     .vendor-header {
         margin-bottom: 2em;
