@@ -108,3 +108,45 @@
     transition: all 0.3s ease;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 480px) {
+    .bg-text{
+        transform: translate(13%, 30%);
+        position: static;
+    }
+    .btn-container.animate__animated.animate__zoomIn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 4.5em;
+    }
+    nav{
+        padding: 0;
+    }
+    #img-logo{
+        padding: .75em;
+    }
+    .navbar-toggler{
+        margin-right: 1em;
+    }
+    .navbar-input{
+        width: 60%;
+    }
+    .navbar-form{
+        justify-content: center;
+    }
+    .nav-link{
+        padding: .5em 2em;
+    }
+    .nav-links{
+        margin-right: auto;
+    }
+}
+@media only screen and (max-width: 325px) {
+    #img-logo{
+        max-width: 1em;
+
+    }
+}
+
+

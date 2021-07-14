@@ -22,6 +22,7 @@
 <div id='map' class="map-index cards"></div>
 
 <!--<div class="cards">-->
+
 <h1 class="vendor-header">Vendors</h1>
 <div class="vendor-card" th:each="vendor, i : ${vendors}">
     <!-- i iterates through vendors, but unlike vendor, nothings passing to it from backend-->
@@ -44,6 +45,29 @@
         <th:block th:each=" categories : ${vendor.categories}">
             <p class="vendor-property category" th:text="${categories.name}"></p>
         </th:block>
+
+<!--    <h1 class="vendor-header">Vendors</h1>-->
+<!--    <div class="vendor-card" th:each="vendor, i : ${vendors}"> &lt;!&ndash; i iterates through vendors, but unlike vendor, nothings passing to it from backend&ndash;&gt;-->
+<!--        <div th:id="${vendor.id}">-->
+<!--            <a class="vendor-name" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3-->
+<!--                    class="vendor-property vendor-name truck-name" th:text="${vendor.name}"></h3></a>-->
+
+<!--            <div class="travel-time ml-4"></div>-->
+<!--            <hr>-->
+
+<!--&lt;!&ndash;            GET VENDOR AVERAGE STAR RATING&ndash;&gt;-->
+<!--            <div class="label">-->
+<!--                <div class="star-ratings">-->
+<!--                    <span th:style="'width:' + ${((rating.get(i.index)) / 5) * 100} +  '%'" class="star-ratings-fill"></span>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;what happens if a vendor deletes their account? ids will be out of order&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="label">Description:</div>-->
+<!--            <p class="vendor-property category" th:text="${vendor.description}"></p>-->
+<!--            <div class="label">Category:</div>-->
+<!--            <th:block th:each=" categories : ${vendor.categories}">-->
+<!--                <p class="vendor-property category" th:text="${categories.name}"></p>-->
+<!--            </th:block>-->
 
         <div class="label">Location:</div>
         <label class="vendorImg" hidden th:utext="${vendor.Image_url}"></label>
