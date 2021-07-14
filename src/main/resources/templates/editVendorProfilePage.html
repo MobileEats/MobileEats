@@ -15,7 +15,7 @@
         <div class="form-group">
             <label for="categories">Categories</label>
             <select name="categories" id="categories" multiple>
-                <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}"></option>
+                <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}" th:selected="${vendor.categories.contains(category)}"></option>
             </select>
         </div>
         <label for="phoneNumber">Phone Number</label>
@@ -27,7 +27,7 @@
         <label for="location">Location</label>
         <input id="location" type="text" name="location" th:value="${vendor.location}">
         <div class="form-group d-none">
-            <input name="Image_url" type="text" class="form-control" id="image_url">
+            <input name="Image_url" type="text" class="form-control" id="image_url" th:value="${vendor.image_url}">
         </div>
         <div class="form-group">
             <label for="filestack">Profile Picture</label>
