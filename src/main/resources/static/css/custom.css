@@ -2,7 +2,7 @@
 /***** VENDOR PROFILE CAROUSEL ****/
 * {box-sizing:border-box}
 
-/* Slideshow container */
+ Slideshow container
 .slideshow-container {
     max-width: 1000px;
     position: relative;
@@ -10,9 +10,12 @@
 }
 
 /* Hide the images by default */
-.mySlides {
-    display: none;
-}
+/*.mySlides {*/
+/*    display: none;*/
+/*}*/
+/*.mySlides.active{*/
+/*    display:block;*/
+/*}*/
 
 /* Next & previous buttons */
 .prev, .next {
@@ -202,6 +205,7 @@ body {
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 .register{
     font-family: "Roboto", sans-serif;
@@ -286,6 +290,18 @@ input:checked + .slider:before {
 .slider.round {
     border-radius: 34px;
 }
+.slideshow {
+    overflow: hidden;
+}
+
+.slick-dots{
+    bottom: 10px;
+    position: unset;
+}
+
+/*.slick-track{*/
+/*    max-width: 100%;*/
+/*}*/
 
 .slider.round:before {
     border-radius: 50%;
@@ -851,4 +867,13 @@ a .vendor-name:active{
     float: left;
     height: 21px; /*has to match height in star-ratings so they can overlap each other correctly*/
     display: block;
+}
+
+/* slideshow dots */
+.dot:active {
+    background-color: black;
+}
+
+.dot.active{
+    background-color: black;
 }
