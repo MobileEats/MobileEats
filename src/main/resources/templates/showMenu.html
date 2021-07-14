@@ -18,7 +18,7 @@
 <div class="d-flex justify-content-center mb-2">
 <a th:if="${owner}" th:href="'/vendors/' + ${vendor.id} + '/menu/create'"><button type="button" class="btn btn-primary">Add Menu Item</button></a>
 </div>
-    <div class="vendor-card" th:each="item : ${items}">
+    <div class="vendor-card" th:each="item, i : ${items}">
         <div th:id="${item.id}">
 
             <h3 class="vendor-property vendor-name" th:text="${item.name}" />
@@ -34,9 +34,11 @@
                     <div class="label">Description: </div>
                     <p class="vendor-property category" th:text="${item.description}"></p>
                 </div>
-                <div th:switch="${imgFound}" class="col-4">
-                    <img th:case="true" class="menu-img-resize" th:src="${image.getImage_url()}" alt="menu item">
-                    <img th:case="false" class="menu-img-resize" src="/images/no-image-icon.png" alt="menu item">
+<!--                -->
+
+                <div  class="col-4">
+                    <img  class="menu-img-resize" th:src="${images.get(i.index)}" alt="menu item">
+<!--                    <img th:case="false" class="menu-img-resize" src="/images/no-image-icon.png" alt="menu item">-->
                 </div>
             </div>
 
