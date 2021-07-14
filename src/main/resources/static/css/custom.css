@@ -638,6 +638,34 @@ a .vendor-name:active{
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
 
+    /* About Us Page Styling */
+    .vendor-header {
+        margin-bottom: 2em;
+        width: 100%;
+        font-size: xxx-large;
+        margin-top: 1em;
+    }
+    div.member {
+        width: 73%;
+        padding: 2em;
+        text-align: center;
+    }
+    div.members {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    p.locate-message.project-description {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: medium;
+        /* font-weight: 900; */
+        /*display: contents;*/
+        padding: 2em;
+    }
+
     .form-inline {
         display: flex;
         flex-flow: row wrap;
