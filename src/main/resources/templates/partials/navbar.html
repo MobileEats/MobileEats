@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <link rel="stylesheet" href="css/custom.css" />
-
+<link rel="stylesheet" href="css/landing-page.css"/>
 <!--bootstrap navbar-->
 <!--<nav th:fragment="bootstrap_navbar" class="navbar navbar-expand-lg navbar-light bg-light">-->
 <nav th:fragment="navbar" class="navbar-expand-lg navbar-light bg-light2 navbar">
@@ -39,8 +39,8 @@
     </form>
 
 
-    <div class= "nav-item active ml-auto w-25 p-3 d-flex justify-content-around">
-        <a class="nav-item nav-link " href="/about">About Us</a>
+    <div class= "nav-item nav-links active ml-auto w-25 p-3 d-flex justify-content-around">
+        <a class="nav-item nav-link about-link" href="/about">About</a>
 
         <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/register">Register</a>
 
