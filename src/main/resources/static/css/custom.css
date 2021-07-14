@@ -362,7 +362,7 @@ a .vendor-name:active{
 
 .label {
     font-weight: bold;
-    margin-left: 1em;
+    margin: 1em;
 }
 
 #map{
@@ -720,6 +720,7 @@ a .vendor-name:active{
     .register {
         width: 7em;
         height: 7em;
+        border-radius: 15px;
     }
 
     div.landing-icon.register {
