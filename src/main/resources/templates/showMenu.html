@@ -34,9 +34,9 @@
                     <div class="label">Description: </div>
                     <p class="vendor-property category" th:text="${item.description}"></p>
                 </div>
-                <div class="col-4">
-                    <img class="menu-img-resize" th:src="${image.getImage_url()}" alt="menu item">
-<!--                    <img class="menu-img-resize" src="/images/no-image-icon.png" alt="menu item">-->
+                <div th:switch="${imgFound}" class="col-4">
+                    <img th:case="true" class="menu-img-resize" th:src="${image.getImage_url()}" alt="menu item">
+                    <img th:case="false" class="menu-img-resize" src="/images/no-image-icon.png" alt="menu item">
                 </div>
             </div>
 

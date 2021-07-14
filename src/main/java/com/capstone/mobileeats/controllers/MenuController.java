@@ -37,18 +37,32 @@ public class MenuController {
             }
             else {model.addAttribute("owner", false); }
             vendor = vendors.getById(id);
-            MenuItem menuImg = menuItems.getById(1L);//will have to get by menuid
+//            List<MenuItem> listImages = menuItems.findAllByMenu(id);
+//            for (MenuItem image : listImages){
+//                System.out.println(image);
+//            }
+            MenuItem menuImg = menuItems.getById(14L);//will have to get by menuid
             System.out.println("menuImg.getImageUrl() = " + menuImg.getImage_url());
             model.addAttribute("image", menuImg);
             List<MenuItem> items = vendor.getMenu().getItems();
             model.addAttribute("vendor", vendor);
             model.addAttribute("items", items);
+            System.out.println("logged in");
             return "showMenu";
         } catch(Exception e) {
             model.addAttribute("owner", false);
             vendor = vendors.getById(id);
-            MenuItem menuImg = menuItems.getById(1L);//will have to get by menuid
-            System.out.println("menuImg.getImageUrl() = " + menuImg.getImage_url());
+            List<String> Items = menuItems.SearchAllMenu();
+            for (String item : Items){
+                    System.out.println(item);
+            }
+            MenuItem menuImg = menuItems.getById(14L);//will have to get by menuid
+            if (menuImg.getImage_url().isEmpty()){
+                model.addAttribute("imgFound", false);
+            }
+            else {
+                model.addAttribute("imgFound", true);
+            }
             model.addAttribute("image", menuImg);
             List<MenuItem> items = vendor.getMenu().getItems();
             model.addAttribute("vendor", vendor);
