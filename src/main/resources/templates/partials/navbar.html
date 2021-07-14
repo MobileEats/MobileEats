@@ -21,7 +21,9 @@
 <link rel="stylesheet" href="css/landing-page.css"/>
 <!--bootstrap navbar-->
 <!--<nav th:fragment="bootstrap_navbar" class="navbar navbar-expand-lg navbar-light bg-light">-->
-<nav th:fragment="navbar" class="navbar-expand-lg navbar-light bg-light2 navbar">
+
+<!--FYI added internal styling, didn't seem to work with selectors-->
+<nav th:fragment="navbar" class="navbar-expand-lg navbar-light bg-light2 navbar" style="padding-right: 8px">
 
     <a id="img-logo" href="/" class="navbar-brand"> <!--should redirect to homepage-->
         <img src="/images/mobileeats_logo.jpeg" alt="mobileeats logo"  height="60" class="vanishIn"> <!--website logo-->
@@ -38,9 +40,8 @@
         <button class="ml-1 btn btn-primary navbar-button" type="submit">Search</button>
     </form>
 
-
-    <div class= "nav-item nav-links active ml-auto w-25 p-3 d-flex justify-content-around">
-        <a class="nav-item nav-link about-link" href="/about">About</a>
+    <div class= "nav-item active ml-auto w-25 d-flex justify-content-end">
+        <a class="nav-item nav-link " href="/about">About</a>
 
         <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/register">Register</a>
 
