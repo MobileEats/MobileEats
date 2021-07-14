@@ -752,8 +752,41 @@ a .vendor-name:active{
 
     }
 
+    /*** LANDING PAGE MEDIA QUERIES ***/
 
+    .bg-text{
+        transform: translate(13%, 30%);
+        position: static;
+    }
+    .btn-container.animate__animated.animate__zoomIn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 4.5em;
+    }
+    nav{
+        padding: 0;
+    }
+    #img-logo{
+        padding: .75em;
+    }
+    .navbar-toggler{
+        margin-right: 1em;
+    }
+    .navbar-input{
+        width: 60%;
+    }
+    .navbar-form{
+        justify-content: center;
+    }
+    .nav-link{
+        padding: .5em 2em;
+    }
+    .nav-links{
+        margin-right: auto;
+    }
 }
+
 
 /* Screen Size for Tablet */
 @media only screen and (min-width: 481px) and (max-width: 768px) {
