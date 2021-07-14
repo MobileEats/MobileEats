@@ -528,16 +528,7 @@ a .vendor-name:active{
     transform: translate(0px, -300px);
 }
 
-/*** NAVBAR STYLING ***/
 
-.nav-link.active {
-    display: flex;
-    margin-left: auto;
-}
-
-.nav-link {
-    padding: 0.5rem 0.5rem;
-}
 
 
 
@@ -546,8 +537,6 @@ a .vendor-name:active{
 
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
-
-
 
     .vendor-profile-name {
         margin-top: 2.5em;
