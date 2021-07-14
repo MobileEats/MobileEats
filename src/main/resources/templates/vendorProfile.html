@@ -75,7 +75,7 @@
     <!-- Full-width images with number and caption text -->
     <img th:each="image : ${vendor.images}" th:src="${image.imageUrl}" class="img-fluid rounded slideshow-img">
 </div>
-<div class="dots-container mb-5"></div>
+<div th:if="${!vendor.images.isEmpty()}" class="dots-container mb-5"></div>
 <br>
 <br>
 
