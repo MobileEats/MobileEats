@@ -72,7 +72,7 @@
     <div class="vendor-card" th:each="vendor : ${user.following}">
         <div th:id="${vendor.id}">
 
-            <a class="vendor-name" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 class="vendor-property vendor-name" th:text="${vendor.name}" /></a>
+            <a class="vendor-name p-0 border-0" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 class="vendor-property vendor-name" th:text="${vendor.name}" /></a>
             <hr>
             <div class="label">Category: </div>
             <th:block th:each=" categories : ${vendor.categories}">
