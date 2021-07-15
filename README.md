@@ -31,22 +31,31 @@ This is a Codeup capstone project created using Java, SpringBoot, MySQL, Javascr
 ## Contributors
 
 #### Jake Chadwell
-- [Github](https://github.com/jakechadwell) 
-- [LinkedIn](https://www.linkedin.com/in/jakechadwell)
+[<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg' alt='github' height='40'>](https://github.com/jakechadwell)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg' alt='linkedin' height='40'>](https://www.linkedin.com/in/jakechadwell)  
+<!-- - [Github](https://github.com/jakechadwell) 
+- [LinkedIn](https://www.linkedin.com/in/jakechadwell) -->
+
 
 #### Andrew Walsh
-- [Github](https://github.com/andrew-walsh-dev) 
-- [LinkedIn](https://www.linkedin.com/in/andrew-walsh-dev)
+[<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg' alt='github' height='40'>](https://github.com/andrew-walsh-dev)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg' alt='linkedin' height='40'>](https://www.linkedin.com/in/andrew-walsh-dev)  
+<!-- - [Github](https://github.com/andrew-walsh-dev) 
+- [LinkedIn](https://www.linkedin.com/in/andrew-walsh-dev) -->
+
 
 #### Roland Valdez
-- [Github](https://github.com/roland-valdez) 
-- [LinkedIn](https://www.linkedin.com/in/roland-valdez)
+[<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg' alt='github' height='40'>](https://github.com/roland-valdez)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg' alt='linkedin' height='40'>](https://www.linkedin.com/in/roland-valdez)  
+<!-- - [Github](https://github.com/roland-valdez) 
+- [LinkedIn](https://www.linkedin.com/in/roland-valdez) -->
+
 
 #### Kenyon Luce
-- [Github](https://github.com/kenyon-luce) 
-- [LinkedIn](https://www.linkedin.com/in/kenyon-luce)
+[<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg' alt='github' height='40'>](https://github.com/kenyon-luce)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg' alt='linkedin' height='40'>](https://www.linkedin.com/in/kenyon-luce)  
+<!-- - [Github](https://github.com/kenyon-luce) 
+- [LinkedIn](https://www.linkedin.com/in/kenyon-luce) -->
+
 
 #### Hunter Parks
-- [Github](https://github.com/hunter-parks) 
-- [LinkedIn](https://www.linkedin.com/in/hunter-parks-752b20212)
+[<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg' alt='github' height='40'>](https://github.com/hunter-parks)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg' alt='linkedin' height='40'>](https://www.linkedin.com/in/hunter-parks-752b20212)  
+<!-- - [Github](https://github.com/hunter-parks) 
+- [LinkedIn](https://www.linkedin.com/in/hunter-parks-752b20212) -->
 
