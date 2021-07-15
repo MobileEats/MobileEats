@@ -75,8 +75,8 @@ public class MenuController {
 
     @GetMapping("/vendors/{vendorId}/menu/{menuItemId}/edit")
     public String showEditItemForm(Model model, @PathVariable long vendorId, @PathVariable long menuItemId) {
-        List<String> Items = menuItems.findAllByMenuId(vendorId);
-        model.addAttribute("image", Items.get((int)(menuItemId - 1)));
+//        List<String> Items = menuItems.findAllByMenuId(vendorId);
+//        model.addAttribute("image", Items.get((int)(menuItemId)));
         model.addAttribute("vendor", vendors.getById(vendorId));
         model.addAttribute("item", menuItems.getById(menuItemId));
         model.addAttribute("types", itemTypes.findAll());
