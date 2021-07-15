@@ -73,7 +73,7 @@
 
 <div class="slideshow mx-auto w-50 mt-5 mb-2">
     <!-- Full-width images with number and caption text -->
-    <img th:each="image : ${vendor.images}" th:src="${image.imageUrl}" class="img-fluid rounded slideshow-img">
+    <img th:each="image : ${vendor.images}" th:src="${image.imageUrl}" class="rounded slideshow-img">
 </div>
 <div th:if="${!vendor.images.isEmpty()}" class="dots-container mb-5"></div>
 <br>
