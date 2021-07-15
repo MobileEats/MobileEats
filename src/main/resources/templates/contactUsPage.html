@@ -9,52 +9,52 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <!-- FORM-BODY-DIV -->
-<div class="contact-form-body">
+<div class="contact-form-body mt-5 mx-5">
 
-    <div id="contact-form">
-        <h2 class="contact-form-h2">Contact Us</h2>
+    <div class="mx-auto contact-form-center" id="contact-form ">
+        <h2 class="contact-form-h2 text-center mb-3">Contact Us:</h2>
         <!-- FORM FOR THE CONTACT PAGE -->
         <form id="form-id" method="POST">
 
             <!-- NAME-DIV -->
             <div class="form-group">
-                <label for="name" class="cf-label">Your Name</label>
+                <label for="name" class="cf-label mb-0">Your Name:</label>
                 <div class="input-group">
-                    <input type="text" id="name" name="name" required />
+                    <input type="text" size="45" id="name" name="name" required />
                 </div>
             </div>
-            <br>
+
 
             <!-- EMAIL-DIV -->
-            <div class="form-group">
-                <label for="email" class="cf-label">Your Email</label>
+            <div class="form-group ">
+                <label for="email" class="cf-label mb-0">Your Email:</label>
                 <div class="input-group">
-                    <input type="email" id="email" name="email" required />
+                    <input type="email" size="45" id="email" name="email" required />
                 </div>
             </div>
-            <br>
+
 
             <!-- SUBJECT-DIV -->
             <div class="form-group">
-                <label for="subject" class="cf-label">Subject</label>
+                <label for="subject" class="cf-label mb-0">Subject:</label>
                 <div class="input-group">
-                    <input type="text" id="subject" name="subject" required/>
+                    <input type="text" size="45" id="subject" name="subject" required/>
                 </div>
             </div>
-            <br>
+
 
             <!-- MESSAGE-DIV -->
             <div class="form-group">
-                <label for="message" class="cf-label">Message</label>
+                <label for="message" class="cf-label mb-0">Message:</label>
                 <div class="input-group">
-                    <textarea id="message" name="message" rows="6" maxlength="3000" required ></textarea>
+                    <textarea id="message" name="message" cols="43" rows="10" maxlength="3000" required ></textarea>
                 </div>
             </div>
 
 
             <!-- SUBMIT BUTTON -->
-            <div class="form-group">
-                <button type="submit" id="button" class="btn btn-primary">Send Message</button>
+            <div class="form-group text-center">
+                <button type="submit" id="button" class="btn btn-primary ">Send Message</button>
             </div>
 
 

@@ -131,6 +131,9 @@ a{
     border: 1px solid #3C403D;
     color:#3C403D;
 }
+.contact-form-center{
+    width: min-content;
+}
 
 .vendor-body a {
     color:#3C403D;
