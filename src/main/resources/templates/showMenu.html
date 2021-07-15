@@ -37,8 +37,9 @@
 <!--                -->
 
                 <div  class="col-4">
-                    <img  class="menu-img-resize" th:src="${item.image_url}" alt="menu item">
-<!--                    <img th:case="false" class="menu-img-resize" src="/images/no-image-icon.png" alt="menu item">-->
+                    <img th:if="${item.image_url == ''}" class="menu-img-resize" src="/images/no-image-icon.png" alt="menu item">
+                    <img  th:unless="${item.image_url == ''}" class="menu-img-resize" th:src="${item.image_url}" alt="menu item">
+
                 </div>
             </div>
 
