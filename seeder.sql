@@ -54,7 +54,7 @@ VALUES('roland@mobileeats.app ', 'Roland','https://cdn.filestackcontent.com/HbeT
        ('kenyon@mobileeats.app','Kenyon','https://cdn.filestackcontent.com/33C3B0wLQM6qDrKE2uDf','','Luce','Converse, TX','$2a$10$JjFQCrS0WZOkMnMboFqeRuCjo7ACccKrZcBj9qfj4MtpXSFgAUWye','kenyon'),
        ('andrew@mobileeats.app','Andrew','https://cdn.filestackcontent.com/n87ZPIvoTCxZFsVworWQ', '' ,'Walsh' ,'Helotes, TX', '$2a$10$mMOQY5YlPTQq3hKCByPvreryUiq86K8JdzX6p3AOEwCL3Vv0BgLtm','andrew'),
        ( 'hunter@mobileeats.app','Hunter','https://cdn.filestackcontent.com/5e2nbh2QdKkGwwhOS4eS' ,  ''  ,'Parks','Austin, TX' , '$2a$10$dwj/wYUk3S8ceHVv6R4fBOVAgunTTCcn9q/eeCbE4hXGSDJVfyk3O','hunter'),
-       ( 'rollie526@yahoo.com','Roland','https://cdn.filestackcontent.com/kTgzdQBHQZ61bWceepnO','', 'Valdez' ,'Castroville, TX' , '$2a$10$tpsug9VeTTXXsXeZd.RvJ.OPYX1jEXAIX0v3d0JudhPBeyeNSh7Ne','rollie526');
+       ( 'rollie526@yahoo.com','Roland','https://cdn.filestackcontent.com/kTgzdQBHQZ61bWceepnO','', 'Valdez' ,'Castroville, TX' , '$2a$10$tpsug9VeTTXXsXeZd.RvJ.OPYX1jEXAIX0v3d0JudhPBeyeNSh7Ne','rollie');
 
 INSERT INTO vendors (description, email, image_url, is_open, location, name, password, phone_number)
 VALUES ('We are a pop up scratch kitchen that specializes solely in the preparation of chicken dishes. Primarily Nashville Style Hot Fried Chicken. #SpreadLoveEatChicken','valdez.roland.23@gmail.com' ,'https://cdn.filestackcontent.com/UIkOEsPDSTCqZh9YfGQS'  ,'', '330 Perch Meadow, San Antonio, Texas 78253, United States' ,'Chi Chi Birds Hot Chicken'   , '$2a$10$lchOLWvonWDvtpPOcqI9Febq1mLEMXc.eCKg6o2BXGQI37c/FD5nO', '2104736377 '),
