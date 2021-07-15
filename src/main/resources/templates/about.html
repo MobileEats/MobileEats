@@ -16,15 +16,6 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <hr>
-
-<div class="about-project">
-    <h1 class="vendor-header">About the Project</h1>
-    <p class="locate-message project-description">MobileEats is an application that allows mobile food vendors to be able to relay all business information such as current locations, menus, pricing among other things to a wide user audience. Users of the application can utilize it to track vendors via a map interface and can also submit reviews of the different vendors. Application also has notifications capability via Mailgun. This application was created as a team project with Java, Spring Boot, MySQL, HTML, CSS, JavaScript, and jQuery. Application was made as an MVC design pattern. And it implements full CRUD functionality with the custom built database.</p>
-    <div class="repo">
-        <a class="repo-link" href="https://github.com/MobileEats/MobileEats"><i class="fab fa-github mr-1"></i>Link to Repository</a>
-    </div>
-</div>
-<hr>
 <div class="about-us">
     <h1 class="vendor-header">Meet the Team: </h1>
     <div class="members">
@@ -60,7 +51,14 @@
         </div>
     </div>
 </div>
-
+<hr>
+<div class="about-project">
+    <h1 class="vendor-header">About the Project</h1>
+    <p class="locate-message project-description">MobileEats is an application that allows mobile food vendors to be able to relay all business information such as current locations, menus, pricing among other things to a wide user audience. Users of the application can utilize it to track vendors via a map interface and can also submit reviews of the different vendors. Application also has notifications capability via Mailgun. This application was created as a team project with Java, Spring Boot, MySQL, HTML, CSS, JavaScript, and jQuery. Application was made as an MVC design pattern. And it implements full CRUD functionality with the custom built database.</p>
+    <div class="repo">
+        <a class="repo-link" href="https://github.com/MobileEats/MobileEats"><i class="fab fa-github mr-1"></i>Link to Repository</a>
+    </div>
+</div>
 <footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>

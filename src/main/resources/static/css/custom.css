@@ -664,6 +664,13 @@ a .vendor-name:active{
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
 
+    /* User Profile */
+    div.cards {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 0;
+    }
+
     /* Vendor Index Page */
     div.vendor-card {
         /* background-color: #EAE7DC; */
