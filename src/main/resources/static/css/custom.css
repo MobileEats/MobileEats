@@ -2,7 +2,7 @@
 /***** VENDOR PROFILE CAROUSEL ****/
 * {box-sizing:border-box}
 
-/* Slideshow container */
+ Slideshow container
 .slideshow-container {
     max-width: 1000px;
     position: relative;
@@ -10,9 +10,12 @@
 }
 
 /* Hide the images by default */
-.mySlides {
-    display: none;
-}
+/*.mySlides {*/
+/*    display: none;*/
+/*}*/
+/*.mySlides.active{*/
+/*    display:block;*/
+/*}*/
 
 /* Next & previous buttons */
 .prev, .next {
@@ -202,6 +205,7 @@ body {
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 .register{
     font-family: "Roboto", sans-serif;
@@ -286,6 +290,28 @@ input:checked + .slider:before {
 .slider.round {
     border-radius: 34px;
 }
+.slideshow {
+    overflow: hidden;
+}
+
+.slideshow-img{
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+}
+
+.slick-list{
+    max-height: 100% !important;
+}
+
+.slick-dots{
+    bottom: 10px;
+    position: unset;
+}
+
+/*.slick-track{*/
+/*    max-width: 100%;*/
+/*}*/
 
 .slider.round:before {
     border-radius: 50%;
@@ -362,7 +388,7 @@ a .vendor-name:active{
 
 .label {
     font-weight: bold;
-    margin-left: 1em;
+    margin: 1em 1em 0 1em;
 }
 
 #map{
@@ -638,6 +664,61 @@ a .vendor-name:active{
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
 
+    /* User Profile */
+    div.cards {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 0;
+    }
+
+    /* Vendor Index Page */
+    div.vendor-card {
+        /* background-color: #EAE7DC; */
+        margin-right: auto;
+        margin-left: auto;
+        width: 70vw;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-radius: 15px;
+    }
+    .vendor-card {
+        /* background-color: #EAE7DC; */
+        margin-right: auto;
+        margin-left: auto;
+        width: 70vw;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-radius: 15px;
+    }
+
+    /* About Us Page Styling */
+    .vendor-header {
+        margin-bottom: 2em;
+        width: 100%;
+        font-size: xxx-large;
+        margin-top: 1em;
+    }
+    div.member {
+        width: 73%;
+        padding: 2em;
+        text-align: center;
+    }
+    div.members {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    p.locate-message.project-description {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: medium;
+        /* font-weight: 900; */
+        /*display: contents;*/
+        padding: 2em;
+    }
+
     .form-inline {
         display: flex;
         flex-flow: row wrap;
@@ -672,6 +753,7 @@ a .vendor-name:active{
     .register {
         width: 7em;
         height: 7em;
+        border-radius: 15px;
     }
 
     div.landing-icon.register {
@@ -893,4 +975,13 @@ a .vendor-name:active{
     float: left;
     height: 21px; /*has to match height in star-ratings so they can overlap each other correctly*/
     display: block;
+}
+
+/* slideshow dots */
+.dot:active {
+    background-color: black;
+}
+
+.dot.active{
+    background-color: black;
 }

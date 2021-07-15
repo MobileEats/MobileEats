@@ -43,15 +43,16 @@
     <div class= "nav-item active ml-auto w-25 d-flex justify-content-end">
         <a class="nav-item nav-link " href="/about">About</a>
 
+<!--  about      -->
         <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/register">Register</a>
 
         <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/login">Login</a>
         <a class="nav-item nav-link " sec:authorize="isAuthenticated()" href="/logout">Logout</a>
 <!--WILL HAVE TO CHANGE THE 1 TO THE SESSION SCOPE OF THE LOGGED IN USER-->
-        <a class="nav-item nav-link " sec:authorize="isAuthenticated()" href="/profile">
-            <img th:src="${#authentication.principal.image_url}" alt="Company Logo" width="30" height="30" class="rounded-circle">
+        <a class="nav-item nav-link d-flex " sec:authorize="isAuthenticated()" href="/profile"><div> <img th:src="${#authentication.principal.image_url}" alt="Company Logo" width="30" height="30" class="rounded-circle"></div><div> Profile</div>
+
             <!--redirects to profile, image will have default src when not logged in-->
-            Profile
+
         </a>
     </div>
     </div>

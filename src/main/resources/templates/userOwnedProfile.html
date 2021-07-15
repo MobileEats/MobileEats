@@ -59,7 +59,7 @@
     <div class="d-flex align-items-center justify-content-center mt-5 mb-5">
         <img class="rounded-circle profile-image m-3" height="200px" width="200px" th:src="${user.image_url}" alt="user"/>
 
-        <div class="d-flex flex-column user-cont ml-1">
+        <div class="rounded-card d-flex flex-column user-cont ml-1">
             <h4 class="user-txt" th:text="${user.username}"></h4><br>
             <h4 class="user-txt" th:text="${user.first_name} + ' ' + ${user.last_name}"></h4>
             <a class="edit-profile btn btn-primary" th:href="'/users/' + ${user.id} + '/edit'">Edit Profile</a>
@@ -67,14 +67,14 @@
     </div>
 </section>
 
-<div class="cards">
+<!--<div class="cards">-->
     <h1 class="vendor-header">Following</h1>
     <p th:if="${user.following.isEmpty()}">You aren't following anyone at the moment. To follow a vendor, go to their profile and click the follow button!</p>
 
     <div class="vendor-card" th:each="vendor : ${user.following}">
         <div th:id="${vendor.id}">
 
-            <a class="vendor-name" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 class="vendor-property vendor-name" th:text="${vendor.name}" /></a>
+            <a class="vendor-name p-0 border-0" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3 class="vendor-property vendor-name" th:text="${vendor.name}" /></a>
             <hr>
             <div class="label">Category: </div>
             <th:block th:each=" categories : ${vendor.categories}">
@@ -84,9 +84,6 @@
             <p class="vendor-property vendor-location" th:text="${vendor.location}" />
         </div>
     </div>
-
-</div>
-
 
 <footer th:replace="partials/footer :: footer"></footer>
 

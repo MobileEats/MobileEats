@@ -37,12 +37,15 @@
         </div>
         <!-- THE BELOW FORM GROUP HOLDS THE URL TO THE UPLOADED IMAGE, IT IS INVISIBLE -->
         <div class="form-group d-none">
-            <input name="image_url" type="text" class="form-control" id="image_url">
+            <input name="image_url" type="text" class="form-control" id="image_url" th:value="${item.image_url}">
         </div>
         <div class="form-group">
             <label for="filestack">Item Image</label>
             <button id="filestack" class="btn btn-primary" type="button">Select Image</button>
         </div>
+<!--        <div id="thumbnail-container" class="mb-4">-->
+<!--            <img id="thumbnail" th:src="${image}" width="200px">-->
+<!--        </div>-->
         <button class="btn btn-primary" type="submit">Edit Item</button>
     </form>
 </div>

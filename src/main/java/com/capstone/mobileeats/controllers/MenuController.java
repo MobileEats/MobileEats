@@ -37,18 +37,18 @@ public class MenuController {
             }
             else {model.addAttribute("owner", false); }
             vendor = vendors.getById(id);
+            List<String> Items = menuItems.findAllByMenuId(id);
+            model.addAttribute("images", Items);
             List<MenuItem> items = vendor.getMenu().getItems();
-//            String image = vendor.getMenu().getImageUrl();
-//            System.out.println("image = " + image);
-//            model.addAttribute("image", image);
             model.addAttribute("vendor", vendor);
             model.addAttribute("items", items);
-//            Menu newMenu = me
-//            model.addAttribute("menuImage", ima);
+            System.out.println("logged in");
             return "showMenu";
         } catch(Exception e) {
             model.addAttribute("owner", false);
             vendor = vendors.getById(id);
+            List<String> Items = menuItems.findAllByMenuId(id);
+            model.addAttribute("images", Items);
             List<MenuItem> items = vendor.getMenu().getItems();
             model.addAttribute("vendor", vendor);
             model.addAttribute("items", items);
@@ -75,6 +75,8 @@ public class MenuController {
 
     @GetMapping("/vendors/{vendorId}/menu/{menuItemId}/edit")
     public String showEditItemForm(Model model, @PathVariable long vendorId, @PathVariable long menuItemId) {
+//        List<String> Items = menuItems.findAllByMenuId(vendorId);
+//        model.addAttribute("image", Items.get((int)(menuItemId)));
         model.addAttribute("vendor", vendors.getById(vendorId));
         model.addAttribute("item", menuItems.getById(menuItemId));
         model.addAttribute("types", itemTypes.findAll());

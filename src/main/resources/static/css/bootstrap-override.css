@@ -131,6 +131,9 @@ a{
     border: 1px solid #3C403D;
     color:#3C403D;
 }
+.contact-form-center{
+    width: min-content;
+}
 
 .vendor-body a {
     color:#3C403D;
@@ -142,7 +145,10 @@ a{
 .menu-img-resize{
     width: 10vw;
     height: auto;
+}
 
+.rounded-card{
+    border-radius: 15px;
 }
 /*** ABOUT US PAGE ***/
 
