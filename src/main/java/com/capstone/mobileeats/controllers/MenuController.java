@@ -37,13 +37,8 @@ public class MenuController {
             }
             else {model.addAttribute("owner", false); }
             vendor = vendors.getById(id);
-            List<MenuItem> listImages = menuItems.findAll();
-            for (MenuItem image : listImages){
-                System.out.println(image.getImage_url());
-            }
-            MenuItem menuImg = menuItems.getById(14L);//will have to get by menuid
-            System.out.println("menuImg.getImageUrl() = " + menuImg.getImage_url());
-            model.addAttribute("image", menuImg);
+            List<String> Items = menuItems.findAllByMenuId(id);
+            model.addAttribute("images", Items);
             List<MenuItem> items = vendor.getMenu().getItems();
             model.addAttribute("vendor", vendor);
             model.addAttribute("items", items);
@@ -54,21 +49,6 @@ public class MenuController {
             vendor = vendors.getById(id);
             List<String> Items = menuItems.findAllByMenuId(id);
             model.addAttribute("images", Items);
-            for (String item : Items){
-                System.out.println(item);
-            }
-//            List<MenuItem> Items = menuItems.findAll();
-//            for (MenuItem item : Items){
-//                System.out.println(item.getImage_url());
-//            }
-            MenuItem menuImg = menuItems.getById(14L);//will have to get by menuid
-            if (menuImg.getImage_url().isEmpty()){
-                model.addAttribute("imgFound", false);
-            }
-            else {
-                model.addAttribute("imgFound", true);
-            }
-            model.addAttribute("image", menuImg);
             List<MenuItem> items = vendor.getMenu().getItems();
             model.addAttribute("vendor", vendor);
             model.addAttribute("items", items);
@@ -95,6 +75,8 @@ public class MenuController {
 
     @GetMapping("/vendors/{vendorId}/menu/{menuItemId}/edit")
     public String showEditItemForm(Model model, @PathVariable long vendorId, @PathVariable long menuItemId) {
+        List<String> Items = menuItems.findAllByMenuId(vendorId);
+        model.addAttribute("image", Items.get((int)(menuItemId - 1)));
         model.addAttribute("vendor", vendors.getById(vendorId));
         model.addAttribute("item", menuItems.getById(menuItemId));
         model.addAttribute("types", itemTypes.findAll());
