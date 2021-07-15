@@ -22,7 +22,7 @@ This is a Codeup capstone project created using Java, SpringBoot, MySQL, Javascr
 
 ## API's Used
 
-  - [Mapbox API](https://www.contributor-covenant.org/) - Used to display a map with markers indicating where registered vendors are located
+  - [Mapbox API](https://docs.mapbox.com/mapbox-gl-js/api/) - Used to display a map with markers indicating where registered vendors are located
   
   - [Mapbox Directions API](https://docs.mapbox.com/api/navigation/directions/) - Used to display travel times between the users and vendors
   
