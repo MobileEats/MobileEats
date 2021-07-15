@@ -69,6 +69,8 @@
 
 <div class="cards">
     <h1 class="vendor-header">Following</h1>
+    <p th:if="${user.following.isEmpty()}">You aren't following anyone at the moment. To follow a vendor, go to their profile and click the follow button!</p>
+
     <div class="vendor-card" th:each="vendor : ${user.following}">
         <div th:id="${vendor.id}">
 
@@ -82,6 +84,7 @@
             <p class="vendor-property vendor-location" th:text="${vendor.location}" />
         </div>
     </div>
+
 </div>
 
 
