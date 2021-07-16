@@ -206,16 +206,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    position: relative;
-}
-.background{
-    background: url(../images/pattern2.png) repeat;
-    background-size: contain;
-    width: 100%;
-    height: 102%;
-    position: absolute;
-    z-index: -9999;
-    display: block;
 }
 .register{
     font-family: "Roboto", sans-serif;
@@ -395,11 +385,6 @@ a .vendor-name:active{
 .vendor-property{
     margin-left: 1em;
 }
-.card-logo{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
 
 .label {
     font-weight: bold;
@@ -456,8 +441,6 @@ a .vendor-name:active{
 .rate:not(:checked) > label:before {
     content: '★ ';
 }
-
-
 .rate > input:checked ~ label {
     color: #8DC26F;
 }
@@ -685,17 +668,6 @@ a .vendor-name:active{
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
 
-    /* Vendor Profile */
-    .vendor-profile-name {
-        margin-top: 3.5em;
-    }
-    .btn-primary {
-        margin-top: 1em;
-    }
-    .mb-3, .my-3 {
-        margin-bottom: 1rem!important;
-    }
-
     /* User Profile */
     div.cards {
         margin-top: 30px;
@@ -725,7 +697,7 @@ a .vendor-name:active{
 
     /* About Us Page Styling */
     .vendor-header {
-        margin-bottom: 1em;
+        margin-bottom: 2em;
         width: 100%;
         font-size: xxx-large;
         margin-top: 1em;
@@ -768,6 +740,10 @@ a .vendor-name:active{
 
     input#address {
         width: 50%;
+    }
+
+    .vendor-profile-name {
+        margin-top: 2.5em;
     }
 
     button.navbar-toggler {
@@ -1006,4 +982,3 @@ a .vendor-name:active{
 .dot.active{
     background-color: black;
 }
-
