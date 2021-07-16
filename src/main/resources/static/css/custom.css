@@ -209,10 +209,10 @@ body {
     position: relative;
 }
 .background{
-    background: url(../images/pattern.png) repeat;
+    background: url(../images/pattern2.png) repeat;
     background-size: contain;
     width: 100%;
-    height: 105%;
+    height: 102%;
     position: absolute;
     z-index: -9999;
     display: block;
@@ -395,6 +395,11 @@ a .vendor-name:active{
 .vendor-property{
     margin-left: 1em;
 }
+.card-logo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .label {
     font-weight: bold;
@@ -553,8 +558,8 @@ a .vendor-name:active{
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #4CAF50;
-    width: 100%;
+    /*background: #4CAF50;*/
+    /*width: 100%;*/
     border: 0;
     padding: 15px;
     color: #FFFFFF;
@@ -567,7 +572,8 @@ a .vendor-name:active{
 
 .vendor-body button:hover{
     text-decoration: none;
-    background-color: #8DC26F;
+    /*background-color: #8DC26F;*/
+    border: 1px solid black;
     transform: scale(1.1);
     transition-timing-function: ease-in-out;
 }
@@ -588,7 +594,10 @@ a .vendor-name:active{
 
 .follow-btn{
     position:absolute;
-    transform: translate(0px, -170px);
+    transform: translate(0px, -220px);
+    height: 75%;
+    display:flex;
+    align-items: center;
     /*margin-top: 5em;*/
 }
 
@@ -674,6 +683,17 @@ a .vendor-name:active{
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
 
+    /* Vendor Profile */
+    .vendor-profile-name {
+        margin-top: 3.5em;
+    }
+    .btn-primary {
+        margin-top: 1em;
+    }
+    .mb-3, .my-3 {
+        margin-bottom: 1rem!important;
+    }
+
     /* User Profile */
     div.cards {
         margin-top: 30px;
@@ -703,7 +723,7 @@ a .vendor-name:active{
 
     /* About Us Page Styling */
     .vendor-header {
-        margin-bottom: 2em;
+        margin-bottom: 1em;
         width: 100%;
         font-size: xxx-large;
         margin-top: 1em;
@@ -736,9 +756,9 @@ a .vendor-name:active{
         justify-content: center;
     }
 
-    .ml-auto, .mx-auto {
-        margin: auto auto!important;
-    }
+    /*.ml-auto, .mx-auto {*/
+    /*    margin: auto auto!important;*/
+    /*}*/
 
     input.field {
         width: 50%;
@@ -746,10 +766,6 @@ a .vendor-name:active{
 
     input#address {
         width: 50%;
-    }
-
-    .vendor-profile-name {
-        margin-top: 2.5em;
     }
 
     button.navbar-toggler {
@@ -798,8 +814,8 @@ a .vendor-name:active{
         display: flex;
         justify-content: space-evenly;
         text-align: center;
-        margin-left: 3em;
-        width: 50%;
+        margin-left: initial;
+        width: initial;
     }
 
     .navbar {
@@ -809,29 +825,6 @@ a .vendor-name:active{
     .nav-link {
         display: inline-flex;
         padding: 0.5rem 0.6rem;
-    }
-
-    .active, .dot:hover {
-        background-color: ghostwhite;
-        margin-left: 21px;
-        align-items: center;
-    }
-
-    /*.nav-item.active.ml-auto.w-25.p-3.d-flex.justify-content-around {*/
-    /*    display: flex;*/
-    /*    flex-direction: column;*/
-    /*    justify-content: center;*/
-    /*    align-items: center;*/
-    /*    margin-right: auto;*/
-    /*}*/
-
-    /*not sure what this does, but matching it to refactored nav-item just in case*/
-    .nav-item.active.ml-auto.w-25.d-flex.justify-content-end {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-right: auto;
     }
 
     button.follow-button {
@@ -885,8 +878,17 @@ a .vendor-name:active{
     .nav-link{
         padding: .5em 2em;
     }
-    .nav-links{
-        margin-right: auto;
+    #navbarContent{
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+        flex-direction: column;
+        /*align-items: center;*/
+        /*justify-content: center;*/
+        /*align-content: center;*/
+    }
+    #navbar-links{
+        width: initial;
+        margin: 0;
     }
 }
 
@@ -904,7 +906,7 @@ a .vendor-name:active{
 
     .register {
         width: 7em;
-        height: 7em;
+        /*height: 7em;*/
     }
 
     div.landing-icon.register {
@@ -924,7 +926,6 @@ a .vendor-name:active{
         display: flex;
         justify-content: space-evenly;
         text-align: center;
-        margin-left: 3em;
     }
 
     .nav-link {
@@ -933,9 +934,7 @@ a .vendor-name:active{
     }
 
     .active, .dot:hover {
-        background-color: ghostwhite;
-        margin-left: 21px;
-        align-items: center;
+        /*align-items: center;*/
     }
 
     .nav-item.active.ml-auto.w-25.p-3.d-flex.justify-content-around {
@@ -970,6 +969,14 @@ a .vendor-name:active{
 
 /* Screen Size for Desktop */
 @media only screen and (min-width: 769px) {
+
+    #navbar-links{
+        margin-left: auto;
+        width: 25%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 
 }
 
