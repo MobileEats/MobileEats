@@ -120,6 +120,60 @@
             align-items: center;
             margin-top: 4.5em;
     }
+    /**/
+
+    .navbar-collapse {
+        display: flex;
+        justify-content: space-evenly;
+        text-align: center;
+        margin-left: initial;
+        width: initial;
+    }
+
+    .navbar {
+        z-index: 9999;
+    }
+
+    .nav-link {
+        display: inline-flex;
+        padding: 0.5rem 0.6rem;
+    }
+
+    nav{
+        padding: 0;
+    }
+    #img-logo{
+        padding: .75em;
+    }
+    .navbar-toggler{
+        margin-right: 1em;
+    }
+    .navbar-input{
+        width: 60%;
+    }
+    .navbar-form{
+        justify-content: center;
+    }
+    /*.nav-link{*/
+    /*    padding: .5em 2em;*/
+    /*}*/
+    .nav-links{
+        margin-right: auto;
+    }
+    #navbar-links{
+        justify-content: initial;
+    }
+    /**/
+    .bg-text{
+        transform: translate(13%, 30%);
+        position: static;
+    }
+    .btn-container.animate__animated.animate__zoomIn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 4.5em;
+    }
     nav{
         padding: 0;
     }
@@ -138,11 +192,17 @@
     .nav-link{
         padding: .5em 2em;
     }
-    .nav-links{
-        margin-right: auto;
+    #navbarContent{
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+        flex-direction: column;
+        /*align-items: center;*/
+        /*justify-content: center;*/
+        /*align-content: center;*/
     }
     #navbar-links{
-        justify-content: initial;
+        width: initial;
+        margin: 0;
     }
 }
 @media only screen and (max-width: 325px) {
@@ -151,12 +211,121 @@
     }
 }
 
-@media only screen and (min-width: 400px) and (max-width: 470px){
-    #navbar-links{
-        margin-left: 1.5em;
-        width: initial;
-        justify-content: initial;
+/*@media only screen and (min-width: 400px) and (max-width: 470px){*/
+/*    #navbar-links{*/
+/*        margin-left: 1.5em;*/
+/*        width: initial;*/
+/*        justify-content: initial;*/
+/*    }*/
+/*}*/
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+    .vendor-profile-name {
+        margin-top: 3em;
+    }
+
+    button.navbar-toggler {
+        margin-left: auto;
+    }
+
+    .register {
+        width: 7em;
+        /*height: 7em;*/
+    }
+
+    div.landing-icon.register {
+        width: 8em;
+        height: 8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid #f1f1f1;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.4);
+        border-radius: 50%;
+        margin: 1em;
+    }
+
+    .navbar-collapse {
+        display: flex;
+        justify-content: space-evenly;
+        text-align: center;
+    }
+
+    .nav-link {
+        display: inline-flex;
+        padding: 0.5rem -1rem;
+    }
+
+    .active, .dot:hover {
+        /*align-items: center;*/
+    }
+
+    .nav-item.active.ml-auto.w-25.p-3.d-flex.justify-content-around {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: auto;
+    }
+
+    button.follow-button {
+        margin-top: 10em;
+    }
+
+    .follow-btn {
+        margin-right: 10em;
+        margin-top: 1em;
+    }
+
+    div.contact-form-button {
+        margin-left: 0;
+        margin-bottom: 2em;
+    }
+
+    button#message-button {
+        position: absolute;
+        margin-left: 7em;
+        margin-top: -64px;
+
     }
 }
 
+/* Screen Size for Desktop */
+@media only screen and (min-width: 769px) {
+
+    #navbar-links{
+        margin-left: auto;
+        width: 25%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+}
+
+/*VENDOR AVERAGE STAR RATING CSS*/
+.star-ratings {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+    font-size: 0;
+    height: 21px; /*crops image height to avoid the image repeating, same for width*/
+    line-height: 0;
+    overflow: hidden;
+    width: 110px;
+}
+.star-ratings-fill {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x 0 100%; /*can fill from 0 to 100% of the image*/
+    float: left;
+    height: 21px; /*has to match height in star-ratings so they can overlap each other correctly*/
+    display: block;
+}
+
+/* slideshow dots */
+.dot:active {
+    background-color: black;
+}
+
+.dot.active{
+    background-color: black;
+}
 
