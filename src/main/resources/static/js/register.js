@@ -26,7 +26,8 @@ const uploadFailed = (results) => {
 
 const filestackOptions = {
     onUploadDone: uploadDone,
-    onFileUploadFailed: uploadFailed
+    onFileUploadFailed: uploadFailed,
+    accept: ['image/*']
 };
 const imageUrl = document.getElementById("image_url");
 

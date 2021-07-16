@@ -294,6 +294,16 @@ input:checked + .slider:before {
     overflow: hidden;
 }
 
+.slideshow-img{
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+}
+
+.slick-list{
+    max-height: 100% !important;
+}
+
 .slick-dots{
     bottom: 10px;
     position: unset;
@@ -378,7 +388,7 @@ a .vendor-name:active{
 
 .label {
     font-weight: bold;
-    margin: 1em;
+    margin: 1em 1em 0 1em;
 }
 
 #map{
@@ -653,6 +663,13 @@ a .vendor-name:active{
 
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
+
+    /* User Profile */
+    div.cards {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 0;
+    }
 
     /* Vendor Index Page */
     div.vendor-card {
