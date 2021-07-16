@@ -26,10 +26,11 @@
 
 <div id='map' class="map-index cards"></div>
 
-<!--<div class="cards">-->
+
 <!--<div class="d-inline-block m-auto">-->
 <h1 class="vendor-header">Vendors</h1>
 <!--    </div>-->
+
 <div class="vendor-card" th:each="vendor, i : ${vendors}">
     <!-- i iterates through vendors, but unlike vendor, nothings passing to it from backend-->
     <div th:id="${vendor.id}">

@@ -398,7 +398,7 @@ a .vendor-name:active{
 .card-logo{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .label {
@@ -1006,3 +1006,4 @@ a .vendor-name:active{
 .dot.active{
     background-color: black;
 }
+
