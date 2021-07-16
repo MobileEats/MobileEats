@@ -56,8 +56,9 @@
         <th:block th:each=" categories : ${vendor.categories}">
             <p class="vendor-property category ml-4 mb-0" th:text="${categories.name}"></p>
         </th:block>
-
-
+                <div class="label ml-4">Description:</div>
+                <p th:if="${vendor.description != ''}"class="vendor-property vendor-location ml-4 mb-0" th:text="${vendor.description}"/>
+                <p th:unless="${vendor.description != ''}"class="vendor-property vendor-location ml-4 mb-0" >No Description Provided</p>
                 <div class="label ml-4">Location:</div>
                 <label class="vendorImg" hidden th:utext="${vendor.Image_url}"></label>
                 <p class="vendor-property vendor-location ml-4 mb-0" th:text="${vendor.location}"/>
