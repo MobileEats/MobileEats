@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <title>Discover Vendors</title>
 </head>
-<body>
-
+<body class="d-flex flex-column">
+<div class="background"></div>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <!--<hr>--> <!--not sure why we need this, makes navbar look weird-->
-<h1 class="vendor-header pt-3">Want To Locate Yourself?</h1>
-<p class="locate-message">Either click the magnifying glass, or enter your location in the search bar and hit the search
-    button!</p>
+<div class="d-inline-block m-auto">
+    <h1 class="vendor-header pt-3 bg-light2 d-inline-block">Want To Locate Yourself?</h1>
+</div>
+<div class="d-inline-block m-auto">
+    <p class="locate-message bg-light2 d-inline-block">Either click the magnifying glass, or enter your location in the search bar and
+        hit the search
+        button!</p>
+    </div>
 <div class="geoSearch">
     <!--    <label>Locate Me:</label>-->
     <a href="#" id="modalLocate"><i class="locate-icon fas fa-search-location fa-2x"></i></a>
@@ -22,8 +27,9 @@
 <div id='map' class="map-index cards"></div>
 
 <!--<div class="cards">-->
-
+<div class="d-inline-block m-auto">
 <h1 class="vendor-header">Vendors</h1>
+    </div>
 <div class="vendor-card" th:each="vendor, i : ${vendors}">
     <!-- i iterates through vendors, but unlike vendor, nothings passing to it from backend-->
     <div th:id="${vendor.id}">
