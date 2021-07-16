@@ -664,6 +664,17 @@ a .vendor-name:active{
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
 
+    /* Vendor Profile */
+    .vendor-profile-name {
+        margin-top: 3.5em;
+    }
+    .btn-primary {
+        margin-top: 1em;
+    }
+    .mb-3, .my-3 {
+        margin-bottom: 1rem!important;
+    }
+
     /* User Profile */
     div.cards {
         margin-top: 30px;
@@ -736,10 +747,6 @@ a .vendor-name:active{
 
     input#address {
         width: 50%;
-    }
-
-    .vendor-profile-name {
-        margin-top: 2.5em;
     }
 
     button.navbar-toggler {
