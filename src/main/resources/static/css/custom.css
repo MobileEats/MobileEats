@@ -543,7 +543,7 @@ a .vendor-name:active{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -200%);
+    transform: translate(-50%, -620%);
     z-index: 2;
     width: 80%;
     padding: 20px;
@@ -602,7 +602,7 @@ a .vendor-name:active{
 
 .follow-btn{
     position:absolute;
-    transform: translate(0px, -220px);
+    transform: translate(0px, -210px);
     height: 75%;
     display:flex;
     align-items: center;
