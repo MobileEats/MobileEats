@@ -31,29 +31,47 @@
                 class="vendor-property vendor-name truck-name" th:text="${vendor.name}"></h3></a>
         <div class="travel-time ml-4"></div>
         <hr>
+
         <div class="d-flex">
             <div class="d-flex flex-column col-8">
-                <div class="label">
-                    <div class="star-ratings">
+               
+
+        <!--            GET VENDOR AVERAGE STAR RATING-->
+        <div class="label ml-4">
+            <div class="star-ratings">
                 <span th:style="'width:' + ${((rating.get(i.index)) / 5) * 100} +  '%'"
                       class="star-ratings-fill"></span>
-                    </div>
-                    <!--what happens if a vendor deletes their account? ids will be out of order-->
-                </div>
+            </div>
+            <!--what happens if a vendor deletes their account? ids will be out of order-->
+        </div>
+
+        <div class="label ml-4">Category:</div>
+        <th:block th:each=" categories : ${vendor.categories}">
+            <p class="vendor-property category ml-4" th:text="${categories.name}"></p>
+        </th:block>
+
+        <!--    <h1 class="vendor-header">Vendors</h1>-->
+        <!--    <div class="vendor-card" th:each="vendor, i : ${vendors}"> &lt;!&ndash; i iterates through vendors, but unlike vendor, nothings passing to it from backend&ndash;&gt;-->
+        <!--        <div th:id="${vendor.id}">-->
+        <!--            <a class="vendor-name" th:href="@{/vendors/profile/{vendorId}(vendorId=${vendor.id})}"><h3-->
+        <!--                    class="vendor-property vendor-name truck-name" th:text="${vendor.name}"></h3></a>-->
+
 
                 <div class="label">Category:</div>
                 <th:block th:each=" categories : ${vendor.categories}">
                     <p class="vendor-property category mb-0" th:text="${categories.name}"></p>
                 </th:block>
 
-                <div class="label">Location:</div>
+
+                <div class="label ml-4">Location:</div>
                 <label class="vendorImg" hidden th:utext="${vendor.Image_url}"></label>
-                <p class="vendor-property vendor-location" th:text="${vendor.location}"/>
+                <p class="vendor-property vendor-location ml-4" th:text="${vendor.location}"/>
             </div>
             <div class="d-flex col-4">
                 <img class="card-logo" th:src="${vendor.Image_url}">
             </div>
         </div>
+
 
         <!--            GET VENDOR AVERAGE STAR RATING-->
 
