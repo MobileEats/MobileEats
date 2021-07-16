@@ -543,8 +543,8 @@ a .vendor-name:active{
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #4CAF50;
-    width: 100%;
+    /*background: #4CAF50;*/
+    /*width: 100%;*/
     border: 0;
     padding: 15px;
     color: #FFFFFF;
@@ -557,7 +557,8 @@ a .vendor-name:active{
 
 .vendor-body button:hover{
     text-decoration: none;
-    background-color: #8DC26F;
+    /*background-color: #8DC26F;*/
+    border: 1px solid black;
     transform: scale(1.1);
     transition-timing-function: ease-in-out;
 }
@@ -578,7 +579,10 @@ a .vendor-name:active{
 
 .follow-btn{
     position:absolute;
-    transform: translate(0px, -170px);
+    transform: translate(0px, -220px);
+    height: 75%;
+    display:flex;
+    align-items: center;
     /*margin-top: 5em;*/
 }
 
