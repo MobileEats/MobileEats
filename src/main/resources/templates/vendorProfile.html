@@ -13,8 +13,9 @@
     <div class="banner-img">
         <img class="banner-img" src="/images/pexels4.jpeg" alt="vendor banner img">
     </div>
-    <h1 class="vendor-profile-name" th:utext="${vendor.name}"></h1>
+
     <div class="d-flex flex-column align-items-center vendor-body mx-auto my-2">
+        <h1 class="vendor-profile-name" th:utext="${vendor.name}"></h1>
         <!--                Need to fix followers and reviews-->
         <input class="vendorId" hidden th:value="${vendor.id}">
         <div class="d-flex align align-items-center">
