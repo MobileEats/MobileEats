@@ -35,28 +35,28 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarContent">
 
-        <form class="form-inline navbar-form" action="/vendor" method="GET">
-            <input class="field navbar-input" type="text" size="50" name="search" placeholder="Search for vendors">
+    <form class="form-inline navbar-form" action="/vendor" method="GET">
+        <input class="field navbar-input" type="text" size="50" name="search" placeholder="Search for vendors">
 
-            <button class="ml-1 btn btn-primary navbar-button" type="submit">Search</button>
-        </form>
+        <button class="ml-1 btn btn-primary navbar-button" type="submit">Search</button>
+    </form>
 
-        <div class="nav-item active ml-auto w-25 d-flex justify-content-end align-items-center">
-            <a class="nav-item nav-link " href="/about">About</a>
+    <div id="navbar-links" class= "nav-item active">
+        <a class="nav-item nav-link " href="/about">About</a>
 
-            <!--  about      -->
-            <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/register">Register</a>
+<!--  about      -->
+        <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/register">Register</a>
 
-            <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/login">Login</a>
-            <a class="nav-item nav-link " sec:authorize="isAuthenticated()" href="/logout">Logout</a>
-            <!--WILL HAVE TO CHANGE THE 1 TO THE SESSION SCOPE OF THE LOGGED IN USER-->
-            <a class="nav-item nav-link d-flex align-items-center" sec:authorize="isAuthenticated()" href="/profile">
-                <div>
-                    <img th:src="${#authentication.principal.image_url}" alt="Company Logo" width="30" height="30" class="rounded-circle">
-                </div>
-                <div class="ml-2">Profile</div>
-                <!--redirects to profile, image will have default src when not logged in-->
-            </a>
-        </div>
+        <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/login">Login</a>
+        <a class="nav-item nav-link " sec:authorize="isAuthenticated()" href="/logout">Logout</a>
+<!--WILL HAVE TO CHANGE THE 1 TO THE SESSION SCOPE OF THE LOGGED IN USER-->
+        <a class="nav-item nav-link " sec:authorize="isAuthenticated()" href="/profile">
+            <div>
+                <img th:src="${#authentication.principal.image_url}" alt="Company Logo" width="30" height="30" class="rounded-circle">
+            </div>
+            <div class="ml-2">Profile</div>
+            <!--redirects to profile, image will have default src when not logged in-->
+        </a>
+    </div>
     </div>
 </nav>

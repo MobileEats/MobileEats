@@ -730,9 +730,9 @@ a .vendor-name:active{
         justify-content: center;
     }
 
-    .ml-auto, .mx-auto {
-        margin: auto auto!important;
-    }
+    /*.ml-auto, .mx-auto {*/
+    /*    margin: auto auto!important;*/
+    /*}*/
 
     input.field {
         width: 50%;
@@ -755,9 +755,11 @@ a .vendor-name:active{
     }
 
     .register {
-        width: 7em;
-        height: 7em;
-        border-radius: 15px;
+        height: 4em;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     div.landing-icon.register {
@@ -790,8 +792,8 @@ a .vendor-name:active{
         display: flex;
         justify-content: space-evenly;
         text-align: center;
-        margin-left: 3em;
-        width: 50%;
+        margin-left: initial;
+        width: initial;
     }
 
     .navbar {
@@ -801,29 +803,6 @@ a .vendor-name:active{
     .nav-link {
         display: inline-flex;
         padding: 0.5rem 0.6rem;
-    }
-
-    .active, .dot:hover {
-        background-color: ghostwhite;
-        margin-left: 21px;
-        align-items: center;
-    }
-
-    /*.nav-item.active.ml-auto.w-25.p-3.d-flex.justify-content-around {*/
-    /*    display: flex;*/
-    /*    flex-direction: column;*/
-    /*    justify-content: center;*/
-    /*    align-items: center;*/
-    /*    margin-right: auto;*/
-    /*}*/
-
-    /*not sure what this does, but matching it to refactored nav-item just in case*/
-    .nav-item.active.ml-auto.w-25.d-flex.justify-content-end {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-right: auto;
     }
 
     button.follow-button {
@@ -877,8 +856,17 @@ a .vendor-name:active{
     .nav-link{
         padding: .5em 2em;
     }
-    .nav-links{
-        margin-right: auto;
+    #navbarContent{
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+        flex-direction: column;
+        /*align-items: center;*/
+        /*justify-content: center;*/
+        /*align-content: center;*/
+    }
+    #navbar-links{
+        width: initial;
+        margin: 0;
     }
 }
 
@@ -896,7 +884,7 @@ a .vendor-name:active{
 
     .register {
         width: 7em;
-        height: 7em;
+        /*height: 7em;*/
     }
 
     div.landing-icon.register {
@@ -916,7 +904,6 @@ a .vendor-name:active{
         display: flex;
         justify-content: space-evenly;
         text-align: center;
-        margin-left: 3em;
     }
 
     .nav-link {
@@ -925,9 +912,7 @@ a .vendor-name:active{
     }
 
     .active, .dot:hover {
-        background-color: ghostwhite;
-        margin-left: 21px;
-        align-items: center;
+        /*align-items: center;*/
     }
 
     .nav-item.active.ml-auto.w-25.p-3.d-flex.justify-content-around {
@@ -962,6 +947,14 @@ a .vendor-name:active{
 
 /* Screen Size for Desktop */
 @media only screen and (min-width: 769px) {
+
+    #navbar-links{
+        margin-left: auto;
+        width: 25%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 
 }
 
