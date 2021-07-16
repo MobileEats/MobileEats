@@ -141,11 +141,21 @@
     .nav-links{
         margin-right: auto;
     }
+    #navbar-links{
+        justify-content: initial;
+    }
 }
 @media only screen and (max-width: 325px) {
     #img-logo{
         max-width: 1em;
+    }
+}
 
+@media only screen and (min-width: 400px) and (max-width: 470px){
+    #navbar-links{
+        margin-left: 1.5em;
+        width: initial;
+        justify-content: initial;
     }
 }
 
