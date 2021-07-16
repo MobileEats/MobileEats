@@ -751,9 +751,11 @@ a .vendor-name:active{
     }
 
     .register {
-        width: 7em;
-        height: 7em;
-        border-radius: 15px;
+        height: 4em;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     div.landing-icon.register {
