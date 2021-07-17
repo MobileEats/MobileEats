@@ -530,7 +530,8 @@ a .vendor-name:active{
 
 .banner-img{
     width: 100%;
-    max-height: 400px;
+    height: 90%;
+    object-fit: cover;
     -webkit-filter: blur(2px);
 }
 

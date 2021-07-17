@@ -26,12 +26,12 @@
     padding: 20px;
     text-align: center;
 }
-.banner{
-    height: 25%;
-}
-.banner-img{
-    width: 100%;
-}
+/*.banner{*/
+/*    height: 25%;*/
+/*}*/
+/*.banner-img{*/
+/*    width: 100%;*/
+/*}*/
 
 .redirect-link{
     color: #f2f2f2;
@@ -41,28 +41,39 @@
     color: #cccccc;
 }
 
+body{
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+
 /*** NAVBAR ***/
 
-.navbar-input{
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    border: 0;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-}
+/*.navbar-input{*/
+/*    font-family: "Roboto", sans-serif;*/
+/*    outline: 0;*/
+/*    background: #f2f2f2;*/
+/*    border: 0;*/
+/*    padding: 15px;*/
+/*    box-sizing: border-box;*/
+/*    font-size: 14px;*/
+/*}*/
 
-.navbar-button{
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: #4CAF50;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+/*.navbar-button{*/
+/*    font-family: "Roboto", sans-serif;*/
+/*    text-transform: uppercase;*/
+/*    outline: 0;*/
+/*    background: #4CAF50;*/
+/*    border: 0;*/
+/*    padding: 15px;*/
+/*    color: #FFFFFF;*/
+/*    font-size: 14px;*/
+/*    -webkit-transition: all 0.3s ease;*/
+/*    transition: all 0.3s ease;*/
+/*    cursor: pointer;*/
+/*}*/
