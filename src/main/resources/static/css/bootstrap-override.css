@@ -155,7 +155,7 @@ a{
 /*** ABOUT US PAGE ***/
 
 .about-project{
-    margin: 14% auto 15%;
+    margin: 2em auto 2em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -199,7 +199,7 @@ a{
 }
 
 .about-us{
-    margin: 12% auto 26%;
+    margin: 2em auto 2em;
     display: flex;
     justify-content: center;
     align-items: center;
