@@ -39,7 +39,7 @@
         <div class="travel-time ml-4"></div>
         <hr>
 
-        <div class="d-flex">
+        <div class="d-flex mb-2">
             <div class="d-flex flex-column col-8">
                
 
@@ -63,9 +63,9 @@
                 <label class="vendorImg" hidden th:utext="${vendor.Image_url}"></label>
                 <p class="vendor-property vendor-location ml-4 mb-0" th:text="${vendor.location}"/>
             </div>
-            <div class="d-flex col-4">
+            <div class="d-flex col-4 " >
                 <img th:if="${vendor.Image_url == '/images/user-solid.svg'}" class="card-logo" src="/images/no-image-icon.png" alt="menu item">
-                <img  th:unless="${vendor.Image_url == '/images/user-solid.svg'}" class="card-logo" th:src="${vendor.Image_url}" alt="menu item">
+                <img  th:unless="${vendor.Image_url == '/images/user-solid.svg'}" class="card-logo rounded" th:src="${vendor.Image_url}" alt="menu item">
             </div>
         </div>
 
