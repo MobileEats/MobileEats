@@ -219,11 +219,31 @@ body {
     background: url(../images/pattern2.png) repeat;
     background-size: contain;
 }
+.background-food2{
+    background: url(../images/pattern5.png) repeat;
+    background-size: contain;
+    height: 110%;
+}
 .background-utensils{
     background: url(../images/pattern3.png) repeat;
     background-size: contain;
-    height: 106%;
+    height: 110%;
 }
+.background-utensils2{
+    background: url(../images/pattern7.png) repeat;
+    background-size: contain;
+    height: 110%;
+}
+.background-trucks{
+    background: url(../images/pattern4.png) repeat;
+    background-size: contain;
+    height: 110%
+}
+.background-trucks2{
+    background: url(../images/pattern6.png) repeat;
+    background-size: contain;
+    height: 110%
+2}
 .register{
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
