@@ -931,6 +931,9 @@ a .vendor-name:active{
         width: initial;
         margin: 0;
     }
+    .navbar-button{
+        margin-top: 0;
+    }
 }
 
 
