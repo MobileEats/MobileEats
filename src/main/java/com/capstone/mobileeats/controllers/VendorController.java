@@ -308,22 +308,23 @@ public class VendorController {
     }
 
     //edit password
+
     @GetMapping("/vendors/{id}/editPassword")
-    public String showEditPassword(@PathVariable long id, @ModelAttribute Model model){
-        model.addAttribute("vendor", vendorDao.getById(id));
+    public String showEditPassword(@PathVariable long id){
         return "editPassword";
     }
 
     @PostMapping("/vendors/{id}/editPassword")
-    public String editPassword(@RequestParam String oldPassword, @RequestParam String newPassword, @ModelAttribute Vendor vendor){
+    public String editPassword(@PathVariable long id, @RequestParam String oldPassword, @RequestParam String newPassword){
+        Vendor vendor = vendorDao.getById(id);
         String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-            if (Objects.isNull(vendor)){
-                return "redirect:/editPassword";
-            }
-            if(BCrypt.checkpw(oldPassword, vendor.getPassword())){
-                vendor.setPassword(hashedPassword);
-                vendorDao.save(vendor);
-            }
+        if(Objects.isNull(vendor)){
+            return "redirect:/editPassword";
+        }
+        if(BCrypt.checkpw(oldPassword, vendor.getPassword())){
+            vendor.setPassword(hashedPassword);
+            vendorDao.save(vendor);
+        }
         return "passwordChangeConfirm";
     }
 }

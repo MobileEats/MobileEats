@@ -677,7 +677,7 @@ a .vendor-name:active{
 .locate-message{
     text-align: center;
     margin: 0 0 0 0;
-    color: #808080;
+    color: black;
     font-size: 12px;
 }
 
@@ -714,7 +714,32 @@ a .vendor-name:active{
 
 /* Screen Size for Mobile View */
 @media only screen and (max-width: 480px) {
+    .vendor-name{
+        margin-top: 1em;
+        font-size: large;
+        font-weight: bold;
+        /*display: flex;*/
+        /*!*flex-wrap: wrap;*!*/
+        /*justify-content: space-evenly;*/
 
+    }
+    p{
+        font-size: small;
+    }
+    .iphone{
+        display: none;
+    }
+    .col-iphone{
+        flex:0 0 100%;
+        max-width:100%
+    }
+    .pic-desktop{
+        margin: .5em;
+    }
+
+    .travel-time{
+        font-size: small;
+    }
     /* Vendor Profiles */
     .vendor-profile-name {
         margin-top: 1.5em;
@@ -783,9 +808,9 @@ a .vendor-name:active{
 
     /* About Us Page Styling */
     .vendor-header {
-        margin-bottom: 2em;
+        margin-bottom: 1.5em;
         width: 100%;
-        font-size: xxx-large;
+        font-size: medium;
         margin-top: 1em;
     }
     div.member {
@@ -966,7 +991,9 @@ a .vendor-name:active{
     .vendor-profile-name {
         margin-top: 3em;
     }
-
+.col-delete{
+    display: none;
+}
    button.navbar-toggler {
        margin-left: auto;
    }
@@ -1036,6 +1063,9 @@ a .vendor-name:active{
 
 /* Screen Size for Desktop */
 @media only screen and (min-width: 769px) {
+    .pic-desktop{
+        display: none;
+    }
 
     #navbar-links{
         margin-left: auto;
