@@ -312,8 +312,8 @@ input:checked + .slider:before {
 }
 
 .slideshow-img{
-    max-height: 95vh;
-    width: auto;
+    max-height: 50vh;
+    object-fit: cover;
     height: auto;
 }
 
@@ -533,7 +533,7 @@ a .vendor-name:active{
 
 .banner-img{
     width: 100%;
-    height: 90%;
+    max-height: 400px;
     object-fit: cover;
     -webkit-filter: blur(2px);
 }
