@@ -14,9 +14,9 @@
 
 
 <!--<div class="cards">-->
-    <h1 class="vendor-header" th:text="${vendor.name} + '\'s Menu'"></h1>
+    <h1 class="vendor-header mt-4" th:text="${vendor.name} + '\'s Menu'"></h1>
 <div class="d-flex justify-content-center mb-2">
-<a th:if="${owner}" th:href="'/vendors/' + ${vendor.id} + '/menu/create'"><button type="button" class="btn btn-primary">Add Menu Item</button></a>
+<a class="mb-3" th:if="${owner}" th:href="'/vendors/' + ${vendor.id} + '/menu/create'"><button type="button" class="btn btn-primary">Add Menu Item</button></a>
 </div>
     <div class="vendor-card" th:each="item, i : ${items}">
         <div th:id="${item.id}">
@@ -37,8 +37,8 @@
 <!--                -->
 
                 <div  class="col-4">
-                    <img th:if="${item.image_url == ''}" class="menu-img-resize" src="/images/no-image-icon.png" alt="menu item">
-                    <img  th:unless="${item.image_url == ''}" class="menu-img-resize" th:src="${item.image_url}" alt="menu item">
+                    <img th:if="${item.image_url == ''}" class="card-logo rounded" src="/images/no-image-icon.png" alt="menu item">
+                    <img  th:unless="${item.image_url == ''}" class="card-logo rounded" th:src="${item.image_url}" alt="menu item">
 
                 </div>
             </div>
