@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor Profile</title>
 
-    <link rel="stylesheet" href="css/custom.css" />
+<!--    <link rel="stylesheet" href="css/custom.css" />-->
 
 </head>
 <body>
@@ -15,8 +15,9 @@
     <div class="banner-img">
         <img class="banner-img" src="/images/pexels4.jpeg" alt="vendor banner img">
     </div>
-    <h1 class="vendor-profile-name" th:utext="${vendor.name}"></h1>
+
     <div class="d-flex flex-column align-items-center vendor-body mx-auto my-3">
+        <h1 class="vendor-profile-name" th:utext="${vendor.name}"></h1>
         <!--                Need to fix followers and reviews-->
         <input class="vendorId" hidden th:value="${vendor.id}">
 
