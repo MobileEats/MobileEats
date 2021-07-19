@@ -741,14 +741,14 @@ a .vendor-name:active{
         font-size: small;
     }
     /* Vendor Profiles */
-    .vendor-profile-name {
-        margin-top: 1.5em;
-    }
+    /*.vendor-profile-name {*/
+    /*    margin-top: 1.5em;*/
+    /*}*/
     .vendor-body button {
         font-family: "Roboto", sans-serif;
         text-transform: uppercase;
         outline: 0;
-        background: #4CAF50;
+        background: #3C403D;
         width: 100%;
         border: 0;
         padding: 10px;
@@ -852,9 +852,9 @@ a .vendor-name:active{
         width: 50%;
     }
 
-    .vendor-profile-name {
-        margin-top: 2.5em;
-    }
+    /*.vendor-profile-name {*/
+    /*    margin-top: 2.5em;*/
+    /*}*/
 
     button.navbar-toggler {
           margin-left: auto;
@@ -920,8 +920,20 @@ a .vendor-name:active{
     }
 
     .follow-btn {
-        margin-right: 10em;
-        margin-top: 1em;
+        position: absolute;
+        margin-top: .5em;
+        display: flex;
+        align-items: center;
+    }
+    .btn-left{
+        margin: 1em;
+    }
+    .btn-right{
+        margin: 1em;
+    }
+    .flex-it{
+        display: flex;
+
     }
 
     div.contact-form-button {
@@ -930,9 +942,8 @@ a .vendor-name:active{
     }
 
     button#message-button {
-        position: absolute;
-        margin-left: 7em;
-        margin-top: -64px;
+        /*margin-bottom: 2em;*/
+        /*margin-top: 1em;*/
 
     }
 
@@ -981,17 +992,32 @@ a .vendor-name:active{
     .navbar-button{
         margin-top: 0;
     }
-    .vendor-profile-name{
-        width: 110%;
-    }
+
     .vendor-body button{
         margin-bottom: initial;
     }
     .vendor-body button:hover{
         margin-right: initial;
     }
+    /*.follow-top{*/
+    /*    margin-top: 7em;*/
+    /*}*/
     .vendor-profile-name{
         margin-top: 4em;
+        width: 110%;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.4);
+        color: white;
+        font-weight: bold;
+        border: 3px solid #f1f1f1;
+        position: absolute;
+        /*top: -125%;*/
+        /*left: 50%;*/
+        /*transform: translate(-50%, -400%);*/
+        z-index: 2;
+        /*width: 80%;*/
+        padding: 20px;
+        text-align: center;
     }
     .follow-btn{
         margin-right: initial;
