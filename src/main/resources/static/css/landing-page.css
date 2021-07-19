@@ -109,6 +109,9 @@
     cursor: pointer;
 }
 
+
+
+
 @media only screen and (max-width: 480px) {
     .bg-text{
         transform: translate(13%, 30%);
