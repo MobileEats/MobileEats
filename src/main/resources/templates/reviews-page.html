@@ -3,7 +3,7 @@
 <head th:replace="partials/head::head">
     <title>Reviews</title>
 </head>
-<body>
+<body class="background background-food2">
 <nav th:replace="partials/navbar::navbar"></nav>
 <div class="form">
     <form class="rating-form" th:action="@{'/' + ${user.id} + '/reviews/' + ${vendor.id}}" th:object="${review}" method="post">

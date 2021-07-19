@@ -3,7 +3,7 @@
 <head th:replace="partials/head::head">
     <title>Edit Profile Page</title>
 </head>
-<body>
+<body class="background background-food">
 <div class="form">
     <div class="register-header">Edit Profile Info</div>
     <form class="animated" th:action="@{'/users/' + ${user.id} + '/edit'}" th:object="${user}" method="post">
