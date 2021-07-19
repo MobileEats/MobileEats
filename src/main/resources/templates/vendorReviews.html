@@ -6,11 +6,11 @@
     <title>Vendor Profile</title>
 
 </head>
-<body>
+<body class="background background-food2">
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div class="cards">
+<div class="cards rounded">
     <h1 class="vendor-header"><span th:text="${vendor.name} + '\'s'"></span> Reviews</h1>
 
 <!--    <a th:if="${user} != null" class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>-->

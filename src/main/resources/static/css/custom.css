@@ -209,41 +209,46 @@ body {
     position: relative;
 }
 .background{
-    width: 100%;
-    height: 102%;
-    position: absolute;
-    z-index: -9999;
-    display: block;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*position: absolute;*/
+    /*z-index: -9999;*/
+    /*display: block;*/
 }
 .background-food{
-    background: url(../images/pattern2.png) repeat;
+    background-image: url(../images/pattern2.png);
     background-size: contain;
 }
 .background-food2{
-    background: url(../images/pattern5.png) repeat;
-    background-size: contain;
-    height: 110%;
+    background-image: url(../images/pattern2.png);
+    background-size: cover;
+    /*background-position: center top;*/
+    /*height: 110%;*/
 }
 .background-utensils{
-    background: url(../images/pattern3.png) repeat;
-    background-size: contain;
-    height: 110%;
+    background-image: url(../images/pattern3.png);
+    background-size: cover;
+    /*height: 110%;*/
 }
 .background-utensils2{
-    background: url(../images/pattern7.png) repeat;
-    background-size: contain;
-    height: 110%;
+    background-image: url(../images/pattern7.png);
+    background-size: cover;
+    /*height: 110%;*/
 }
 .background-trucks{
-    background: url(../images/pattern4.png) repeat;
-    background-size: contain;
-    height: 110%
+    background-image: url(../images/pattern4.png);
+    background-size: cover;
+    /*background-repeat: round;*/
+    /*background-size: 100% 100%;*/
+    /*background-position: top;*/
+    /*height: 110%*/
 }
 .background-trucks2{
-    background: url(../images/pattern6.png) repeat;
-    background-size: contain;
-    height: 110%
-2}
+    background-image: url(../images/pattern6.png);
+    background-size: cover;
+    /*background-position: top;*/
+    /*height: 110%*/
+}
 .register{
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
