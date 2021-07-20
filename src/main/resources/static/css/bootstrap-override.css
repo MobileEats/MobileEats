@@ -247,3 +247,25 @@ a{
     border-color: #6c757d34 !important;
 }
 
+/* Screen Size for Mobile View */
+@media only screen and (max-width: 480px) {
+    /*button.navbar-toggler {*/
+    /*    background-color: #b3b3b3;*/
+    /*    border-color: #3C403D;*/
+    /*}*/
+    /*.navbar-button {*/
+    /*    background-color: #b3b3b3;*/
+    /*    border-color: #3C403D;*/
+    /*    color: #3C403D;*/
+    /*}*/
+    /*.btn-primary{*/
+    /*    background-color: #b3b3b3;*/
+    /*    border-color: #3C403D;*/
+    /*    color: #3C403D;*/
+    /*}*/
+    /*button.btn-primary{*/
+    /*    background-color: #b3b3b3;*/
+    /*    border-color: #3C403D;*/
+    /*    color: #3C403D;*/
+    /*}*/
+}

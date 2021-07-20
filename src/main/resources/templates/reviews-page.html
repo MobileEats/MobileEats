@@ -27,6 +27,7 @@
 <nav th:replace="partials/navbar::navbar"></nav>
 <div class="form">
     <form class="rating-form" th:action="@{'/' + ${user.id} + '/reviews/' + ${vendor.id}}" th:object="${review}" method="post">
+        <h5 th:utext="${vendor.Name}"></h5>
             <div class="rate">
                 <input type="radio" th:field="*{rating}" id="star5" name="rate" value="5" />
                 <label for="star5" title="text">5 stars</label>
@@ -40,7 +41,7 @@
                 <label for="star1" title="text">1 star</label>
             </div>
             <div class="rev-box form-group shadow-textarea">
-                <label class="review" for="review">Brief Review</label>
+                <label class="review" for="review">Please leave a short review of your experience</label>
                 <textarea id="review" th:field="*{body}" class="review form-control z-depth-1" cols="30" name="review"></textarea>
             </div>
             <button class="btn btn-primary" type="submit">Post</button>
