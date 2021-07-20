@@ -37,21 +37,16 @@
         <!--                Need to fix followers and reviews-->
         <input class="vendorId" hidden th:value="${vendor.id}">
         <div class="d-flex align align-items-center">
-            <div>
-                <h5 class="my-auto mr-1">Closed</h5>
-            </div>
-            <div>
-                <label class="switch">
+
+
+                <div>
                     <th:block th:switch="${open}">
-                        <input th:case="true" type="checkbox" name="open" value="open" id="open" checked disabled>
-                        <input th:case="false" type="checkbox" name="open" value="open" id="closed" disabled>
+                        <img th:case="true" class="open-sign" src="/images/open.png">
+                        <img th:case="false" class="closed-sign" src="/images/closed.png">
                     </th:block>
-                    <span class="slider round"></span>
-                </label>
-            </div>
-            <div>
-                <h5 class="my-auto ml-1">Open</h5>
-            </div>
+                </div>
+
+
         </div>
         <th:block th:switch="${loggedVendor}"> <!--only displays child elements if a vendor is NOT logged in-->
             <th:block th:case="null"> <!--hence why we check for null-->
