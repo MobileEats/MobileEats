@@ -8,6 +8,16 @@
     position: relative;
     margin: auto;
 }
+ .open-sign{
+     width: 64px;
+     height: 64px;
+     margin-bottom: 1em;
+ }
+.closed-sign{
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1em;
+}
 
 /* Hide the images by default */
 /*.mySlides {*/
