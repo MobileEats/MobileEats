@@ -1,6 +1,6 @@
 # MobileEats
 
-[MobileEats](https://mobileeats.app) MobileEats is an application that allows mobile food vendors to be able to relay all business information such as current locations, menus, pricing among other things to a wide user audience. Users of the application can utilize it to track vendors via a map interface and can also submit reviews of the different vendors. Application also has notifications capability via Mailgun. This application was created as a team project with Java, Spring Boot, MySQL, HTML, CSS, JavaScript, and jQuery. Application was made as an MVC design pattern. And it implements full CRUD functionality with the custom built database.
+[MobileEats](https://mobileeats.app) is an application that allows mobile food vendors to be able to relay all business information such as current locations, menus, pricing among other things to a wide user audience. Users of the application can utilize it to track vendors via a map interface and can also submit reviews of the different vendors. Application also has notifications capability via Mailgun. This application was created as a team project with Java, Spring Boot, MySQL, HTML, CSS, JavaScript, and jQuery. Application was made as an MVC design pattern. And it implements full CRUD functionality with the custom built database.
 
 This is a Codeup capstone project created using Java, SpringBoot, MySQL, Javascript, CSS, Filestack api, Mapbox api, Thymleaf, Jquery, and Bootstrap.
 
