@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,17 +31,13 @@
 <div class="cards rounded">
     <h1 class="vendor-header"><span th:text="${vendor.name} + '\'s'"></span> Reviews</h1>
 
-<!--    <a th:if="${user} != null" class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>-->
-
-<!--    <a th:unless="${user} == null" class="review" href="/login">Leave a Review of This Vendor</a>-->
-
     <th:block th:switch="${user}">
         <th:block th:case="vendor"></th:block>
         <a th:case="guest" class="review" href="/login">Leave a Review of This Vendor</a>
         <a th:case="*" class="review" th:href="'/' + ${user.id} + '/reviews/' + ${vendor.id}">Leave a Review of This Vendor</a>
     </th:block>
 
-    <div class="vendor-card" th:each="review : ${reviews}"> <!-- i iterates through vendors, but unlike vendor, nothings passing to it from backend-->
+    <div class="vendor-card" th:each="review : ${reviews}">
         <div class=label th:id="${review.id}">
 
             <h3 th:text="${review.owner.getUsername()}"></h3>

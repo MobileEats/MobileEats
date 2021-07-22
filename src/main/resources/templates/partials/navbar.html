@@ -2,31 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<!--bootstrap styling-->
-<!--head element-->
-<!--<head th:fragment="link_bootstrap">-->
-<!--&lt;!&ndash;    <title th:text="${title}"></title>&ndash;&gt;-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport"-->
-<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-<!--</head>-->
-
-
 <!--- ANIMATION LINK -------->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <link rel="stylesheet" href="css/custom.css"/>
 <link rel="stylesheet" href="css/landing-page.css"/>
-<!--bootstrap navbar-->
-<!--<nav th:fragment="bootstrap_navbar" class="navbar navbar-expand-lg navbar-light bg-light">-->
 
-<!--FYI added internal styling, didn't seem to work with selectors-->
 <nav th:fragment="navbar" class="navbar-expand-lg navbar-light bg-light2 navbar border-bottom border-secondary" style="padding-right: 8px">
 
-    <a id="img-logo" href="/" class="navbar-brand"> <!--should redirect to homepage-->
-        <img src="/images/mobileeats_logo.jpeg" alt="mobileeats logo" height="60" class="vanishIn"> <!--website logo-->
+    <a id="img-logo" href="/" class="navbar-brand">
+        <img src="/images/mobileeats_logo.jpeg" alt="mobileeats logo" height="60" class="vanishIn">
     </a>
 
     <button class="navbar-toggler navbar-button" type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -44,18 +29,15 @@
     <div id="navbar-links" class= "nav-item active">
         <a class="nav-item nav-link " href="/about">About</a>
 
-<!--  about      -->
         <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/register">Register</a>
 
         <a class="nav-item nav-link" sec:authorize="!isAuthenticated()" href="/login">Login</a>
         <a class="nav-item nav-link " sec:authorize="isAuthenticated()" href="/logout">Logout</a>
-<!--WILL HAVE TO CHANGE THE 1 TO THE SESSION SCOPE OF THE LOGGED IN USER-->
         <a class="nav-item nav-link d-flex " sec:authorize="isAuthenticated()" href="/profile">
             <div>
                 <img th:src="${#authentication.principal.image_url}" alt="Company Logo" width="30" height="30" class="rounded-circle">
             </div>
             <div class="ml-2 d-flex align-items-center">Profile</div>
-            <!--redirects to profile, image will have default src when not logged in-->
         </a>
     </div>
     </div>

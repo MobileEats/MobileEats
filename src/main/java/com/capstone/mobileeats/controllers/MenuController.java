@@ -75,15 +75,13 @@ public class MenuController {
 
     @GetMapping("/vendors/{vendorId}/menu/{menuItemId}/edit")
     public String showEditItemForm(Model model, @PathVariable long vendorId, @PathVariable long menuItemId) {
-//        List<String> Items = menuItems.findAllByMenuId(vendorId);
-//        model.addAttribute("image", Items.get((int)(menuItemId)));
         model.addAttribute("vendor", vendors.getById(vendorId));
         model.addAttribute("item", menuItems.getById(menuItemId));
         model.addAttribute("types", itemTypes.findAll());
         model.addAttribute("categories", itemCategories.findAll());
         return "editMenuItem";
     }
-//***************
+
     @PostMapping("/vendors/{vendorId}/menu/{menuItemId}/edit")
     public String editItem(@RequestParam(name = "type") String typeName, @RequestParam(name = "categories") String categoriesString, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description, @RequestParam(name = "image_url") String imageUrl, @PathVariable long vendorId, @PathVariable long menuItemId) {
         MenuItem item = menuItems.getById(menuItemId);

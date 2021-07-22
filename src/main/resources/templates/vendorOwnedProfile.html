@@ -34,10 +34,8 @@
 
     <div class="d-flex flex-column align-items-center vendor-body mx-auto my-3">
         <h1 class="vendor-profile-name2" th:utext="${vendor.name}"></h1>
-        <!--                Need to fix followers and reviews-->
         <input class="vendorId" hidden th:value="${vendor.id}">
 
-<!--        <label>Mark as Open: </label>-->
         <div class="d-flex align align-items-center">
             <div>
                 <h5 class="my-auto mr-1">Closed</h5>
@@ -88,7 +86,6 @@
 <br>
 
 <div class="slideshow mx-auto w-50 mt-5 mb-2">
-    <!-- Full-width images with number and caption text -->
     <img th:each="image : ${vendor.images}" th:src="${image.imageUrl}" class="rounded slideshow-img">
 </div>
 <div th:if="${!vendor.images.isEmpty()}" class="dots-container mb-5"></div>

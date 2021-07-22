@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="partials/head :: head" >-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -54,7 +53,6 @@
                         th:selected="${item.categories.contains(category)}"></option>
             </select>
         </div>
-        <!-- THE BELOW FORM GROUP HOLDS THE URL TO THE UPLOADED IMAGE, IT IS INVISIBLE -->
         <div class="form-group d-none">
             <input name="image_url" type="text" class="form-control" id="image_url" th:value="${item.image_url}">
         </div>
@@ -62,9 +60,7 @@
             <label for="filestack">Item Image</label>
             <button id="filestack" class="btn btn-primary" type="button">Select Image</button>
         </div>
-<!--        <div id="thumbnail-container" class="mb-4">-->
-<!--            <img id="thumbnail" th:src="${image}" width="200px">-->
-<!--        </div>-->
+
         <button class="btn btn-primary" type="submit">Edit Item</button>
     </form>
 </div>

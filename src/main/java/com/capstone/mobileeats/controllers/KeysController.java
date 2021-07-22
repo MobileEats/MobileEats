@@ -15,20 +15,6 @@ public class KeysController {
     @Autowired
     ConfigProperties configProperties;
 
-    /*
-    Can use application properties like this.
-    #Keys
-    config.jsKeys.filestack=filestackkey12345
-    config.jsKeys.mapbox=mapboxkey12345
-    Or an environment vairable like this
-    CONFIG_JSKEYS_GOOGLE=1234abcgoogle
-     */
-
-//    @GetMapping("/js/keys.js")
-//    public String dontShow()
-//    {
-//        return "redirect:/vendor";
-//    }
     @RequestMapping(path = "/js/keys.js", produces = "application/javascript")
     @ResponseBody
     public String apikey(){

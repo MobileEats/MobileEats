@@ -24,7 +24,7 @@ public class VendorImagesController {
 
     @GetMapping("/vendors/{id}/images")
     public String showVendorImages(Model model, @PathVariable long id){
-        //can only view the images page if it's your account
+
         try {
             Vendor user = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             if (user.getId() == id) {

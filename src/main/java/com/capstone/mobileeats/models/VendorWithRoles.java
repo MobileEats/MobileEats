@@ -14,7 +14,7 @@ public class VendorWithRoles extends Vendor implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String roles = ""; // Since we're not using the authorization part of the component
+        String roles = "";
         return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
     }
 

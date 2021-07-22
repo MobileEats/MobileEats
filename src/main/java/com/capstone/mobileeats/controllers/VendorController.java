@@ -46,14 +46,14 @@ public class VendorController {
         this.emailService = emailService;
     }
 
-    @GetMapping("/vendor/edit/{id}")//not used?
+    @GetMapping("/vendor/edit/{id}")
     public String showVendorEditForm(@PathVariable long id, Model model) {
         Vendor currentVendor = vendorDao.getById(id);
         model.addAttribute("vendor", vendorDao.getById(currentVendor.getId()));
         return "editVendorProfilePage";
     }
 
-    @PostMapping("/vendor/edit/{id}")//not used?
+    @PostMapping("/vendor/edit/{id}")
     public String editVendorProfile(@ModelAttribute Vendor vendor) {
         Vendor saveVendor = vendorDao.save(vendor);
         return "redirect:/vendors/profile/" + saveVendor.getId();
@@ -61,24 +61,20 @@ public class VendorController {
 
     @GetMapping("/vendors")
     public String vendorsIndex(Model model) {
-        //        LIST ALL VENDORS
         List<Vendor> vendors = vendorDao.findAll();
         return getString(model, vendors);
     }
 
-    @GetMapping("/vendor")//not used?
+    @GetMapping("/vendor")
     public String vendorsIndex(@RequestParam(name = "search") String search, Model model) {
-//        SEARCH VENDORS
-
         String searchQuery = "%" + search + "%";
         List<Vendor> searchedVendors = vendorDao.searchByTitle(searchQuery);
 
         return getString(model, searchedVendors);
     }
 
-    //    this is just a method containing my AVERAGE RATING function so I don't have to repeat it in the vendor and vendors mappings
     private String getString(Model model, List<Vendor> vendors) {
-        model.addAttribute("vendors", vendors); //searches through title, description, and category
+        model.addAttribute("vendors", vendors);
 
         List<Double> averages = new ArrayList<>();
 
@@ -124,11 +120,9 @@ public class VendorController {
 
         emailService.newVendorCreated(vendor, "New vendor account with MobileEats!", "Thank you for creating an account with MobileEats for " + vendor.getName() + ". \nThe email used for registration is: " + vendor.getEmail() + "\nThe user name is : " + vendor.getUsername() + " \nIf you find this to be an error please contact us.");
         return "redirect:/profile";
-//        return "redirect:/vendors/profile/" + saveVendor.getId();
     }
 
     public String[] convertStringToList(String str) {
-        //remove the brackets
         String newStr = str.replaceAll("[|]", "");
         return newStr.split(",");
     }
@@ -138,7 +132,7 @@ public class VendorController {
 
         try {
             Vendor vendor = vendorDao.getById(id);
-            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //checks if user is logged in
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User user = userDao.getById(currentUser.getId());
 
             model.addAttribute("user", user);
@@ -156,9 +150,9 @@ public class VendorController {
             System.out.println("user " + user.getUsername() + " viewing: " + vendor.getName());
             model.addAttribute("open", vendor.isOpen());
 
-        } catch (ClassCastException e) { //if a user isn't logged in, it will check to see if they are a vendor or a guest
+        } catch (ClassCastException e) {
             try {
-                Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //checks if vendor is logged in
+                Vendor currentVendor = (Vendor) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
                 User user = userDao.getById(currentVendor.getId());
                 Vendor vendor = vendorDao.getById(id);
 
@@ -171,20 +165,18 @@ public class VendorController {
 
                 model.addAttribute("open", vendor.isOpen());
 
-            } catch (ClassCastException f) { //catches exception when no vendor or user is logged in (guest)
+            } catch (ClassCastException f) {
                 Vendor vendor = vendorDao.getById(id);
-                model.addAttribute("vendorId", id); //still needs vendor info to display the correct page
+                model.addAttribute("vendorId", id);
                 model.addAttribute("vendor", vendor);
 
                 System.out.println("user guest viewing: " + vendor.getName());
                 model.addAttribute("open", vendor.isOpen());
             }
-            model.addAttribute("user", null); //workaround for review link in vendorProfile... hard codes user to null if it does not detect a logged user, which is then checked in the html using th:switch case
+            model.addAttribute("user", null);
         }
         return "vendorProfile";
-////        model.addAttribute("location", vendor.getLocation());
-////        ObjectMapper objectMapper = new ObjectMapper();
-////        result.addObject("location", objectMapper.writeValueAsString(location));
+
     }
 
 
@@ -199,7 +191,7 @@ public class VendorController {
         return "redirect:/vendors/profile/" + id;
     }
 
-    //UPDATE
+
     @GetMapping("/vendors/{id}/edit")
     public String updatePostForm(@PathVariable long id, Model model) {
         try {
@@ -262,7 +254,7 @@ public class VendorController {
         }
     }
 
-    //CONTACT
+
     @GetMapping("/vendors/contact/{id}")
     public String contactUs(@PathVariable Long id) {
 
@@ -307,7 +299,7 @@ public class VendorController {
         return "vendorReviews";
     }
 
-    //edit password
+
 
     @GetMapping("/vendors/{id}/editPassword")
     public String showEditPassword(@PathVariable long id){
