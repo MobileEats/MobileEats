@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="partials/head :: head" >-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,7 +28,6 @@
 <div class="form form-register">
     <div class="register-header">Add Image</div>
         <form th:action="'/vendors/' + ${vendor.id} + '/images/create'" th:method="post" th:object="${image}">
-            <!-- THE BELOW FORM GROUP HOLDS THE URL TO THE UPLOADED IMAGE, IT IS INVISIBLE -->
             <div class="form-group d-none">
                 <input name="image_url" type="text" class="form-control" id="image_url">
             </div>

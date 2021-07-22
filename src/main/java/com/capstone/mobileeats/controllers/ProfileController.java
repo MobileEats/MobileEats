@@ -38,7 +38,6 @@ public class ProfileController {
             following.clear();
 
             for(int i = 0; i < vendors.size(); i++){
-//                System.out.println("test " + i + " = " + vendors.get(i));
                 Vendor vendor = vendors.get(i);
 
                 if(vendor.getFollowers().contains(user) & !following.contains(vendor)){
@@ -46,8 +45,6 @@ public class ProfileController {
                 }
                 System.out.println("vendor followers: " + vendor.getFollowers());
             }
-//            ^^error: repeats the list every time the page refreshes
-//            fixed: clear array every time the page refreshes
 
             return "userOwnedProfile";
         }catch(ClassCastException e){
@@ -59,12 +56,11 @@ public class ProfileController {
     }
     @PostMapping(value = "/profile")
     public @ResponseBody
-    String sendPost(@RequestBody PostTo postTo, Model model) {
+    String sendPost(@RequestBody PostTo postTo) {
         Vendor updateVendor = vendorDao.getById(postTo.getId());
         updateVendor.setLocation(postTo.getLocation());
         updateVendor.setOpen(postTo.getOpen());
         vendorDao.save(updateVendor);
-//        model.addAttribute("vendor", updateVendor);
         return "vendorProfile";
     }
 

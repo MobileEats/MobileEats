@@ -26,9 +26,6 @@
 <body class="background background-food2">
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-
-
-<!--<div class="cards">-->
     <h1 class="vendor-header mt-4" th:text="${vendor.name} + '\'s Menu'"></h1>
 <div class="d-flex justify-content-center mb-2">
 <a class="mb-3" th:if="${owner}" th:href="'/vendors/' + ${vendor.id} + '/menu/create'"><button type="button" class="btn btn-primary">Add Menu Item</button></a>
@@ -49,7 +46,6 @@
                     <div class="label">Description: </div>
                     <p class="vendor-property category" th:text="${item.description}"></p>
                 </div>
-<!--                -->
 
                 <div  class="col-4">
                     <img th:if="${item.image_url == ''}" class="card-logo rounded" src="/images/no-image-icon.png" alt="menu item">
@@ -69,7 +65,6 @@
             </div>
         </div>
     </div>
-<!--</div>-->
 
 <footer th:replace="partials/footer :: footer"></footer>
 </body>

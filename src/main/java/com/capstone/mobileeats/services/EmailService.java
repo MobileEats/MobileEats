@@ -29,7 +29,6 @@ public class EmailService {
             this.emailSender.send(msg);
         }
         catch (MailException ex) {
-            // simply log it and go on...
             System.err.println(ex.getMessage());
         }
     }
@@ -45,7 +44,6 @@ public class EmailService {
             this.emailSender.send(msg);
         }
         catch (MailException ex) {
-            // simply log it and go on...
             System.err.println(ex.getMessage());
         }
     }
@@ -61,7 +59,6 @@ public class EmailService {
             this.emailSender.send(msg);
         }
         catch (MailException ex) {
-            // simply log it and go on...
             System.err.println(ex.getMessage());
         }
     }
@@ -77,7 +74,6 @@ public class EmailService {
             this.emailSender.send(msg);
         }
         catch (MailException ex) {
-            // simply log it and go on...
             System.err.println(ex.getMessage());
         }
     }
@@ -92,7 +88,6 @@ public class EmailService {
             this.emailSender.send(msg);
         }
         catch (MailException ex) {
-            // simply log it and go on...
             System.err.println(ex.getMessage());
         }
     }
@@ -108,10 +103,8 @@ public class EmailService {
             this.emailSender.send(msg);
         }
         catch (MailException ex) {
-            // simply log it and go on...
             System.err.println(ex.getMessage());
         }
     }
 
-//    WILL NEED TO CREATE OTHER METHODS TO EMAIL WHEN REVIEW CREATED
 }

@@ -94,17 +94,16 @@ public class UserController {
 
         emailService.newUserCreated(user, "New user account with MobileEats!", "Thank you for creating a user account with MobileEats. \nThe email used for registration is: " +  user.getEmail() + "\nThe user name is : " + user.getUsername() + " \nIf you find this to be an error please contact us.");
         return "redirect:/profile";
-//        return "redirect:/users/profile/" + saveUser.getId();
 
     }
-//*******is thi needed ********
+
     @GetMapping(path = "/user/profile/{id}")
     public String postId(@PathVariable long id, Model model) {
         model.addAttribute("user", users.getById(id));
         return "userProfile";
     }
 
-    //UPDATE
+
     @GetMapping("/users/{id}/edit")
     public String updatePostForm(@PathVariable long id, Model model) {
         try{
@@ -124,7 +123,7 @@ public class UserController {
     }
 
     @PostMapping("/users/{id}/edit")
-    public String updatePostSubmit(@ModelAttribute User user, Model model) {
+    public String updatePostSubmit(@ModelAttribute User user) {
         users.save(user);
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);

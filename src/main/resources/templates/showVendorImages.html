@@ -26,9 +26,6 @@
 <body class="background background-food">
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-
-
-<!--<div class="cards">-->
     <h1 class="vendor-header mt-4" th:text="${vendor.name} + '\'s Photos'"></h1>
 <div class="d-flex justify-content-center mb-2">
     <a class="mb-3" th:href="'/vendors/' + ${vendor.id} + '/images/create'"><button type="button" class="btn btn-primary">Add Image</button></a>
@@ -46,8 +43,6 @@
         </div>
     </div>
 
-
-<!--</div>-->
 
 <footer th:replace="partials/footer :: footer"></footer>
 </body>
