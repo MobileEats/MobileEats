@@ -31,10 +31,13 @@
         <label for="first_name">Name</label>
         <input id="first_name" type="text" name="name" th:value="${vendor.name}">
         <label for="description">Description</label>
-        <input id="description" type="text" name="description" th:value="${vendor.description}">
+<!--        <input id="description" type="text" name="description" th:value="${vendor.description}">-->
+        <textarea class="form-control" rows="3" id="description" name="description" th:text="${vendor.description}"></textarea>
         <div class="form-group">
-            <label for="categories">Categories</label>
-            <select name="categories" id="categories" multiple>
+            <div class="text-center">
+                <label for="categories">Categories</label>
+            </div>
+            <select class="form-control" size="7" name="categories" id="categories" multiple>
                 <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}" th:selected="${vendor.categories.contains(category)}"></option>
             </select>
         </div>
