@@ -36,12 +36,13 @@
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" class="form-control" id="description"
-                   placeholder="We have the best noodles in town!" name="description">
+            <textarea class="form-control" rows="3" id="description" placeholder="We have the best noodles in town!" name="description"></textarea>
         </div>
         <div class="form-group">
-            <label for="categories">Categories</label>
-            <select class="" name="categories" id="categories" multiple>
+            <div class="text-center">
+                <label for="categories">Categories</label>
+            </div>
+            <select class="form-control" size="7" name="categories" id="categories" multiple>
                 <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}"></option>
             </select>
         </div>
@@ -57,6 +58,10 @@
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" placeholder="********" name="password">
+        </div>
+        <div class="form-group">
+            <label for="password-confirm">Confirm Password</label>
+            <input name="password-confirm" type="password" class="form-control" id="password-confirm" placeholder="********">
         </div>
         <div class="form-group">
             <label for="location">Location</label>
