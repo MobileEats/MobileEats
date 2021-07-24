@@ -310,7 +310,10 @@ public class VendorController {
     }
 
     @PostMapping("/vendors/{id}/editPassword")
-    public String editPassword(@PathVariable long id, @RequestParam String oldPassword, @RequestParam String newPassword){
+    public String editPassword(@PathVariable long id, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirm){
+        if(!confirm.equals(newPassword)){
+            return "editPassword";
+        }
         Vendor vendor = vendorDao.getById(id);
         String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
         if(Objects.isNull(vendor)){
