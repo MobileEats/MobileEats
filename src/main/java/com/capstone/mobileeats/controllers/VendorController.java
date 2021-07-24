@@ -100,7 +100,10 @@ public class VendorController {
     }
 
     @PostMapping("vendors/create")
-    public String createVendor(@RequestParam String name, @RequestParam String description, @RequestParam(name = "categories") String categoriesString, @RequestParam String phoneNumber, @RequestParam String email, @RequestParam String password, @RequestParam String location, @RequestParam String image_url) {
+    public String createVendor(@RequestParam String name, @RequestParam String description, @RequestParam(name = "categories") String categoriesString, @RequestParam String phoneNumber, @RequestParam String email, @RequestParam String password, @RequestParam String location, @RequestParam String image_url, @RequestParam String confirm) {
+        if(!confirm.equals(password)){
+            return "registerVendor";
+        }
         List<VendorCategory> categories = new ArrayList<>();
         String[] categoriesNames = convertStringToList(categoriesString);
         for (String categoryName : categoriesNames) {
@@ -307,7 +310,10 @@ public class VendorController {
     }
 
     @PostMapping("/vendors/{id}/editPassword")
-    public String editPassword(@PathVariable long id, @RequestParam String oldPassword, @RequestParam String newPassword){
+    public String editPassword(@PathVariable long id, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirm){
+        if(!confirm.equals(newPassword)){
+            return "editPassword";
+        }
         Vendor vendor = vendorDao.getById(id);
         String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
         if(Objects.isNull(vendor)){

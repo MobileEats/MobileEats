@@ -84,7 +84,10 @@ public class UserController {
     }
 
     @PostMapping("users/create")
-    public String createVendor(@ModelAttribute User user){
+    public String createVendor(@ModelAttribute User user, @RequestParam String confirm){
+        if(!confirm.equals(user.getPassword())){
+            return "registerUser";
+        }
         String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         if (user.getImage_url().isBlank()){
             user.setImage_url("/images/user-solid.svg");
@@ -137,7 +140,10 @@ public class UserController {
     }
 
     @PostMapping("/users/{id}/editPassword")
-    public String editPassword(@PathVariable long id, @RequestParam String oldPassword, @RequestParam String newPassword){
+    public String editPassword(@PathVariable long id, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirm){
+        if(!confirm.equals(newPassword)){
+            return "editPassword";
+        }
         User user = users.getById(id);
         String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
         if(Objects.isNull(user)){
