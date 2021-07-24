@@ -121,7 +121,7 @@ public class VendorController {
         vendor.setMenu(menu);
         vendorDao.save(vendor);
 
-        emailService.newVendorCreated(vendor, "New vendor account with MobileEats!", "Thank you for creating an account with MobileEats for " + vendor.getName() + ". \nThe email used for registration is: " + vendor.getEmail() + "\nThe user name is : " + vendor.getUsername() + " \nIf you find this to be an error please contact us.");
+        emailService.newVendorCreated(vendor, "New vendor account with MobileEats!", "Thank you for creating an account with MobileEats for " + vendor.getName() + ". \nThe email used for registration is: " + vendor.getEmail() + "\nThe vendor name is : " + vendor.getName() + " \nIf you find this to be an error please contact us.");
         return "redirect:/profile";
     }
 
